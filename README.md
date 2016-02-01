@@ -14,7 +14,14 @@ Modular ReactJS charts made using d3 chart utilities. Work on project documentat
 
 First, install via `npm`:
 
+Then:
 `npm install react-d3`
+
+From version `0.5.0` we change our package name to `rd3`:
+```
+npm install rd3
+```
+However this version is not yet fully tested so if you want a stable build please stick with `react-d3`.
 
 Then, import into your ReactJS project:
 
