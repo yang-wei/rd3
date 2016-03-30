@@ -1,8 +1,7 @@
 ## rd3 (forked from [react-d3](https://github.com/esbullington/react-d3))
 Modular ReactJS charts made using d3 chart utilities. Work on project documentation has started [here](https://github.com/esbullington/react-d3/wiki). A few examples of the available charts can be seen below, the others can be [viewed here](https://reactiva.github.io/react-d3-website/), side-by-side with the React code that generates the charts.
 
-[![npm version](https://badge.fury.io/js/react-d3.png)](https://www.npmjs.com/package/rd3)
-
+[![npm version](https://badge.fury.io/js/rd3.svg)](https://badge.fury.io/js/rd3)
 
 ## Usage
 
