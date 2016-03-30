@@ -78,5 +78,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/esbullington/react-d3.git"
-  }
+  },
+  "files": [
+    "build"
+  ]
 }
