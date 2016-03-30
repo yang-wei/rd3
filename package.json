@@ -1,8 +1,8 @@
 {
-  "name": "react-d3",
-  "version": "0.4.0",
+  "name": "rd3",
+  "version": "0.5.2",
   "description": "ReactJS charts using d3",
-  "author": "Eric S. Bullington",
+  "author": "Lim Yang Wei",
   "homepage": "https://reactiva.github.io/react-d3-website/",
   "keywords": [
     "d3",
@@ -12,7 +12,7 @@
     "react-component"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "./build/cjs/index.js",
   "devDependencies": {
     "babelify": "^6.1.3",
     "browser-sync": "^2.7.10",
@@ -57,10 +57,11 @@
     "react": ">0.12.0"
   },
   "scripts": {
-    "env": "env",
     "test": "gulp test",
     "watch": "gulp watch",
-    "minified": "gulp release && NODE_ENV=production browserify -t [ reactify --es6 ] --standalone rd3 ./build/cjs/index.js | uglifyjs -c > dist/public/js/react-d3.min.js"
+    "release": "gulp release",
+    "clean": "gulp clean:build",
+    "prepublish": "npm run clean && npm run release"
   },
   "browserify": {
     "transform": [
@@ -77,6 +78,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/esbullington/react-d3.git"
-  }
+    "url": "https://github.com/yang-wei/rd3.git"
+  },
+  "files": [
+    "build"
+  ]
 }
