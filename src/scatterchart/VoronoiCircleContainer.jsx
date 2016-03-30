@@ -53,12 +53,20 @@ module.exports = React.createClass({
           cy={props.cy}
           handleMouseLeave={this._restoreCircle}
           handleMouseOver={this._animateCircle}
+          handleMouseDown={this._doMouseDown}
           voronoiPath={this._drawPath(props.vnode)}
         />
       </g>
     );
   },
 
+  _doMouseDown() {
+    var props = this.props;
+    if (props.onMouseDown) {
+      var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
+      this.props.onMouseDown.call(this, rect.right, rect.top, props.dataPoint )
+    }
+  },
   _animateCircle() {
     var props = this.props;
 
