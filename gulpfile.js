@@ -128,7 +128,6 @@ gulp.task('minified', ['clean:build'], function() {
     .pipe(plugins.uglify())
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest('build/public/js'))
-    .pipe(gulp.dest('dist/public/js'))
     ;
 });
 
