@@ -1,45 +1,33 @@
-## react-d3
+## rd3 (forked from [react-d3](https://github.com/esbullington/react-d3))
 Modular ReactJS charts made using d3 chart utilities. Work on project documentation has started [here](https://github.com/esbullington/react-d3/wiki). A few examples of the available charts can be seen below, the others can be [viewed here](https://reactiva.github.io/react-d3-website/), side-by-side with the React code that generates the charts.
 
-![react-d3 chart images](https://raw.githubusercontent.com/esbullington/react-d3-website/gh-pages/img/multiseries.png)
+[![npm version](https://badge.fury.io/js/react-d3.png)](https://www.npmjs.com/package/rd3)
 
-**Caution:**  alpha state software. Chart APIs will change. Breaking changes will occur at each minor (0.x) release, until we reach version 1.0.  At that point, we'll closely follow the [semver](http://semver.org/) specification.
 
-[![Build Status](https://travis-ci.org/esbullington/react-d3.svg?branch=master)](https://travis-ci.org/esbullington/react-d3)
+## Usage
 
-### Version
-[![npm version](https://badge.fury.io/js/react-d3.png)](https://www.npmjs.com/package/react-d3)
+### npmcdn
+Thanks to [npmcdn](https://npmcdn.com/) you can now try out rd3 quickly:
 
-### Basic usage
+ * https://npmcdn.com/rd3@0.5.1/build/public/js/react-d3.js
+ * https://npmcdn.com/rd3@0.5.1/build/public/js/react-d3.min.js
 
-First, install via `npm`:
+### NPM
+Or via `npm`:
 
-Then:
-`npm install react-d3`
-
-From version `0.5.0` we change our package name to `rd3`:
 ```
 npm install rd3
 ```
-However this version is not yet fully tested so if you want a stable build please stick with `react-d3`.
 
 Then, import into your ReactJS project:
 
 ```
-var rd3 = require('react-d3');
+var rd3 = require('rd3');
 // es6
-import rd3 from 'react-d3';
+import rd3 from 'rd3';
 ```
 
 The charts are then available under the `rd3` namespace, which you can then use as shown on the [demonstration page](https://reactiva.github.io/react-d3-website/):
-
-If you don't wish to pull in all the charts, you can also require single chart:
-
-```
-var BarChart = require('react-d3/barchart').BarChart;
-// es6
-import { BarChart } from 'react-d3';
-```
 
 ### Available Charts
 
@@ -55,13 +43,6 @@ var CandleStickChart = rd3.CandleStickChart;
 
 For usage, please see [here](https://reactiva.github.io/react-d3-website/).  [API documentation](https://github.com/esbullington/react-d3/wiki/API) is also coming online over the coming days.
 
-### JSFiddle
-There's a development build available for experimentation on JSFiddle: [http://jsfiddle.net/esbullington/jp9dkh1g/](http://jsfiddle.net/esbullington/jp9dkh1g/).
-
-Please note that this build should probably not be used in production, since it bundles all of react-d3's dependencies in a single bundle (this is also the cause of the "Cannot read property 'firstChild' of undefined" error message on the JS console, which occurs when there are two React libraries in the same namespace).
-
-All the react-d3 charts are available in this JSFiddle fork under the global `rd3` namespace.
-
 ### Support
 
 * Chat: [![Join the chat at https://gitter.im/esbullington/react-d3](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/esbullington/react-d3?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -72,15 +53,6 @@ All the react-d3 charts are available in this JSFiddle fork under the global `rd
 Although there have been [several](http://nicolashery.com/integrating-d3js-visualizations-in-a-react-app/) [different](http://bl.ocks.org/milroc/d22bbf92231876505e5d) approaches proposed for combining the power of d3 with the flexibility and modularity of ReactJS, the approach I'm using here was inspired by [this blog post](http://10consulting.com/2014/02/19/d3-plus-reactjs-for-charting/) by Ben Smith of [Binary Consulting](http://10consulting.com/).
 
 With this approach, React itself is responsible for generating the SVG markup.  d3.js is used for its tremendous collection of utility functions, such as those that calculate the `path` value for various chart types.
-
-### Roadmap
-
-* v0.5.0:
-  * Data frame animations
-  * Additional charts types:
-    - slopegraph
-    - table
-  * Tooltips
 
 ### License
 MIT
