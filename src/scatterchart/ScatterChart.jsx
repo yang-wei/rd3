@@ -71,6 +71,7 @@ module.exports = React.createClass({
           data={data}
           height={props.height}
           legend={props.legend}
+          sideOffset={props.sideOffset}
           margins={props.margins}
           title={props.title}
           viewBox={this.getViewBox()}
