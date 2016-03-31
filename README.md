@@ -8,8 +8,8 @@ Modular ReactJS charts made using d3 chart utilities. Work on project documentat
 ### npmcdn
 Thanks to [npmcdn](https://npmcdn.com/) you can now try out rd3 quickly:
 
- * https://npmcdn.com/rd3@0.5.1/build/public/js/react-d3.js
- * https://npmcdn.com/rd3@0.5.1/build/public/js/react-d3.min.js
+ * https://npmcdn.com/rd3/build/public/js/react-d3.js
+ * https://npmcdn.com/rd3/build/public/js/react-d3.min.js
 
 ### NPM
 Or via `npm`:
