@@ -36,6 +36,7 @@ module.exports = React.createClass({
           fill={props.pathFill}
           onMouseLeave={props.handleMouseLeave}
           onMouseOver={props.handleMouseOver}
+          onMouseDown={props.handleMouseDown}
         />
         <circle
           cx={props.cx}
@@ -44,6 +45,7 @@ module.exports = React.createClass({
           fill={props.circleFill}
           onMouseLeave={props.handleMouseLeave}
           onMouseOver={props.handleMouseOver}
+          onMouseDown={props.handleMouseDown}
           r={props.circleRadius}
         />
       </g>

@@ -5,11 +5,11 @@ var d3 = require('d3');
 var { Chart, XAxis, YAxis, Tooltip} = require('../common');
 var DataSeries = require('./DataSeries');
 var utils = require('../utils');
-var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin } = require('../mixins');
+var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin, ClickMixin } = require('../mixins');
 
 module.exports = React.createClass({
 
-  mixins: [ CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin ],
+  mixins: [ CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin, ClickMixin ],
 
   displayName: 'ScatterChart',
 
@@ -141,6 +141,7 @@ module.exports = React.createClass({
               yAccessor={props.yAccessor}
               yScale={yScale}
               onMouseOver={this.onMouseOver}
+              onMouseDown={this.onMouseDown}
               />
           </g>
         </Chart>
