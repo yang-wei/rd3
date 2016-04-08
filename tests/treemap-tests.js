@@ -4,10 +4,10 @@ var expect = require('chai').expect;
 
 describe('Treemap', function() {
   it('renders treemap', function() {
-    var React = require('react/addons');
     var Treemap = require('../src/treemap').Treemap;
     var generate = require('./utils/datagen').generateArrayOfNameObjects;
-    var TestUtils = React.addons.TestUtils;
+    var React = require('react');
+    var TestUtils = require('react-addons-test-utils');
     var points = 5;
 
     // Render a treemap using array data

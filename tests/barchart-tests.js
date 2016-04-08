@@ -4,10 +4,10 @@ var expect = require('chai').expect;
 
 describe('BarChart', function() {
   it('renders barchart', function() {
-    var React = require('react/addons');
+    var React = require('react');
     var BarChart = require('../src/barchart').BarChart;
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
+    var TestUtils = require('react-addons-test-utils');
     var length = 5;
 
     var data = [
@@ -39,10 +39,10 @@ describe('BarChart', function() {
   });
 
   it('renders barchart with negative values', function() {
-    var React = require('react/addons');
+    var React = require('react');
     var BarChart = require('../src/barchart').BarChart;
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
+    var TestUtils = require('react-addons-test-utils');
 
     var length = 5;
 
