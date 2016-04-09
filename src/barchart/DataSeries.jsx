@@ -46,7 +46,7 @@ module.exports = React.createClass({
         hoverAnimation={hoverAnimation}
         onMouseOver={this.props.onMouseOver}
         onMouseLeave={this.props.onMouseLeave}
-        dataPoint={{xValue: segment.x, yValue: segment.y, seriesName: this.props.series[seriesIdx]}}
+        dataPoint={{xValue: segment.x, yValue: segment.hoverValue ? segment.hoverValue : segment.y, seriesName: this.props.series[seriesIdx]}}
       />
     )
   }
