@@ -10,7 +10,7 @@ module.exports = React.createClass({
   displayName: 'AreaContainer',
 
   propTypes: {
-    fill: React.PropTypes.string, 
+    fill: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -20,7 +20,7 @@ module.exports = React.createClass({
   },
 
   getInitialState() {
-    return { 
+    return {
       fill: this.props.fill
     };
   },
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
     // animation controller
     var handleMouseOver, handleMouseLeave;
-    if(props.hoverAnimation) {
+    if (props.hoverAnimation) {
       handleMouseOver = this._animateArea;
       handleMouseLeave = this._restoreArea;
     } else {
@@ -40,22 +40,22 @@ module.exports = React.createClass({
 
     return (
       <Area
-          handleMouseOver={handleMouseOver}
-          handleMouseLeave={handleMouseLeave}
-          {...props}
-          fill={this.state.fill}
+        handleMouseOver={handleMouseOver}
+        handleMouseLeave={handleMouseLeave}
+        {...props}
+        fill={this.state.fill}
       />
     );
   },
 
   _animateArea() {
-    this.setState({ 
+    this.setState({
       fill: shade(this.props.fill, 0.02)
     });
   },
 
   _restoreArea() {
-    this.setState({ 
+    this.setState({
       fill: this.props.fill
     });
   },

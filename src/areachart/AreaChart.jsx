@@ -8,7 +8,7 @@ var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin } = require(
 
 module.exports = React.createClass({
 
-  mixins: [ CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin ],
+  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin],
 
   displayName: 'AreaChart',
 
@@ -17,11 +17,11 @@ module.exports = React.createClass({
     interpolate:       React.PropTypes.bool,
     interpolationType: React.PropTypes.string,
     hoverAnimation:    React.PropTypes.bool,
- },
+  },
 
   getDefaultProps() {
     return {
-      margins: {top: 10, right: 20, bottom: 40, left: 45},
+      margins: { top: 10, right: 20, bottom: 40, left: 45 },
       yAxisTickCount: 4,
       interpolate: false,
       interpolationType: null,
@@ -38,7 +38,7 @@ module.exports = React.createClass({
 
     var interpolationType = props.interpolationType || (props.interpolate ? 'cardinal' : 'linear');
 
-    var {innerWidth, innerHeight, trans, svgMargins} = this.getDimensions();
+    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
     var yOrient = this.getYOrient();
 
     if (!Array.isArray(data)) {
@@ -55,7 +55,7 @@ module.exports = React.createClass({
     var domain = props.domain || {};
     var xDomain = domain.x || [];
     var yDomain = domain.y || [];
-    data.forEach( (series) => {
+    data.forEach((series) => {
       var upper = 0;
       seriesNames.push(series.name);
       series.values.forEach((val, idx) => {
@@ -76,12 +76,12 @@ module.exports = React.createClass({
     }
 
     var xdomain = d3.extent(xValues);
-    if(xDomain[0] !== undefined && xDomain[0] !== null) xdomain[0] = xDomain[0];
-    if(xDomain[1] !== undefined && xDomain[1] !== null) xdomain[1] = xDomain[1];
+    if (xDomain[0] !== undefined && xDomain[0] !== null) xdomain[0] = xDomain[0];
+    if (xDomain[1] !== undefined && xDomain[1] !== null) xdomain[1] = xDomain[1];
     xScale.domain(xdomain);
     var ydomain = [0, d3.sum(yMaxValues)];
-    if(yDomain[0] !== undefined && yDomain[0] !== null) ydomain[0] = yDomain[0];
-    if(yDomain[1] !== undefined && yDomain[1] !== null) ydomain[1] = yDomain[1];
+    if (yDomain[0] !== undefined && yDomain[0] !== null) ydomain[0] = yDomain[0];
+    if (yDomain[1] !== undefined && yDomain[1] !== null) ydomain[1] = yDomain[1];
     yScale.domain(ydomain);
 
     props.colors.domain(seriesNames);
@@ -89,11 +89,11 @@ module.exports = React.createClass({
     var stack = d3.layout.stack()
       .x(props.xAccessor)
       .y(props.yAccessor)
-      .values((d)=> { return d.values; });
+      .values((d) => { return d.values; });
 
     var layers = stack(data);
 
-    var dataSeries = layers.map( (d, idx) => {
+    var dataSeries = layers.map((d, idx) => {
       return (
           <DataSeries
             key={idx}
@@ -109,7 +109,7 @@ module.exports = React.createClass({
             hoverAnimation={props.hoverAnimation}
           />
         );
-      });
+    });
 
     return (
       <Chart
@@ -125,7 +125,7 @@ module.exports = React.createClass({
       >
         <g transform={trans} className={props.className}>
           <XAxis
-            xAxisClassName='rd3-areachart-xaxis'
+            xAxisClassName="rd3-areachart-xaxis"
             xScale={xScale}
             xAxisTickValues={props.xAxisTickValues}
             xAxisTickInterval={props.xAxisTickInterval}
@@ -145,7 +145,7 @@ module.exports = React.createClass({
             gridVerticalStrokeDash={props.gridVerticalStrokeDash}
           />
           <YAxis
-            yAxisClassName='rd3-areachart-yaxis'
+            yAxisClassName="rd3-areachart-yaxis"
             yScale={yScale}
             yAxisTickValues={props.yAxisTickValues}
             yAxisTickInterval={props.yAxisTickInterval}

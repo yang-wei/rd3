@@ -3,7 +3,7 @@
 var React = require('react');
 var d3 = require('d3');
 
-module.exports =  {
+module.exports = {
 
   propTypes: {
     axesColor:         React.PropTypes.string,
@@ -36,7 +36,7 @@ module.exports =  {
     yOrient:           React.PropTypes.oneOf(['default', 'left', 'right'])
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       axesColor:        '#000',
       colors:           d3.scale.category20c(),
@@ -70,7 +70,7 @@ module.exports =  {
     var yOrient = this.props.yOrient;
 
     if (yOrient === 'default') {
-      return this.props.horizontal ? 'right' : 'left'; 
+      return this.props.horizontal ? 'right' : 'left';
     }
 
     return yOrient;

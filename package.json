@@ -21,6 +21,9 @@
     "chai": "^3.0.0",
     "chalk": "^1.0.0",
     "del": "^1.2.0",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.3.0",
     "glob": "^5.0.10",
     "gulp": "^3.9.0",
     "gulp-filter": "^2.0.2",
@@ -61,7 +64,9 @@
     "watch": "gulp watch",
     "release": "gulp release",
     "clean": "gulp clean:build",
-    "prepublish": "npm run clean && npm run release"
+    "prepublish": "npm run clean && npm run release",
+    "lint": "./node_modules/eslint/bin/eslint.js --ext .jsx --ext .js src",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix --ext .jsx --ext .js src"
   },
   "browserify": {
     "transform": [

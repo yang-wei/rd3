@@ -15,7 +15,7 @@ module.exports = React.createClass({
     shouldUpdate:   React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       legend:         false,
       svgClassName:   'rd3-chart',
@@ -23,10 +23,10 @@ module.exports = React.createClass({
       shouldUpdate:   true
     };
   },
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate: function (nextProps, nextState) {
     return nextProps.shouldUpdate;
   },
-  render: function() {
+  render: function () {
     var props = this.props;
 
     if (props.legend) {
@@ -39,7 +39,7 @@ module.exports = React.createClass({
       );
     }
     return (
-      <BasicChart 
+      <BasicChart
         svgClassName={props.svgClassName}
         titleClassName={props.titleClassName}
         {...this.props}

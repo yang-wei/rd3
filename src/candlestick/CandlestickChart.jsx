@@ -9,15 +9,15 @@ var { ViewBoxMixin, CartesianChartPropsMixin } = require('../mixins');
 
 module.exports = React.createClass({
 
-  mixins: [ CartesianChartPropsMixin, ViewBoxMixin ],
+  mixins: [CartesianChartPropsMixin, ViewBoxMixin],
 
   displayName: 'CandleStickChart',
 
   propTypes: {
     data:              React.PropTypes.oneOfType([
-                         React.PropTypes.array,
-                         React.PropTypes.object
-                       ]),
+      React.PropTypes.array,
+      React.PropTypes.object
+    ]),
     fillUp:            React.PropTypes.func,
     fillUpAccessor:    React.PropTypes.func,
     fillDown:          React.PropTypes.func,
@@ -42,7 +42,7 @@ module.exports = React.createClass({
       fillDown:         d3.scale.category20c(),
       fillDownAccessor: (d, idx) => idx,
       hoverAnimation:   true,
-      margins:          {top: 10, right: 20, bottom: 30, left: 45},
+      margins:          { top: 10, right: 20, bottom: 30, left: 45 },
       xAccessor:        (d) => d.x,
       yAccessor:        (d) => ({ open: d.open, high: d.high, low: d.low, close: d.close }),
     };
@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
     var props = this.props;
 
-    var {innerWidth, innerHeight, trans, svgMargins} = this.getDimensions();
+    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
     var yOrient = this.getYOrient();
     var domain = props.domain || {};
 
@@ -62,11 +62,11 @@ module.exports = React.createClass({
     var flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
     var allValues = flattenedData.allValues,
-        xValues = flattenedData.xValues,
-        yValues = flattenedData.yValues;
+      xValues = flattenedData.xValues,
+      yValues = flattenedData.yValues;
     var scales = utils.calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
 
-    var dataSeries = props.data.map( (series, idx) => {
+    var dataSeries = props.data.map((series, idx) => {
       return (
           <DataSeries
             key={idx}
@@ -82,7 +82,7 @@ module.exports = React.createClass({
             hoverAnimation={props.hoverAnimation}
           />
         );
-      });
+    });
 
     return (
       <Chart

@@ -15,12 +15,12 @@ module.exports = React.createClass({
     show: React.PropTypes.bool
   },
 
-  render: function() {
+  render: function () {
     var props = this.props;
     var display = this.props.show ? 'inherit' : 'none';
-    var containerStyles = {position: 'fixed', top: props.y, left: props.x, display: display, opacity: 0.8}
-    
-    //TODO: add 'right: 0px' style when tooltip is off the chart
+    var containerStyles = { position: 'fixed', top: props.y, left: props.x, display: display, opacity: 0.8 };
+
+    // TODO: add 'right: 0px' style when tooltip is off the chart
     var tooltipStyles = {
       position: 'absolute',
       backgroundColor: 'white',
@@ -31,7 +31,7 @@ module.exports = React.createClass({
       marginLeft: '10px',
       marginRight: '10px',
       marginTop: '-15px'
-    }
+    };
     return (
       <div style={containerStyles}>
         <div style={tooltipStyles}>

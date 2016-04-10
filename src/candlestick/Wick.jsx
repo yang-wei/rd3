@@ -25,16 +25,16 @@ module.exports = React.createClass({
 
   render() {
     var props = this.props;
-    return <line
-            stroke={props.stroke}
-            strokeWidth={props.strokeWidth}
-            style={{ shapeRendering: props.shapeRendering }}
-            className={props.className}
-            x1={props.wick_x1}
-            y1={props.wick_y1}
-            x2={props.wick_x2}
-            y2={props.wick_y2}
-          />;
+    return (<line
+      stroke={props.stroke}
+      strokeWidth={props.strokeWidth}
+      style={{ shapeRendering: props.shapeRendering }}
+      className={props.className}
+      x1={props.wick_x1}
+      y1={props.wick_y1}
+      x2={props.wick_x2}
+      y2={props.wick_y2}
+    />);
   }
 
 });

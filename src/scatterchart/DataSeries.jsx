@@ -27,19 +27,19 @@ module.exports = React.createClass({
     };
   },
 
-  render: function() {
-    var props     = this.props;
-    var xScale    = props.xScale;
-    var yScale    = props.yScale;
+  render: function () {
+    var props = this.props;
+    var xScale = props.xScale;
+    var yScale = props.yScale;
     var xAccessor = props.xAccessor;
     var yAccessor = props.yAccessor;
 
     var voronoi = d3.geom.voronoi()
-      .x(function(d){ return xScale(d.coord.x); })
-      .y(function(d){ return yScale(d.coord.y); })
-      .clipExtent([[0, 0], [ props.width , props.height]]);
+      .x(function (d) { return xScale(d.coord.x); })
+      .y(function (d) { return yScale(d.coord.y); })
+      .clipExtent([[0, 0], [props.width, props.height]]);
 
-    var regions = voronoi(props.data).map(function(vnode, idx) {
+    var regions = voronoi(props.data).map(function (vnode, idx) {
       var point = vnode.point;
       var coord = point.coord;
 
@@ -70,7 +70,7 @@ module.exports = React.createClass({
           cy={cy}
           vnode={vnode}
           onMouseOver={props.onMouseOver}
-          dataPoint={{xValue: x, yValue: y, seriesName: point.series.name}}
+          dataPoint={{ xValue: x, yValue: y, seriesName: point.series.name }}
         />
       );
     });

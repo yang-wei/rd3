@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-module.exports =  {
+module.exports = {
 
   propTypes: {
     showTooltip:    React.PropTypes.bool,
@@ -31,25 +31,25 @@ module.exports =  {
   componentWillReceiveProps(nextProps) {
     this.setState({
       changeState: false
-    })
+    });
   },
 
   onMouseOver(x, y, dataPoint) {
-    if(!this.props.showTooltip)
+    if (!this.props.showTooltip)
       return;
     this.setState({
       tooltip: {
         x: x,
         y: y,
         child: this.props.tooltipFormat.call(this, dataPoint),
-        show: true 
+        show: true
       },
       changeState: true
     });
   },
 
   onMouseLeave() {
-    if(!this.props.showTooltip)
+    if (!this.props.showTooltip)
       return;
     this.setState({
       tooltip: {
@@ -58,7 +58,7 @@ module.exports =  {
         child: '',
         show: false
       },
-      changeState: true 
+      changeState: true
     });
   }
-}
+};

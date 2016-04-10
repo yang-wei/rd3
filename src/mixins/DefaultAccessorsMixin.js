@@ -14,4 +14,4 @@ module.exports = {
       yAccessor: (d) => d.y
     };
   }
-}
+};

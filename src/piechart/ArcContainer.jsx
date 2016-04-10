@@ -23,9 +23,9 @@ module.exports = React.createClass({
   render() {
 
     var props = this.props;
-    
+
     return (
-      <Arc 
+      <Arc
         {...this.props}
         fill={this.state.fill}
         handleMouseOver={props.hoverAnimation ? this._animateArc : null}
@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
   _animateArc() {
     var rect = this.getDOMNode().getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
+    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
     this.setState({
       fill: shade(this.props.fill, 0.2)
     });

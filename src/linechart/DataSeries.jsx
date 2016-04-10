@@ -28,9 +28,9 @@ module.exports = React.createClass({
       hoverAnimation: false
     };
   },
-  
+
   _isDate(d, accessor) {
-      return Object.prototype.toString.call(accessor(d)) === '[object Date]';
+    return Object.prototype.toString.call(accessor(d)) === '[object Date]';
   },
 
   render() {
@@ -38,25 +38,25 @@ module.exports = React.createClass({
     var xScale = props.xScale;
     var yScale = props.yScale;
     var xAccessor = props.xAccessor,
-        yAccessor = props.yAccessor;
-    
+      yAccessor = props.yAccessor;
+
     var interpolatePath = d3.svg.line()
-        .y( (d) => props.yScale(yAccessor(d)) )
+        .y((d) => props.yScale(yAccessor(d)))
         .interpolate(props.interpolationType);
 
-        if (this._isDate(props.data[0].values[0], xAccessor)) {
-          interpolatePath.x(function(d) {
+    if (this._isDate(props.data[0].values[0], xAccessor)) {
+      interpolatePath.x(function (d) {
             return props.xScale(props.xAccessor(d).getTime());
           });
-        } else {
-          interpolatePath.x(function(d) {
+    } else {
+      interpolatePath.x(function (d) {
             return props.xScale(props.xAccessor(d));
           });
-        }
+    }
 
     var lines = props.data.map((series, idx) => {
       return (
-        <Line 
+        <Line
           path={interpolatePath(series.values)}
           stroke={props.colors(props.colorAccessor(series, idx))}
           strokeWidth={series.strokeWidth}
@@ -68,12 +68,12 @@ module.exports = React.createClass({
     });
 
     var voronoi = d3.geom.voronoi()
-      .x(function(d){ return xScale(d.coord.x); })
-      .y(function(d){ return yScale(d.coord.y); })
-      .clipExtent([[0, 0], [ props.width , props.height]]);
+      .x(function (d) { return xScale(d.coord.x); })
+      .y(function (d) { return yScale(d.coord.y); })
+      .clipExtent([[0, 0], [props.width, props.height]]);
 
     var cx, cy, circleFill;
-    var regions = voronoi(props.value).map(function(vnode, idx) {
+    var regions = voronoi(props.value).map(function (vnode, idx) {
       var point = vnode.point.coord;
       if (Object.prototype.toString.call(xAccessor(point)) === '[object Date]') {
         cx = props.xScale(xAccessor(point).getTime());
@@ -86,17 +86,17 @@ module.exports = React.createClass({
         cy = props.yScale(yAccessor(point));
       }
       circleFill = props.colors(props.colorAccessor(vnode, vnode.point.seriesIndex));
-      
+
       return (
-          <VoronoiCircleContainer 
-              key={idx} 
-              circleFill={circleFill}
-              vnode={vnode}
-              hoverAnimation={props.hoverAnimation}
-              cx={cx} cy={cy} 
-              circleRadius={props.circleRadius}
-              onMouseOver={props.onMouseOver}
-              dataPoint={{xValue: xAccessor(point), yValue: yAccessor(point), seriesName: vnode.point.series.name}}
+          <VoronoiCircleContainer
+            key={idx}
+            circleFill={circleFill}
+            vnode={vnode}
+            hoverAnimation={props.hoverAnimation}
+            cx={cx} cy={cy}
+            circleRadius={props.circleRadius}
+            onMouseOver={props.onMouseOver}
+            dataPoint={{ xValue: xAccessor(point), yValue: yAccessor(point), seriesName: vnode.point.series.name }}
           />
       );
     }.bind(this));

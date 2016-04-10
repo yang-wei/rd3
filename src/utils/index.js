@@ -14,8 +14,8 @@ exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, y
       .range([0, chartWidth]);
   }
   xdomain = d3.extent(xValues);
-  if(xDomain[0] !== undefined && xDomain[0] !== null) xdomain[0] = xDomain[0];
-  if(xDomain[1] !== undefined && xDomain[1] !== null) xdomain[1] = xDomain[1];
+  if (xDomain[0] !== undefined && xDomain[0] !== null) xdomain[0] = xDomain[0];
+  if (xDomain[1] !== undefined && xDomain[1] !== null) xdomain[1] = xDomain[1];
   xScale.domain(xdomain);
 
   if (yValues.length > 0 && Object.prototype.toString.call(yValues[0]) === '[object Date]') {
@@ -27,8 +27,8 @@ exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, y
   }
 
   ydomain = d3.extent(yValues);
-  if(yDomain[0] !== undefined && yDomain[0] !== null) ydomain[0] = yDomain[0];
-  if(yDomain[1] !== undefined && yDomain[1] !== null) ydomain[1] = yDomain[1];
+  if (yDomain[0] !== undefined && yDomain[0] !== null) ydomain[0] = yDomain[0];
+  if (yDomain[1] !== undefined && yDomain[1] !== null) ydomain[1] = yDomain[1];
   yScale.domain(ydomain);
 
   return {
@@ -42,11 +42,11 @@ exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, y
 // MIT License: https://raw.githubusercontent.com/jashkenas/underscore/master/LICENSE
 // Copyright (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative
 // Reporters & Editors
-exports.debounce = function(func, wait, immediate) {
+exports.debounce = function (func, wait, immediate) {
   var timeout;
-  return function() {
+  return function () {
     var context = this, args = arguments;
-    var later = function() {
+    var later = function () {
       timeout = null;
       if (!immediate) {
         func.apply(context, args);
@@ -66,8 +66,8 @@ exports.flattenData = (data, xAccessor, yAccessor) => {
   var yValues = [];
   var coincidentCoordinateCheck = {};
 
-  data.forEach( (series, i) => {
-    series.values.forEach( (item, j) => {
+  data.forEach((series, i) => {
+    series.values.forEach((item, j) => {
 
       var x = xAccessor(item);
 
@@ -143,17 +143,17 @@ exports.shade = (hex, percent) => {
 
   var R, G, B, red, green, blue, number;
   var min = Math.min, round = Math.round;
-  if(hex.length !== 7) { return hex; }
+  if (hex.length !== 7) { return hex; }
   number = parseInt(hex.slice(1), 16);
   R = number >> 16;
   G = number >> 8 & 0xFF;
   B = number & 0xFF;
-  red = min( 255, round( ( 1 + percent ) * R )).toString(16);
+  red = min(255, round((1 + percent) * R)).toString(16);
   if (red.length === 1) red = '0' + red;
-  green = min( 255, round( ( 1 + percent ) * G )).toString(16);
+  green = min(255, round((1 + percent) * G)).toString(16);
   if (green.length === 1) green = '0' + green;
-  blue = min( 255, round( ( 1 + percent ) * B )).toString(16);
+  blue = min(255, round((1 + percent) * B)).toString(16);
   if (blue.length === 1) blue = '0' + blue;
-  return `#${ red }${ green }${ blue }`;
+  return `#${red}${green}${blue}`;
 
 };

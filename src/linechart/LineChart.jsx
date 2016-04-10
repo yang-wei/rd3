@@ -2,14 +2,14 @@
 
 var React = require('react');
 var d3 = require('d3');
-var { Chart, XAxis, YAxis, Tooltip} = require('../common');
+var { Chart, XAxis, YAxis, Tooltip } = require('../common');
 var DataSeries = require('./DataSeries');
 var utils = require('../utils');
 var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin } = require('../mixins');
 
 module.exports = React.createClass({
 
-  mixins: [ CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin ],
+  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
 
   displayName: 'LineChart',
 
@@ -24,7 +24,7 @@ module.exports = React.createClass({
       circleRadius:    3,
       className: 'rd3-linechart',
       hoverAnimation: true,
-      margins:        {top: 10, right: 20, bottom: 50, left: 45},
+      margins:        { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName: 'rd3-linechart-xaxis',
       yAxisClassName: 'rd3-linechart-yaxis',
     };
@@ -40,7 +40,7 @@ module.exports = React.createClass({
       return null;
     }
 
-    var {innerWidth, innerHeight, trans, svgMargins} = this.getDimensions();
+    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
     var yOrient = this.getYOrient();
     var domain = props.domain || {};
 
@@ -52,8 +52,8 @@ module.exports = React.createClass({
     var flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
     var allValues = flattenedData.allValues,
-        xValues = flattenedData.xValues,
-        yValues = flattenedData.yValues;
+      xValues = flattenedData.xValues,
+      yValues = flattenedData.yValues;
     var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
 
     return (
@@ -132,10 +132,10 @@ module.exports = React.createClass({
               width={innerWidth}
               height={innerHeight}
               onMouseOver={this.onMouseOver}
-              />
+    />
           </g>
         </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip}/> : null)}
+        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
       </span>
     );
   }

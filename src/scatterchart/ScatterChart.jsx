@@ -2,14 +2,14 @@
 
 var React = require('react');
 var d3 = require('d3');
-var { Chart, XAxis, YAxis, Tooltip} = require('../common');
+var { Chart, XAxis, YAxis, Tooltip } = require('../common');
 var DataSeries = require('./DataSeries');
 var utils = require('../utils');
 var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin } = require('../mixins');
 
 module.exports = React.createClass({
 
-  mixins: [ CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin ],
+  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
 
   displayName: 'ScatterChart',
 
@@ -22,14 +22,14 @@ module.exports = React.createClass({
     xAxisStrokeWidth: React.PropTypes.number,
     yAxisClassName:   React.PropTypes.string,
     yAxisStrokeWidth: React.PropTypes.number
- },
+  },
 
   getDefaultProps() {
     return {
       circleRadius:     3,
       className:        'rd3-scatterchart',
       hoverAnimation:   true,
-      margins:          {top: 10, right: 20, bottom: 50, left: 45},
+      margins:          { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName:   'rd3-scatterchart-xaxis',
       xAxisStrokeWidth: 1,
       yAxisClassName:   'rd3-scatterchart-yaxis',
@@ -42,13 +42,13 @@ module.exports = React.createClass({
   render() {
 
     var props = this.props;
-    var data  = props.data;
+    var data = props.data;
 
     if (!data || data.length < 1) {
       return null;
     }
 
-    var {innerWidth, innerHeight, trans, svgMargins} = this.getDimensions();
+    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
     var yOrient = this.getYOrient();
     var domain = props.domain || {};
 
@@ -56,12 +56,12 @@ module.exports = React.createClass({
     var flattenedData = utils.flattenData(data, props.xAccessor, props.yAccessor);
 
     var allValues = flattenedData.allValues,
-        xValues   = flattenedData.xValues,
-        yValues   = flattenedData.yValues;
+      xValues = flattenedData.xValues,
+      yValues = flattenedData.yValues;
 
-    var scales  = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
-    var xScale  = scales.xScale;
-    var yScale  = scales.yScale;
+    var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
+    var xScale = scales.xScale;
+    var yScale = scales.yScale;
 
     return (
       <span onMouseLeave={this.onMouseLeave}>
@@ -141,10 +141,10 @@ module.exports = React.createClass({
               yAccessor={props.yAccessor}
               yScale={yScale}
               onMouseOver={this.onMouseOver}
-              />
+    />
           </g>
         </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip}/> : null)}
+        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
       </span>
     );
   }

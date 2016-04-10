@@ -41,7 +41,7 @@ module.exports = React.createClass({
     }
   },
 
-  _renderChart: function() {
+  _renderChart: function () {
     var props = this.props;
 
     return (
@@ -56,7 +56,7 @@ module.exports = React.createClass({
     );
   },
 
-  render: function() {
+  render: function () {
     var props = this.props;
 
     return (

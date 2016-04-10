@@ -17,9 +17,9 @@ module.exports = React.createClass({
     title:          React.PropTypes.string,
     textColor:      React.PropTypes.string,
     fontSize:       React.PropTypes.oneOfType([
-                      React.PropTypes.string,
-                      React.PropTypes.number
-                    ]),
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
     colors:         React.PropTypes.func,
     colorAccessor:  React.PropTypes.func,
     hoverAnimation: React.PropTypes.bool
@@ -49,7 +49,7 @@ module.exports = React.createClass({
         width={props.width}
         height={props.height}
       >
-        <g className='rd3-treemap'>
+        <g className="rd3-treemap">
           <DataSeries
             data={props.data}
             width={props.width}

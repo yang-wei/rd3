@@ -23,7 +23,7 @@ module.exports = React.createClass({
   render() {
     return (
       <rect
-        className='rd3-barchart-bar'
+        className="rd3-barchart-bar"
         {...this.props}
         fill={this.props.fill}
         onMouseOver={this.props.handleMouseOver}

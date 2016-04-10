@@ -44,7 +44,7 @@ module.exports = React.createClass({
 
     // animation controller
     var handleMouseOver, handleMouseLeave;
-    if(props.hoverAnimation) {
+    if (props.hoverAnimation) {
       handleMouseOver = this._animateCandle;
       handleMouseLeave = this._restoreCandle;
     } else {
@@ -73,14 +73,14 @@ module.exports = React.createClass({
   },
 
   _animateCandle() {
-    this.setState({ 
+    this.setState({
       candleWidth: this.props.candleWidth * 1.5,
       candleFill: utils.shade(this.props.candleFill, -0.2)
     });
   },
 
   _restoreCandle() {
-    this.setState({ 
+    this.setState({
       candleWidth: this.props.candleWidth,
       candleFill: this.props.candleFill
     });

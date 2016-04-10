@@ -20,10 +20,10 @@ module.exports = React.createClass({
     var props = this.props;
 
     var xRange = props.xScale.range(),
-        width = Math.abs(xRange[0] - xRange[1]),
-        candleWidth = (width / (props.data.length + 2)) * 0.5;
+      width = Math.abs(xRange[0] - xRange[1]),
+      candleWidth = (width / (props.data.length + 2)) * 0.5;
 
-    var dataSeriesArray = props.data.map( (d, idx)=> {
+    var dataSeriesArray = props.data.map((d, idx) => {
       // Candles
       var ohlc = props.yAccessor(d),
         candle_x = props.xScale(props.xAccessor(d)) - 0.5 * candleWidth,
@@ -31,10 +31,10 @@ module.exports = React.createClass({
         candleHeight = Math.abs(props.yScale(ohlc.open) - props.yScale(ohlc.close)),
         wick_y2 = props.yScale(ohlc.low),
         ohlcClass = (ohlc.open <= ohlc.close) ? 'up' : 'down',
-        className = `${ ohlcClass } rd3-candlestick-rect`,
+        className = `${ohlcClass} rd3-candlestick-rect`,
         candleFill = (ohlc.open <= ohlc.close) ? props.fillUp : props.fillDown;
 
-      //Wicks
+      // Wicks
       var wick_x1 = props.xScale(props.xAccessor(d)),
         wick_y1 = props.yScale(ohlc.high),
         wick_x2 = wick_x1;

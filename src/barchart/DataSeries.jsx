@@ -28,14 +28,14 @@ module.exports = React.createClass({
     var { _data, valuesAccessor } = this.props;
     return _data.map((layer, seriesIdx) => {
       return valuesAccessor(layer)
-             .map(segment => this._renderBarContainer(segment, seriesIdx))
+             .map(segment => this._renderBarContainer(segment, seriesIdx));
     });
   },
 
   _renderBarContainer(segment, seriesIdx) {
     var { colors, colorAccessor, height, hoverAnimation, xScale, yScale } = this.props;
     var barHeight = Math.abs(yScale(0) - yScale(segment.y));
-    var y = yScale( segment.y0 + segment.y );
+    var y = yScale(segment.y0 + segment.y);
     return (
       <BarContainer
         height={barHeight}
@@ -46,9 +46,9 @@ module.exports = React.createClass({
         hoverAnimation={hoverAnimation}
         onMouseOver={this.props.onMouseOver}
         onMouseLeave={this.props.onMouseLeave}
-        dataPoint={{xValue: segment.x, yValue: segment.y, seriesName: this.props.series[seriesIdx]}}
+        dataPoint={{ xValue: segment.x, yValue: segment.y, seriesName: this.props.series[seriesIdx] }}
       />
-    )
+    );
   }
 
 });

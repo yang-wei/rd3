@@ -3,12 +3,12 @@
 var d3 = require('d3');
 var React = require('react');
 var DataSeries = require('./DataSeries');
-var { Chart, XAxis, YAxis, Tooltip} = require('../common');
+var { Chart, XAxis, YAxis, Tooltip } = require('../common');
 var TooltipMixin = require('../mixins').TooltipMixin;
 
 module.exports = React.createClass({
 
-  mixins: [ TooltipMixin ],
+  mixins: [TooltipMixin],
 
   displayName: 'PieChart',
 
@@ -29,24 +29,24 @@ module.exports = React.createClass({
     hoverAnimation:     React.PropTypes.bool
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       data:               [],
       title:              '',
       colors:             d3.scale.category20c(),
       colorAccessor:      (d, idx) => idx,
-      valueTextFormatter: (val) => `${ val }%`,
+      valueTextFormatter: (val) => `${val}%`,
       hoverAnimation:     true
     };
   },
 
-  render: function() {
+  render: function () {
     var props = this.props;
 
-    var transform = `translate(${ props.cx || props.width/2 },${ props.cy || props.height/2 })`;
+    var transform = `translate(${props.cx || props.width / 2},${props.cy || props.height / 2})`;
 
-    var values = props.data.map( (item) => item.value );
-    var labels = props.data.map( (item) => item.label );
+    var values = props.data.map((item) => item.value);
+    var labels = props.data.map((item) => item.label);
 
     return (
       <span>
@@ -56,7 +56,7 @@ module.exports = React.createClass({
           title={props.title}
           shouldUpdate={!this.state.changeState}
         >
-          <g className='rd3-piechart'>
+          <g className="rd3-piechart">
             <DataSeries
               labelTextFill={props.labelTextFill}
               valueTextFill={props.valueTextFill}
@@ -80,7 +80,7 @@ module.exports = React.createClass({
             />
           </g>
         </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip}/> : null)}
+        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
       </span>
     );
   }

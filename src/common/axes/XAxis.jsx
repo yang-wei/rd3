@@ -97,7 +97,7 @@ module.exports = React.createClass({
           orient={props.xOrient}
           margins={props.margins}
           width={props.width}
-          />
+    />
       </g>
     );
   }

@@ -72,7 +72,7 @@ module.exports = React.createClass({
     return null;
   },
 
-  _renderChart: function() {
+  _renderChart: function () {
     var props = this.props;
 
     return (
@@ -93,7 +93,7 @@ module.exports = React.createClass({
     return (
       <div
         className={props.className}
-        style={{'width': props.width, 'height': props.height}}
+        style={{ 'width': props.width, 'height': props.height }}
       >
         {this._renderTitle()}
         <div style={{ display: 'table', width: '100%', height: '100%' }}>

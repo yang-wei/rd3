@@ -3,7 +3,7 @@
 
 var React = require('react');
 
-module.exports =  {
+module.exports = {
 
   propTypes: {
     viewBox:           React.PropTypes.string,
@@ -16,21 +16,21 @@ module.exports =  {
       return [v.x, v.y, v.width, v.height].join(' ');
     } else if (this.props.viewBox) {
       return this.props.viewBox;
-    } 
+    }
   },
 
   getDimensions() {
     var props = this.props;
-    var {horizontal, margins, viewBoxObject, xOrient, xAxisOffset, yAxisOffset} = props;
+    var { horizontal, margins, viewBoxObject, xOrient, xAxisOffset, yAxisOffset } = props;
     var yOrient = this.getYOrient();
 
     var width, height;
     if (viewBoxObject) {
       width = viewBoxObject.width,
-      height = viewBoxObject.height
+      height = viewBoxObject.height;
     } else {
       width = props.width,
-      height = props.height
+      height = props.height;
     }
 
     var svgWidth, svgHeight;
@@ -39,7 +39,7 @@ module.exports =  {
     var trans;
     if (horizontal) {
       var center = width / 2;
-      trans = `rotate(90 ${ center } ${ center }) `;
+      trans = `rotate(90 ${center} ${center}) `;
       svgWidth = height;
       svgHeight = width;
       svgMargins = {
@@ -60,7 +60,7 @@ module.exports =  {
 
     var xOffset = svgMargins.left + (yOrient === 'left' ? yAxisOffset : 0);
     var yOffset = svgMargins.top + (xOrient === 'top' ? xAxisOffset : 0);
-    trans += `translate(${ xOffset }, ${ yOffset })`;
+    trans += `translate(${xOffset}, ${yOffset})`;
 
     return {
       innerHeight: svgHeight - svgMargins.top - svgMargins.bottom - xAxisOffset,

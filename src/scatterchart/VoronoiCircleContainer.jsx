@@ -62,9 +62,9 @@ module.exports = React.createClass({
   _animateCircle() {
     var props = this.props;
 
-    if(props.hoverAnimation) {
-      var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
-      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint )
+    if (props.hoverAnimation) {
+      var rect = this.getDOMNode().getElementsByTagName('circle')[0].getBoundingClientRect();
+      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint);
       this.setState({
         circleFill:   shade(props.circleFill, props.shadeMultiplier),
         circleRadius: props.circleRadius * props.circleRadiusMultiplier
@@ -74,7 +74,7 @@ module.exports = React.createClass({
 
   _restoreCircle() {
     var props = this.props;
-    if(props.hoverAnimation) {
+    if (props.hoverAnimation) {
       this.setState({
         circleFill:   props.circleFill,
         circleRadius: props.circleRadius
@@ -82,8 +82,8 @@ module.exports = React.createClass({
     }
   },
 
-  _drawPath: function(d) {
-    if(typeof d === 'undefined') {
+  _drawPath: function (d) {
+    if (typeof d === 'undefined') {
       return 'M Z';
     }
 

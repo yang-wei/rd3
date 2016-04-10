@@ -25,7 +25,7 @@ module.exports = React.createClass({
       fill: 'none',
       tickArguments: [10],
       tickValues: null,
-      tickFormat: null 
+      tickFormat: null
     };
   },
 
@@ -42,16 +42,16 @@ module.exports = React.createClass({
   render() {
 
     var props = this.props;
-    var sign = props.orient === "top" || props.orient === "left" ? -1 : 1;
+    var sign = props.orient === 'top' || props.orient === 'left' ? -1 : 1;
 
     var range = this._d3_scaleRange(props.scale);
 
     var d;
 
-    if (props.orient === "bottom" || props.orient === "top") {
-      d = "M" + range[0] + "," + sign * props.outerTickSize + "V0H" + range[1] + "V" + sign * props.outerTickSize;
+    if (props.orient === 'bottom' || props.orient === 'top') {
+      d = 'M' + range[0] + ',' + sign * props.outerTickSize + 'V0H' + range[1] + 'V' + sign * props.outerTickSize;
     } else {
-      d = "M" + sign * props.outerTickSize + "," + range[0] + "H0V" + range[1] + "H" + sign * props.outerTickSize;
+      d = 'M' + sign * props.outerTickSize + ',' + range[0] + 'H0V' + range[1] + 'H' + sign * props.outerTickSize;
     }
 
 
@@ -59,7 +59,7 @@ module.exports = React.createClass({
       <path
         className="domain"
         d={d}
-        style={{'shapeRendering':'crispEdges'}}
+        style={{ 'shapeRendering':'crispEdges' }}
         fill={props.fill}
         stroke={props.stroke}
         strokeWidth={props.strokeWidth}

@@ -31,14 +31,14 @@ module.exports = React.createClass({
 
     var treemap = d3.layout.treemap()
                     // make sure calculation loop through all objects inside array
-                    .children( (d) => d)
+                    .children((d) => d)
                     .size([props.width, props.height])
                     .sticky(true)
-                    .value( (d) => { return d.value; });
+                    .value((d) => { return d.value; });
 
     var tree = treemap(props.data);
 
-    var cells = tree.map( (node, idx) => {
+    var cells = tree.map((node, idx) => {
       return (
         <CellContainer
           key={idx}
@@ -56,7 +56,7 @@ module.exports = React.createClass({
     }, this);
 
     return (
-      <g transform={props.transform} className='treemap'>
+      <g transform={props.transform} className="treemap">
         {cells}
       </g>
     );

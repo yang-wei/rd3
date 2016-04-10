@@ -41,7 +41,7 @@ module.exports = React.createClass({
       .endAngle(props.endAngle);
 
     return (
-      <g className='rd3-piechart-arc' >
+      <g className="rd3-piechart-arc" >
         <path
           d={arc()}
           fill={props.fill}
@@ -60,14 +60,15 @@ module.exports = React.createClass({
     var formattedValue = props.valueTextFormatter(props.value);
     return (
         <text
-          className='rd3-piechart-value'
+          className="rd3-piechart-value"
           transform={`translate(${arc.centroid()})`}
-          dy='.35em'
+          dy=".35em"
           style={{
             'shapeRendering': 'crispEdges',
             'textAnchor': 'middle',
             'fill': props.valueTextFill
-          }}>
+          }}
+    >
           { formattedValue }
         </text>
       );
@@ -75,20 +76,20 @@ module.exports = React.createClass({
 
   renderOuterLabel(props, arc) {
 
-    var rotate = `rotate(${ (props.startAngle+props.endAngle)/2 * (180/Math.PI) })`;
+    var rotate = `rotate(${(props.startAngle + props.endAngle) / 2 * (180 / Math.PI)})`;
     var positions = arc.centroid();
     var radius = props.outerRadius;
-    var dist   = radius + 35;
-    var angle  = (props.startAngle + props.endAngle) / 2;
-    var x      = dist * (1.2 * Math.sin(angle));
-    var y      = -dist * Math.cos(angle);
+    var dist = radius + 35;
+    var angle = (props.startAngle + props.endAngle) / 2;
+    var x = dist * (1.2 * Math.sin(angle));
+    var y = -dist * Math.cos(angle);
     var t = `translate(${x},${y})`;
 
-    return  (
+    return (
       <g>
         <line
-          x1='0'
-          x2='0'
+          x1="0"
+          x2="0"
           y1={-radius - 2}
           y2={-radius - 26}
           stroke={props.labelTextFill}
@@ -97,17 +98,18 @@ module.exports = React.createClass({
             'fill': props.labelTextFill,
             'strokeWidth': 2
           }}
-          >
+    >
         </line>
         <text
-          className='rd3-piechart-label'
+          className="rd3-piechart-label"
           transform={t}
-          dy='.35em'
+          dy=".35em"
           style={{
             'textAnchor': 'middle',
             'fill': props.labelTextFill,
             'shapeRendering': 'crispEdges'
-          }}>
+          }}
+    >
           {props.label}
         </text>
       </g>

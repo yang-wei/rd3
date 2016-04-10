@@ -18,7 +18,7 @@ module.exports = React.createClass({
     width:         React.PropTypes.number.isRequired
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       className:    'rd3-legend',
       colors:        d3.scale.category20c(),
@@ -28,7 +28,7 @@ module.exports = React.createClass({
     };
   },
 
-  render: function() {
+  render: function () {
 
     var props = this.props;
 
@@ -40,7 +40,7 @@ module.exports = React.createClass({
 
     var legendItems = [];
 
-    props.data.forEach( (series, idx) => {
+    props.data.forEach((series, idx) => {
       var itemStyle = {
         'color': props.colors(props.colorAccessor(series, idx)),
         'lineHeight': '60%',

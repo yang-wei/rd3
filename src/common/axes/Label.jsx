@@ -32,7 +32,7 @@ module.exports = React.createClass({
     var props = this.props;
 
     if (!props.label) {
-      return <text/>;
+      return <text />;
     }
 
     var transform, x, y;
@@ -46,7 +46,7 @@ module.exports = React.createClass({
       }
     } else {  // left, right
       transform = props.horizontalTransform;
-      x = -props.height / 2; 
+      x = -props.height / 2;
       if (props.orient === 'left') {
         y = -props.offset;
       } else {

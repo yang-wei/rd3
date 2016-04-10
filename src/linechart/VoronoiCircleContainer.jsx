@@ -10,7 +10,7 @@ module.exports = React.createClass({
   displayName: 'VornoiCircleContainer',
 
   getDefaultProps() {
-    return { 
+    return {
       circleRadius: 3,
       circleFill: '#1f77b4',
       hoverAnimation: true
@@ -18,7 +18,7 @@ module.exports = React.createClass({
   },
 
   getInitialState() {
-    return { 
+    return {
       circleRadius: this.props.circleRadius,
       circleFill: this.props.circleFill
     };
@@ -30,7 +30,7 @@ module.exports = React.createClass({
 
     // animation controller
     var handleMouseOver, handleMouseLeave;
-    if(props.hoverAnimation) {
+    if (props.hoverAnimation) {
       handleMouseOver = this._animateCircle;
       handleMouseLeave = this._restoreCircle;
     } else {
@@ -40,38 +40,38 @@ module.exports = React.createClass({
     return (
       <g>
         <VoronoiCircle
-            handleMouseOver={handleMouseOver}
-            handleMouseLeave={handleMouseLeave}
-            voronoiPath={this._drawPath(props.vnode)}
-            cx={props.cx}
-            cy={props.cy}
-            circleRadius={this.state.circleRadius}
-            circleFill={this.state.circleFill}
+          handleMouseOver={handleMouseOver}
+          handleMouseLeave={handleMouseLeave}
+          voronoiPath={this._drawPath(props.vnode)}
+          cx={props.cx}
+          cy={props.cy}
+          circleRadius={this.state.circleRadius}
+          circleFill={this.state.circleFill}
         />
       </g>
     );
   },
 
   _animateCircle() {
-    var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
-    this.setState({ 
-      circleRadius: this.props.circleRadius * ( 5 / 4 ),
+    var rect = this.getDOMNode().getElementsByTagName('circle')[0].getBoundingClientRect();
+    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    this.setState({
+      circleRadius: this.props.circleRadius * (5 / 4),
       circleFill: shade(this.props.circleFill, 0.2)
     });
   },
 
   _restoreCircle() {
-    this.setState({ 
+    this.setState({
       circleRadius: this.props.circleRadius,
       circleFill: this.props.circleFill
     });
   },
 
-  _drawPath: function(d) {
-    if(d === undefined) {
-      return; 
-    }  
+  _drawPath: function (d) {
+    if (d === undefined) {
+      return;
+    }
     return 'M' + d.join(',') + 'Z';
   },
 });

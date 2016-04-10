@@ -13,13 +13,13 @@ module.exports = React.createClass({
     className: React.PropTypes.string
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       fill: '#1f77b4'
     };
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     // state for animation usage
     return {
       circleRadius: this.props.r,
@@ -38,20 +38,20 @@ module.exports = React.createClass({
         this._animateCircle(props.id);
         var voronoiSeriesCursor = props.structure.cursor('voronoiSeries');
         if (voronoiSeriesCursor) {
-          voronoiSeriesCursor.cursor(seriesName).update(()=>'active');
+          voronoiSeriesCursor.cursor(seriesName).update(() => 'active');
         }
       } else if (circleStatus === 'inactive') {
         this._restoreCircle(props.id);
-        props.structure.cursor('voronoiSeries').cursor(seriesName).update(()=>'inactive');
+        props.structure.cursor('voronoiSeries').cursor(seriesName).update(() => 'inactive');
       }
     });
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount: function () {
     this.props.voronoiRef.destroy();
   },
 
-  render: function() {
+  render: function () {
     var props = this.props;
     return (
       <circle
@@ -64,15 +64,15 @@ module.exports = React.createClass({
       />
     );
   },
-  
-  _animateCircle: function(id) {
-    this.setState({ 
-      circleRadius: this.state.circleRadius * ( 5 / 4 )
+
+  _animateCircle: function (id) {
+    this.setState({
+      circleRadius: this.state.circleRadius * (5 / 4)
     });
   },
 
-  _restoreCircle: function(id) {
-    this.setState({ 
+  _restoreCircle: function (id) {
+    this.setState({
       circleRadius: this.props.r
     });
   }

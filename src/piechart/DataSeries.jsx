@@ -63,12 +63,12 @@ module.exports = React.createClass({
           hoverAnimation={props.hoverAnimation}
           onMouseOver={props.onMouseOver}
           onMouseLeave={props.onMouseLeave}
-          dataPoint={{yValue: props.values[idx], seriesName: props.labels[idx]}}
+          dataPoint={{ yValue: props.values[idx], seriesName: props.labels[idx] }}
         />
       );
     });
     return (
-      <g className='rd3-piechart-pie' transform={props.transform} >
+      <g className="rd3-piechart-pie" transform={props.transform} >
         {arcs}
       </g>
     );

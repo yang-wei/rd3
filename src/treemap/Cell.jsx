@@ -18,7 +18,7 @@ module.exports = React.createClass({
   render() {
 
     var props = this.props;
-    
+
     var textStyle = {
       'textAnchor': 'middle',
       'fill': props.textColor,
@@ -30,19 +30,19 @@ module.exports = React.createClass({
     return (
       <g transform={t}>
         <rect
-          className='rd3-treemap-cell'
+          className="rd3-treemap-cell"
           width={props.width}
           height={props.height}
-          fill={props.fill} 
+          fill={props.fill}
           onMouseOver={props.handleMouseOver}
           onMouseLeave={props.handleMouseLeave}
         />
         <text
           x={props.width / 2}
           y={props.height / 2}
-          dy='.35em'
+          dy=".35em"
           style={textStyle}
-          className='rd3-treemap-cell-text'
+          className="rd3-treemap-cell-text"
         >
           {props.label}
         </text>

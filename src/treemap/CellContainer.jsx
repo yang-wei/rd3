@@ -27,7 +27,7 @@ module.exports = React.createClass({
     var props = this.props;
 
     return (
-      <Cell 
+      <Cell
         {...props}
         fill={this.state.fill}
         handleMouseOver={props.hoverAnimation ? this._animateCell : null}
