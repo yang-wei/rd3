@@ -1,88 +1,86 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var utils = require('../utils');
-var DataSeries = require('./DataSeries');
-var { Chart, XAxis, YAxis } = require('../common');
-var { ViewBoxMixin, CartesianChartPropsMixin } = require('../mixins');
+const React = require('react');
+const d3 = require('d3');
+const utils = require('../utils');
+const DataSeries = require('./DataSeries');
+const { Chart, XAxis, YAxis } = require('../common');
+const { ViewBoxMixin, CartesianChartPropsMixin } = require('../mixins');
 
 module.exports = React.createClass({
-
-  mixins: [CartesianChartPropsMixin, ViewBoxMixin],
 
   displayName: 'CandleStickChart',
 
   propTypes: {
-    data:              React.PropTypes.oneOfType([
+    data: React.PropTypes.oneOfType([
       React.PropTypes.array,
-      React.PropTypes.object
+      React.PropTypes.object,
     ]),
-    fillUp:            React.PropTypes.func,
-    fillUpAccessor:    React.PropTypes.func,
-    fillDown:          React.PropTypes.func,
-    fillDownAccessor:  React.PropTypes.func,
-    hoverAnimation:    React.PropTypes.bool,
-    xAxisFormatter:    React.PropTypes.func,
+    fillUp: React.PropTypes.func,
+    fillUpAccessor: React.PropTypes.func,
+    fillDown: React.PropTypes.func,
+    fillDownAccessor: React.PropTypes.func,
+    hoverAnimation: React.PropTypes.bool,
+    xAxisFormatter: React.PropTypes.func,
     xAxisTickInterval: React.PropTypes.object,
-    xAxisTickValues:   React.PropTypes.array,
-    yAxisFormatter:    React.PropTypes.func,
-    yAxisTickCount:    React.PropTypes.number,
-    yAxisTickValues:   React.PropTypes.array,
+    xAxisTickValues: React.PropTypes.array,
+    yAxisFormatter: React.PropTypes.func,
+    yAxisTickCount: React.PropTypes.number,
+    yAxisTickValues: React.PropTypes.array,
   },
+
+  mixins: [CartesianChartPropsMixin, ViewBoxMixin],
 
   getDefaultProps() {
     return {
-      className:        'rd3-candlestick',
-      xAxisClassName:   'rd3-candlestick-xaxis',
-      yAxisClassName:   'rd3-candlestick-yaxis',
-      data:             [],
-      fillUp:           (value) => '#ffffff',
-      fillUpAccessor:   (d, idx) => idx,
-      fillDown:         d3.scale.category20c(),
+      className: 'rd3-candlestick',
+      xAxisClassName: 'rd3-candlestick-xaxis',
+      yAxisClassName: 'rd3-candlestick-yaxis',
+      data: [],
+      fillUp: () => '#ffffff',
+      fillUpAccessor: (d, idx) => idx,
+      fillDown: d3.scale.category20c(),
       fillDownAccessor: (d, idx) => idx,
-      hoverAnimation:   true,
-      margins:          { top: 10, right: 20, bottom: 30, left: 45 },
-      xAccessor:        (d) => d.x,
-      yAccessor:        (d) => ({ open: d.open, high: d.high, low: d.low, close: d.close }),
+      hoverAnimation: true,
+      margins: { top: 10, right: 20, bottom: 30, left: 45 },
+      xAccessor: (d) => d.x,
+      yAccessor: (d) => ({ open: d.open, high: d.high, low: d.low, close: d.close }),
     };
   },
 
   render() {
+    const props = this.props;
 
-    var props = this.props;
-
-    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
-    var yOrient = this.getYOrient();
-    var domain = props.domain || {};
+    const { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
+    const yOrient = this.getYOrient();
+    const domain = props.domain || {};
 
     if (!Array.isArray(props.data)) {
       props.data = [props.data];
     }
-    var flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
+    const flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
-    var allValues = flattenedData.allValues,
-      xValues = flattenedData.xValues,
-      yValues = flattenedData.yValues;
-    var scales = utils.calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
+    const xValues = flattenedData.xValues;
+    const yValues = flattenedData.yValues;
+    const scales = utils.calculateScales(
+      innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
 
-    var dataSeries = props.data.map((series, idx) => {
-      return (
-          <DataSeries
-            key={idx}
-            seriesName={series.name}
-            index={idx}
-            xScale={scales.xScale}
-            yScale={scales.yScale}
-            data={series.values}
-            fillUp={props.fillUp(props.fillUpAccessor(series, idx))}
-            fillDown={props.fillDown(props.fillDownAccessor(series, idx))}
-            xAccessor={props.xAccessor}
-            yAccessor={props.yAccessor}
-            hoverAnimation={props.hoverAnimation}
-          />
-        );
-    });
+    const dataSeries = props.data.map((series, idx) => (
+        <DataSeries
+          key={idx}
+          seriesName={series.name}
+          index={idx}
+          xScale={scales.xScale}
+          yScale={scales.yScale}
+          data={series.values}
+          fillUp={props.fillUp(props.fillUpAccessor(series, idx))}
+          fillDown={props.fillDown(props.fillDownAccessor(series, idx))}
+          xAccessor={props.xAccessor}
+          yAccessor={props.yAccessor}
+          hoverAnimation={props.hoverAnimation}
+        />
+      )
+    );
 
     return (
       <Chart
@@ -137,6 +135,5 @@ module.exports = React.createClass({
         </g>
       </Chart>
     );
-  }
-
+  },
 });

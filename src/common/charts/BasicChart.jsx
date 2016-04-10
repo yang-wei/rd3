@@ -1,32 +1,31 @@
 'use strict';
 
-var React = require('react');
-var mixins = require('../../mixins');
+const React = require('react');
 
 module.exports = React.createClass({
 
   displayName: 'BasicChart',
 
   propTypes: {
-    children:       React.PropTypes.node,
-    className:      React.PropTypes.string,
-    height:         React.PropTypes.node,
-    svgClassName:   React.PropTypes.string,
-    title:          React.PropTypes.node,
+    children: React.PropTypes.node,
+    className: React.PropTypes.string,
+    height: React.PropTypes.node,
+    svgClassName: React.PropTypes.string,
+    title: React.PropTypes.node,
     titleClassName: React.PropTypes.string,
-    width:          React.PropTypes.node
+    width: React.PropTypes.node,
   },
 
   getDefaultProps() {
     return {
-      className:      'rd3-basic-chart',
-      svgClassName:   'rd3-chart',
-      titleClassName: 'rd3-chart-title'
+      className: 'rd3-basic-chart',
+      svgClassName: 'rd3-chart',
+      titleClassName: 'rd3-chart-title',
     };
   },
 
   _renderTitle() {
-    var props = this.props;
+    const props = this.props;
 
     if (props.title != '' && props.title != null) {
       return (
@@ -41,8 +40,8 @@ module.exports = React.createClass({
     }
   },
 
-  _renderChart: function () {
-    var props = this.props;
+  _renderChart() {
+    const props = this.props;
 
     return (
       <svg
@@ -56,8 +55,8 @@ module.exports = React.createClass({
     );
   },
 
-  render: function () {
-    var props = this.props;
+  render() {
+    const props = this.props;
 
     return (
       <div
@@ -67,5 +66,5 @@ module.exports = React.createClass({
         {this._renderChart()}
       </div>
     );
-  }
+  },
 });

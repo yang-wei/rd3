@@ -1,41 +1,38 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var BarContainer = require('./BarContainer');
+const React = require('react');
+const BarContainer = require('./BarContainer');
 
 module.exports = React.createClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    _data:          React.PropTypes.array,
-    series:   React.PropTypes.array,
-    colors:         React.PropTypes.func,
-    colorAccessor:  React.PropTypes.func,
-    height:         React.PropTypes.number,
-    width:          React.PropTypes.number,
+    _data: React.PropTypes.array,
+    series: React.PropTypes.array,
+    colors: React.PropTypes.func,
+    colorAccessor: React.PropTypes.func,
+    height: React.PropTypes.number,
+    width: React.PropTypes.number,
     valuesAccessor: React.PropTypes.func,
-  },
-
-  render() {
-    return (
-      <g>{this._renderBarSeries()}</g>
-    );
+    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    hoverAnimation: React.PropTypes.any, // TODO: prop types?
+    xScale: React.PropTypes.any,
+    yScale: React.PropTypes.any,
   },
 
   _renderBarSeries() {
-    var { _data, valuesAccessor } = this.props;
-    return _data.map((layer, seriesIdx) => {
-      return valuesAccessor(layer)
-             .map(segment => this._renderBarContainer(segment, seriesIdx));
-    });
+    const { _data, valuesAccessor } = this.props;
+    return _data.map((layer, seriesIdx) => (
+      valuesAccessor(layer).map(segment => this._renderBarContainer(segment, seriesIdx))
+    ));
   },
 
   _renderBarContainer(segment, seriesIdx) {
-    var { colors, colorAccessor, height, hoverAnimation, xScale, yScale } = this.props;
-    var barHeight = Math.abs(yScale(0) - yScale(segment.y));
-    var y = yScale(segment.y0 + segment.y);
+    const { colors, colorAccessor, hoverAnimation, xScale, yScale } = this.props;
+    const barHeight = Math.abs(yScale(0) - yScale(segment.y));
+    const y = yScale(segment.y0 + segment.y);
     return (
       <BarContainer
         height={barHeight}
@@ -46,9 +43,18 @@ module.exports = React.createClass({
         hoverAnimation={hoverAnimation}
         onMouseOver={this.props.onMouseOver}
         onMouseLeave={this.props.onMouseLeave}
-        dataPoint={{ xValue: segment.x, yValue: segment.y, seriesName: this.props.series[seriesIdx] }}
+        dataPoint={{
+          xValue: segment.x,
+          yValue: segment.y,
+          seriesName: this.props.series[seriesIdx],
+        }}
       />
     );
-  }
+  },
 
+  render() {
+    return (
+      <g>{this._renderBarSeries()}</g>
+    );
+  },
 });

@@ -1,52 +1,52 @@
 'use strict';
 
-var d3 = require('d3');
-var React = require('react');
-var DataSeries = require('./DataSeries');
-var { Chart, XAxis, YAxis, Tooltip } = require('../common');
-var TooltipMixin = require('../mixins').TooltipMixin;
+const d3 = require('d3');
+const React = require('react');
+const DataSeries = require('./DataSeries');
+const { Chart, Tooltip } = require('../common');
+const TooltipMixin = require('../mixins').TooltipMixin;
 
 module.exports = React.createClass({
-
-  mixins: [TooltipMixin],
 
   displayName: 'PieChart',
 
   propTypes: {
-    data:               React.PropTypes.array,
-    radius:             React.PropTypes.number,
-    cx:                 React.PropTypes.number,
-    cy:                 React.PropTypes.number,
-    labelTextFill:      React.PropTypes.string,
-    valueTextFill:      React.PropTypes.string,
+    data: React.PropTypes.array,
+    radius: React.PropTypes.number,
+    cx: React.PropTypes.number,
+    cy: React.PropTypes.number,
+    labelTextFill: React.PropTypes.string,
+    valueTextFill: React.PropTypes.string,
     valueTextFormatter: React.PropTypes.func,
-    colors:             React.PropTypes.func,
-    colorAccessor:      React.PropTypes.func,
-    title:              React.PropTypes.string,
-    showInnerLabels:    React.PropTypes.bool,
-    showOuterLabels:    React.PropTypes.bool,
-    sectorBorderColor:  React.PropTypes.string,
-    hoverAnimation:     React.PropTypes.bool
+    colors: React.PropTypes.func,
+    colorAccessor: React.PropTypes.func,
+    title: React.PropTypes.string,
+    showInnerLabels: React.PropTypes.bool,
+    showOuterLabels: React.PropTypes.bool,
+    sectorBorderColor: React.PropTypes.string,
+    hoverAnimation: React.PropTypes.bool,
   },
 
-  getDefaultProps: function () {
+  mixins: [TooltipMixin],
+
+  getDefaultProps() {
     return {
-      data:               [],
-      title:              '',
-      colors:             d3.scale.category20c(),
-      colorAccessor:      (d, idx) => idx,
+      data: [],
+      title: '',
+      colors: d3.scale.category20c(),
+      colorAccessor: (d, idx) => idx,
       valueTextFormatter: (val) => `${val}%`,
-      hoverAnimation:     true
+      hoverAnimation: true,
     };
   },
 
-  render: function () {
-    var props = this.props;
+  render() {
+    const props = this.props;
 
-    var transform = `translate(${props.cx || props.width / 2},${props.cy || props.height / 2})`;
+    const transform = `translate(${props.cx || props.width / 2},${props.cy || props.height / 2})`;
 
-    var values = props.data.map((item) => item.value);
-    var labels = props.data.map((item) => item.label);
+    const values = props.data.map((item) => item.value);
+    const labels = props.data.map((item) => item.label);
 
     return (
       <span>
@@ -83,6 +83,5 @@ module.exports = React.createClass({
         {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
       </span>
     );
-  }
-
+  },
 });

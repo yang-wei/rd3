@@ -1,9 +1,8 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var shade = require('../utils').shade;
-var Area = require('./Area');
+const React = require('react');
+const shade = require('../utils').shade;
+const Area = require('./Area');
 
 module.exports = React.createClass({
 
@@ -15,22 +14,34 @@ module.exports = React.createClass({
 
   getDefaultProps() {
     return {
-      fill: '#3182bd'
+      fill: '#3182bd',
     };
   },
 
   getInitialState() {
     return {
-      fill: this.props.fill
+      fill: this.props.fill,
     };
   },
 
-  render() {
+  _animateArea() {
+    this.setState({
+      fill: shade(this.props.fill, 0.02),
+    });
+  },
 
-    var props = this.props;
+  _restoreArea() {
+    this.setState({
+      fill: this.props.fill,
+    });
+  },
+
+  render() {
+    const props = this.props;
 
     // animation controller
-    var handleMouseOver, handleMouseLeave;
+    let handleMouseOver;
+    let handleMouseLeave;
     if (props.hoverAnimation) {
       handleMouseOver = this._animateArea;
       handleMouseLeave = this._restoreArea;
@@ -47,17 +58,4 @@ module.exports = React.createClass({
       />
     );
   },
-
-  _animateArea() {
-    this.setState({
-      fill: shade(this.props.fill, 0.02)
-    });
-  },
-
-  _restoreArea() {
-    this.setState({
-      fill: this.props.fill
-    });
-  },
-
 });

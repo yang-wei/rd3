@@ -1,5 +1,4 @@
-var d3 = require('d3');
-
+const d3 = require('d3');
 
 exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, yDomain) => {
 
@@ -32,10 +31,9 @@ exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, y
   yScale.domain(ydomain);
 
   return {
-    xScale: xScale,
-    yScale: yScale
+    xScale,
+    yScale,
   };
-
 };
 
 // debounce from Underscore.js
@@ -119,28 +117,23 @@ exports.flattenData = (data, xAccessor, yAccessor) => {
 
       var pointItem = {
         coord: {
-          x: x,
+          x,
           y: yNode,
         },
         d: item,
         id: series.name + j,
-        series: series,
-        seriesIndex: i
+        series,
+        seriesIndex: i,
       };
       allValues.push(pointItem);
     });
   });
 
-  return {
-    allValues: allValues,
-    xValues: xValues,
-    yValues: yValues
-  };
+  return { allValues, xValues, yValues };
 };
 
 
 exports.shade = (hex, percent) => {
-
   var R, G, B, red, green, blue, number;
   var min = Math.min, round = Math.round;
   if (hex.length !== 7) { return hex; }
@@ -155,5 +148,4 @@ exports.shade = (hex, percent) => {
   blue = min(255, round((1 + percent) * B)).toString(16);
   if (blue.length === 1) blue = '0' + blue;
   return `#${red}${green}${blue}`;
-
 };

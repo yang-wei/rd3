@@ -1,11 +1,21 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
+const React = require('react');
 
 module.exports = React.createClass({
 
   displayName: 'VoronoiCircle',
+
+  // TODO: Check prop types
+  propTypes: {
+    handleMouseOver: React.PropTypes.any,
+    handleMouseLeave: React.PropTypes.any,
+    voronoiPath: React.PropTypes.any,
+    cx: React.PropTypes.any,
+    cy: React.PropTypes.any,
+    circleRadius: React.PropTypes.any,
+    circleFill: React.PropTypes.any,
+  },
 
   getDefaultProps() {
     return {

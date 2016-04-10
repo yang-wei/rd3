@@ -1,30 +1,35 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var { Chart, XAxis, YAxis, Tooltip } = require('../common');
-var DataSeries = require('./DataSeries');
-var utils = require('../utils');
-var { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin } = require('../mixins');
+const React = require('react');
+const { Chart, XAxis, YAxis, Tooltip } = require('../common');
+const DataSeries = require('./DataSeries');
+const utils = require('../utils');
+const {
+  CartesianChartPropsMixin,
+  DefaultAccessorsMixin,
+  ViewBoxMixin,
+  TooltipMixin,
+} = require('../mixins');
 
 module.exports = React.createClass({
-
-  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
 
   displayName: 'LineChart',
 
   propTypes: {
-    circleRadius:   React.PropTypes.number,
+    circleRadius: React.PropTypes.number,
     hoverAnimation: React.PropTypes.bool,
-    margins:        React.PropTypes.object,
+    margins: React.PropTypes.object,
+    data: React.PropTypes.any, // TODO: prop types?
   },
+
+  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
 
   getDefaultProps() {
     return {
-      circleRadius:    3,
+      circleRadius: 3,
       className: 'rd3-linechart',
       hoverAnimation: true,
-      margins:        { top: 10, right: 20, bottom: 50, left: 45 },
+      margins: { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName: 'rd3-linechart-xaxis',
       yAxisClassName: 'rd3-linechart-yaxis',
     };
@@ -33,28 +38,34 @@ module.exports = React.createClass({
   _calculateScales: utils.calculateScales,
 
   render() {
-
-    var props = this.props;
+    const props = this.props;
 
     if (this.props.data && this.props.data.length < 1) {
       return null;
     }
 
-    var { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
-    var yOrient = this.getYOrient();
-    var domain = props.domain || {};
+    const { innerWidth, innerHeight, trans, svgMargins } = this.getDimensions();
+    const yOrient = this.getYOrient();
+    const domain = props.domain || {};
 
     if (!Array.isArray(props.data)) {
       props.data = [props.data];
     }
 
     // Returns an object of flattened allValues, xValues, and yValues
-    var flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
+    const flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
-    var allValues = flattenedData.allValues,
-      xValues = flattenedData.xValues,
-      yValues = flattenedData.yValues;
-    var scales = this._calculateScales(innerWidth, innerHeight, xValues, yValues, domain.x, domain.y);
+    const allValues = flattenedData.allValues;
+    const xValues = flattenedData.xValues;
+    const yValues = flattenedData.yValues;
+    const scales = this._calculateScales(
+      innerWidth,
+      innerHeight,
+      xValues,
+      yValues,
+      domain.x,
+      domain.y
+    );
 
     return (
       <span onMouseLeave={this.onMouseLeave}>
@@ -132,12 +143,11 @@ module.exports = React.createClass({
               width={innerWidth}
               height={innerHeight}
               onMouseOver={this.onMouseOver}
-    />
+            />
           </g>
         </Chart>
         {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
       </span>
     );
-  }
-
+  },
 });

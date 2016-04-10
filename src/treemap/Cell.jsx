@@ -1,8 +1,6 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -12,20 +10,19 @@ module.exports = React.createClass({
     fill: React.PropTypes.string,
     width: React.PropTypes.number,
     height: React.PropTypes.number,
-    label: React.PropTypes.string
+    label: React.PropTypes.string,
   },
 
   render() {
+    const props = this.props;
 
-    var props = this.props;
-
-    var textStyle = {
-      'textAnchor': 'middle',
-      'fill': props.textColor,
-      'fontSize': props.fontSize
+    const textStyle = {
+      textAnchor: 'middle',
+      fill: props.textColor,
+      fontSize: props.fontSize,
     };
 
-    var t = `translate(${props.x}, ${props.y}  )`;
+    const t = `translate(${props.x}, ${props.y}  )`;
 
     return (
       <g transform={t}>
@@ -48,5 +45,5 @@ module.exports = React.createClass({
         </text>
       </g>
     );
-  }
+  },
 });

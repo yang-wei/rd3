@@ -1,33 +1,34 @@
 'use strict';
 
-var React = require('react');
-var LegendChart = require('./LegendChart');
-var BasicChart = require('./BasicChart');
+const React = require('react');
+const LegendChart = require('./LegendChart');
+const BasicChart = require('./BasicChart');
 
 module.exports = React.createClass({
 
   displayName: 'Chart',
 
   propTypes: {
-    legend:         React.PropTypes.bool,
-    svgClassName:   React.PropTypes.string,
+    legend: React.PropTypes.bool,
+    svgClassName: React.PropTypes.string,
     titleClassName: React.PropTypes.string,
-    shouldUpdate:   React.PropTypes.bool
+    shouldUpdate: React.PropTypes.bool,
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
-      legend:         false,
-      svgClassName:   'rd3-chart',
+      legend: false,
+      svgClassName: 'rd3-chart',
       titleClassName: 'rd3-chart-title',
-      shouldUpdate:   true
+      shouldUpdate: true,
     };
   },
-  shouldComponentUpdate: function (nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     return nextProps.shouldUpdate;
   },
-  render: function () {
-    var props = this.props;
+
+  render() {
+    const props = this.props;
 
     if (props.legend) {
       return (
@@ -45,6 +46,5 @@ module.exports = React.createClass({
         {...this.props}
       />
     );
-  }
-
+  },
 });

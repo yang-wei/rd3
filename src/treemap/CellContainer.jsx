@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react');
-var shade = require('../utils').shade;
-var Cell = require('./Cell');
+const React = require('react');
+const shade = require('../utils').shade;
+const Cell = require('./Cell');
 
 
 module.exports = React.createClass({
@@ -17,14 +17,24 @@ module.exports = React.createClass({
     return {
       // fill is named as fill instead of initialFill to avoid
       // confusion when passing down props from top parent
-      fill: this.props.fill
+      fill: this.props.fill,
     };
   },
 
+  _animateCell() {
+    this.setState({
+      fill: shade(this.props.fill, 0.05),
+    });
+  },
+
+  _restoreCell() {
+    this.setState({
+      fill: this.props.fill,
+    });
+  },
 
   render() {
-
-    var props = this.props;
+    const props = this.props;
 
     return (
       <Cell
@@ -35,16 +45,4 @@ module.exports = React.createClass({
       />
     );
   },
-
-  _animateCell() {
-    this.setState({
-      fill: shade(this.props.fill, 0.05)
-    });
-  },
-
-  _restoreCell() {
-    this.setState({
-      fill: this.props.fill
-    });
-  }
 });

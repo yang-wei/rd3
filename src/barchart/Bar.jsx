@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -10,13 +10,15 @@ module.exports = React.createClass({
     height: React.PropTypes.number,
     x: React.PropTypes.number,
     y: React.PropTypes.number,
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    handleMouseOver: React.PropTypes.func,
+    handleMouseLeave: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
       offset: 0,
-      className: 'rd3-barchart-bar'
+      className: 'rd3-barchart-bar',
     };
   },
 
@@ -30,5 +32,5 @@ module.exports = React.createClass({
         onMouseLeave={this.props.handleMouseLeave}
       />
     );
-  }
+  },
 });

@@ -1,29 +1,29 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 module.exports = React.createClass({
 
   displayName: 'Candle',
 
   propTypes: {
-    className:      React.PropTypes.string,
+    className: React.PropTypes.string,
     shapeRendering: React.PropTypes.string,
-    stroke:         React.PropTypes.string,
-    strokeWidth:    React.PropTypes.number,
+    stroke: React.PropTypes.string,
+    strokeWidth: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      className:      'rd3-candlestick-candle',
+      className: 'rd3-candlestick-candle',
       shapeRendering: 'crispEdges',
-      stroke:         '#000',
-      strokeWidth:    1,
+      stroke: '#000',
+      strokeWidth: 1,
     };
   },
 
   render() {
-    var props = this.props;
+    const props = this.props;
 
     return (
       <rect
@@ -40,6 +40,5 @@ module.exports = React.createClass({
         onMouseLeave={props.handleMouseLeave}
       />
     );
-  }
-
+  },
 });

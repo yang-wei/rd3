@@ -1,35 +1,61 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var shade = require('../utils').shade;
-var VoronoiCircle = require('./VoronoiCircle');
+const React = require('react');
+const shade = require('../utils').shade;
+const VoronoiCircle = require('./VoronoiCircle');
 
 module.exports = React.createClass({
 
   displayName: 'VoronoiContainer',
 
+  // TODO: prop types?
+  propTypes: {
+    circleRadius: React.PropTypes.any,
+    circleFill: React.PropTypes.any,
+  },
+
   getDefaultProps() {
     return {
       circleRadius: 3,
       circleFill: '#1f77b4',
-      hoverAnimation: true
+      hoverAnimation: true,
     };
   },
 
   getInitialState() {
     return {
       circleRadius: this.props.circleRadius,
-      circleFill: this.props.circleFill
+      circleFill: this.props.circleFill,
     };
   },
 
-  render() {
+  _animateCircle() {
+    this.setState({
+      circleRadius: this.props.circleRadius * (5 / 4),
+      circleFill: shade(this.props.circleFill, 0.2),
+    });
+  },
 
-    var props = this.props;
+  _restoreCircle() {
+    this.setState({
+      circleRadius: this.props.circleRadius,
+      circleFill: this.props.circleFill,
+    });
+  },
+
+  _drawPath(d) {
+    if (d === undefined) {
+      return 'M Z';
+    }
+    return `M${d.join(',')}Z`;
+  },
+
+  render() {
+    const props = this.props;
 
     // animation controller
-    var handleMouseOver, handleMouseLeave;
+    let handleMouseOver;
+    let handleMouseLeave;
     if (props.hoverAnimation) {
       handleMouseOver = this._animateCircle;
       handleMouseLeave = this._restoreCircle;
@@ -50,26 +76,5 @@ module.exports = React.createClass({
         />
       </g>
     );
-  },
-
-  _animateCircle() {
-    this.setState({
-      circleRadius: this.props.circleRadius * (5 / 4),
-      circleFill: shade(this.props.circleFill, 0.2)
-    });
-  },
-
-  _restoreCircle() {
-    this.setState({
-      circleRadius: this.props.circleRadius,
-      circleFill: this.props.circleFill
-    });
-  },
-
-  _drawPath: function (d) {
-    if (d === undefined) {
-      return;
-    }
-    return 'M' + d.join(',') + 'Z';
   },
 });

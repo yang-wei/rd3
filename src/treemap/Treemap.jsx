@@ -1,47 +1,46 @@
 'use strict';
 
-var d3 = require('d3');
-var React = require('react');
-var Chart = require('../common').Chart;
-var DataSeries = require('./DataSeries');
+const d3 = require('d3');
+const React = require('react');
+const Chart = require('../common').Chart;
+const DataSeries = require('./DataSeries');
 
 module.exports = React.createClass({
 
   displayName: 'Treemap',
 
   propTypes: {
-    data:           React.PropTypes.array,
-    margins:        React.PropTypes.object,
-    width:          React.PropTypes.number,
-    height:         React.PropTypes.number,
-    title:          React.PropTypes.string,
-    textColor:      React.PropTypes.string,
-    fontSize:       React.PropTypes.oneOfType([
+    data: React.PropTypes.array,
+    margins: React.PropTypes.object,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    title: React.PropTypes.string,
+    textColor: React.PropTypes.string,
+    fontSize: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
-    colors:         React.PropTypes.func,
-    colorAccessor:  React.PropTypes.func,
-    hoverAnimation: React.PropTypes.bool
+    colors: React.PropTypes.func,
+    colorAccessor: React.PropTypes.func,
+    hoverAnimation: React.PropTypes.bool,
   },
 
   getDefaultProps() {
     return {
       hoverAnimation: true,
-      data:           [],
-      width:          400,
-      heigth:         200,
-      title:          '',
-      textColor:      '#f7f7f7',
-      fontSize:       '0.85em',
-      colors:         d3.scale.category20c(),
-      colorAccessor:  (d, idx) => idx,
+      data: [],
+      width: 400,
+      heigth: 200,
+      title: '',
+      textColor: '#f7f7f7',
+      fontSize: '0.85em',
+      colors: d3.scale.category20c(),
+      colorAccessor: (d, idx) => idx,
     };
   },
 
   render() {
-
-    var props = this.props;
+    const props = this.props;
 
     return (
       <Chart
@@ -63,6 +62,5 @@ module.exports = React.createClass({
         </g>
       </Chart>
     );
-  }
-
+  },
 });

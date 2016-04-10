@@ -1,41 +1,41 @@
 'use strict';
 
-var React = require('react');
-
+const React = require('react');
 
 module.exports = React.createClass({
 
   displayName: 'Label',
 
   propTypes: {
-    height:              React.PropTypes.number,
-    horizontalChart:     React.PropTypes.bool,
+    height: React.PropTypes.number,
+    horizontalChart: React.PropTypes.bool,
     horizontalTransform: React.PropTypes.string,
-    label:               React.PropTypes.string.isRequired,
-    width:               React.PropTypes.number,
-    strokeWidth:         React.PropTypes.number,
-    textAnchor:          React.PropTypes.string,
-    verticalTransform:   React.PropTypes.string
+    label: React.PropTypes.string.isRequired,
+    width: React.PropTypes.number,
+    strokeWidth: React.PropTypes.number,
+    textAnchor: React.PropTypes.string,
+    verticalTransform: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
       horizontalTransform: 'rotate(270)',
-      strokeWidth:         0.01,
-      textAnchor:          'middle',
-      verticalTransform:   'rotate(0)'
+      strokeWidth: 0.01,
+      textAnchor: 'middle',
+      verticalTransform: 'rotate(0)',
     };
   },
 
   render() {
-
-    var props = this.props;
+    const props = this.props;
 
     if (!props.label) {
       return <text />;
     }
 
-    var transform, x, y;
+    let transform;
+    let x;
+    let y;
     if (props.orient === 'top' || props.orient === 'bottom') {
       transform = props.verticalTransform;
       x = props.width / 2;
@@ -66,6 +66,5 @@ module.exports = React.createClass({
         {props.label}
       </text>
     );
-  }
-
+  },
 });
