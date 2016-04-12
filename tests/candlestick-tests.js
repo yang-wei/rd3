@@ -1,11 +1,11 @@
 'use strict';
 
 var expect = require('chai').expect;
-var React = require('react/addons');
 var { CandlestickChart } = require('../src/candlestick');
 var { generateArrayOfTimeOHLCObjects: generate } = require('./utils/datagen');
 
-var TestUtils = React.addons.TestUtils;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 var length = 5;
 var data, candlestickChart, candlestickChartWithoutAnimation;  
 

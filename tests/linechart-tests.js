@@ -1,10 +1,10 @@
 'use strict';
 
 var expect = require('chai').expect;
-var React = require('react/addons');
 var LineChart = require('../src/linechart').LineChart;
 var generate = require('./utils/datagen').generateArrayOfPoints;
-var TestUtils = React.addons.TestUtils;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 var data, linechart;
 var length = 5;
 
