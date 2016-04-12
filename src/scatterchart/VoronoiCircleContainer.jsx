@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var shade = require('../utils').shade;
 var VoronoiCircle = require('./VoronoiCircle');
@@ -63,7 +64,7 @@ module.exports = React.createClass({
     var props = this.props;
 
     if(props.hoverAnimation) {
-      var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
+      var rect = React.findDOMNode(this).getElementsByTagName("circle")[0].getBoundingClientRect();
       this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint )
       this.setState({
         circleFill:   shade(props.circleFill, props.shadeMultiplier),
