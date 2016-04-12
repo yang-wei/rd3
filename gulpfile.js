@@ -3,6 +3,7 @@ console.time('Loading plugins');
 // require('time-require');
 
 var gulp = require('gulp'),
+  babel = require('gulp-babel'),
   plugins = require('gulp-load-plugins')(),
   source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
@@ -31,6 +32,7 @@ function bundler(entry) {
 
   var globalShim = require('browserify-global-shim').configure({
     "react": "React",
+    "react-dom": "ReactDOM",
     "d3": "d3"
   });
   var opts = {
@@ -50,9 +52,8 @@ function bundler(entry) {
   var bundler = browserify(opts);
 
   bundler
-    .external(["react", "d3"]) // this informs browserify that when you see require("react") or require("d3") it will be available, trust me
+    .external(["react", "react-dom", "d3"]) // this informs browserify that when you see require("react") or require("d3") it will be available, trust me
     .transform(babelify) // We want to convert JSX to normal javascript
-    .transform(globalShim) // replace require('react') and require('d3') with (window.React) and (window.d3)
     ;
 
   return config.production ? bundler : watchify(bundler);
@@ -87,7 +88,7 @@ function bundleShare(b) {
   return b.bundle()
     .on('error', function(err){
       console.log(chalk.red(err.toString()));
-      this.end();
+      this.emit('end');
     })
     .pipe(source('react-d3.js'))
     .pipe(buffer())
@@ -135,9 +136,8 @@ gulp.task('minified', ['clean:build'], function() {
 gulp.task('copymisc', function(cb) {
 
   // replacement for jsx --harmony -x jsx src build/cjs && jsx --harmony src build/cjs
-  var react = require('gulp-react');
   var npmAssets = gulp.src(['src/**/*.js', 'src/**/*.jsx'])
-        .pipe(react({harmony: true}))
+        .pipe(babel({ presets: ['es2015', 'react'] }))
         .pipe(gulp.dest('build/cjs'));
 
   // replacement for cp *.md build/cjs && cp .npmignore build/cjs
@@ -234,7 +234,7 @@ gulp.task('lint', function () {
   }
 
   return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
-        .pipe(react({harmony: true}))
+        .pipe(babel({ presets: ['es2015', 'react'] }))
         .pipe(jshint(jshintConfig))
         .pipe(jshint.reporter(stylish))
         ;
