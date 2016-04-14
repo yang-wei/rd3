@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var shade = require('../utils').shade;
 var Arc = require('./Arc');
 
@@ -35,7 +36,7 @@ module.exports = React.createClass({
   },
 
   _animateArc() {
-    var rect = this.getDOMNode().getBoundingClientRect();
+    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
     this.setState({
       fill: shade(this.props.fill, 0.2)
