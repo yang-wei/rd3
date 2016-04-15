@@ -1,11 +1,11 @@
 'use strict';
 
 var expect = require('chai').expect;
-var React = require('react/addons');
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 var { ScatterChart } = require('../src/scatterchart');
 var { generateArrayOfPoints: generate } = require('./utils/datagen');
 
-var TestUtils = React.addons.TestUtils;
 var points = 5;
 var circleRadius = 5;
 var data, scatterchart;

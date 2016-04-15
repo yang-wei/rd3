@@ -1,10 +1,10 @@
 'use strict';
 
 var expect = require('chai').expect;  
-var React = require('react/addons');
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 var PieChart = require('../src/piechart').PieChart;
 var generatePartsOfWhole = require('./utils/datagen').generatePartsOfWhole;
-var TestUtils = React.addons.TestUtils;
 
 describe('PieChart', function() {
 
