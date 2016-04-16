@@ -2,6 +2,7 @@
 
 var expect = require('chai').expect;
 var React = require('react');
+var ReactDOM = require('react-dom');
 var TestUtils = require('react-addons-test-utils');
 
 describe('Treemap', function() {
@@ -28,13 +29,13 @@ describe('Treemap', function() {
     expect(cells.length).to.equal(data.length + 1);
 
     // Note that the first node generated will always be the parent node 
-    expect(Number(cells[0].getDOMNode().getAttribute('width'))).to.equal(width);
+    expect(Number(ReactDOM.findDOMNode(cells[0]).getAttribute('width'))).to.equal(width);
 
 
     var labels = TestUtils.scryRenderedDOMComponentsWithClass(
       treemap, 'rd3-treemap-cell-text');
 
-    expect(labels[0].getDOMNode().textContent).to.be.empty;
+    expect(ReactDOM.findDOMNode(labels[0]).textContent).to.be.empty;
     expect(labels.length).to.equal(data.length + 1);
 
   });

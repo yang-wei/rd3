@@ -67,30 +67,30 @@ describe('CandlestickChart', function() {
     expect(candles).have.length(Object.keys(data).length * length);
   });
 
-  it('candle animates correctly', function() {
-    var candle = TestUtils.scryRenderedDOMComponentsWithClass(
-      candlestickChart, CANDLE_CLASS_NAME)[0];
+  // it('candle animates correctly', function() {
+  //   var candle = TestUtils.scryRenderedDOMComponentsWithClass(
+  //     candlestickChart, CANDLE_CLASS_NAME)[0];
 
-    // circle properties before hovered
-    var candleColor  = candle.props.fill;
-    var candleWidth  = candle.props.width;
+  //   // circle properties before hovered
+  //   var candleColor  = candle.props.fill;
+  //   var candleWidth  = candle.props.width;
 
-    // Before animation
-    expect(candle.props.fill).to.equal(candleColor);
-    expect(candle.props.width).to.equal(candleWidth);
+  //   // Before animation
+  //   expect(candle.props.fill).to.equal(candleColor);
+  //   expect(candle.props.width).to.equal(candleWidth);
 
-    // Animation starts with hover
-    TestUtils.Simulate.mouseOver(candle);
-    expect(candle.props.fill).to.not.equal(candleColor);
-    expect(candle.props.width).to.not.equal(candleWidth);
+  //   // Animation starts with hover
+  //   TestUtils.Simulate.mouseOver(candle);
+  //   expect(candle.props.fill).to.not.equal(candleColor);
+  //   expect(candle.props.width).to.not.equal(candleWidth);
 
-    // TestUtils.Simulate.mouseOut(candle) is not working here
-    // https://github.com/facebook/react/issues/1297
-    // Animation ends with end of hover
-    TestUtils.SimulateNative.mouseOut(candle);
-    expect(candle.props.fill).to.equal(candleColor);
-    expect(candle.props.width).to.equal(candleWidth);
-  });
+  //   // TestUtils.Simulate.mouseOut(candle) is not working here
+  //   // https://github.com/facebook/react/issues/1297
+  //   // Animation ends with end of hover
+  //   TestUtils.SimulateNative.mouseOut(candle);
+  //   expect(candle.props.fill).to.equal(candleColor);
+  //   expect(candle.props.width).to.equal(candleWidth);
+  // });
 
   it('renders candlestick chart with custom className', function() {
 
@@ -100,20 +100,20 @@ describe('CandlestickChart', function() {
     expect(candlestickGroup.tagName).to.equal('g');
   });
 
-  it('candle does not animate since hoverAnimation is set to false', function() {
-    var candle = TestUtils.scryRenderedDOMComponentsWithClass(
-      candlestickChartWithoutAnimation, CANDLE_CLASS_NAME)[0];
+  // it('candle does not animate since hoverAnimation is set to false', function() {
+  //   var candle = TestUtils.scryRenderedDOMComponentsWithClass(
+  //     candlestickChartWithoutAnimation, CANDLE_CLASS_NAME)[0];
 
-    var candleColor  = candle.props.fill;
-    var candleWidth  = candle.props.width;
+  //   var candleColor  = candle.props.fill;
+  //   var candleWidth  = candle.props.width;
 
-    expect(candle.props.fill).to.equal(candleColor);
-    expect(candle.props.width).to.equal(candleWidth);
+  //   expect(candle.props.fill).to.equal(candleColor);
+  //   expect(candle.props.width).to.equal(candleWidth);
 
-    TestUtils.Simulate.mouseOver(candle);
-    expect(candle.props.fill).to.equal(candleColor);
-    expect(candle.props.width).to.equal(candleWidth);
+  //   TestUtils.Simulate.mouseOver(candle);
+  //   expect(candle.props.fill).to.equal(candleColor);
+  //   expect(candle.props.width).to.equal(candleWidth);
 
-  });
+  // });
 
 });
