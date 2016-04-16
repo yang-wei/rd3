@@ -1,27 +1,33 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 module.exports = React.createClass({
 
   propTypes: {
-    x:   React.PropTypes.number,
-    y:   React.PropTypes.number,
+    x: React.PropTypes.number,
+    y: React.PropTypes.number,
     child: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number,
-      React.PropTypes.element
+      React.PropTypes.element,
     ]),
-    show: React.PropTypes.bool
+    show: React.PropTypes.bool,
   },
 
-  render: function() {
-    var props = this.props;
-    var display = this.props.show ? 'inherit' : 'none';
-    var containerStyles = {position: 'fixed', top: props.y, left: props.x, display: display, opacity: 0.8}
-    
-    //TODO: add 'right: 0px' style when tooltip is off the chart
-    var tooltipStyles = {
+  render() {
+    const props = this.props;
+    const display = this.props.show ? 'inherit' : 'none';
+    const containerStyles = {
+      position: 'fixed',
+      top: props.y,
+      left: props.x,
+      display,
+      opacity: 0.8,
+    };
+
+    // TODO: add 'right: 0px' style when tooltip is off the chart
+    const tooltipStyles = {
       position: 'absolute',
       backgroundColor: 'white',
       border: '1px solid',
@@ -30,8 +36,8 @@ module.exports = React.createClass({
       padding: '10px',
       marginLeft: '10px',
       marginRight: '10px',
-      marginTop: '-15px'
-    }
+      marginTop: '-15px',
+    };
     return (
       <div style={containerStyles}>
         <div style={tooltipStyles}>
@@ -39,5 +45,5 @@ module.exports = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });

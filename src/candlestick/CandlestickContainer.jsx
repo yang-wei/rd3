@@ -1,31 +1,30 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var utils = require('../utils');
-var Candle = require('./Candle');
-var Wick = require('./Wick');
+const React = require('react');
+const utils = require('../utils');
+const Candle = require('./Candle');
+const Wick = require('./Wick');
 
 module.exports = React.createClass({
 
   displayName: 'CandleStickContainer',
 
   propTypes: {
-    candle_x:       React.PropTypes.number,
-    candle_y:       React.PropTypes.number,
-    className:      React.PropTypes.string,
-    candleFill:     React.PropTypes.string,
-    candleHeight:   React.PropTypes.number,
-    candleWidth:    React.PropTypes.number,
-    wick_x1:        React.PropTypes.number,
-    wick_x2:        React.PropTypes.number,
-    wick_y1:        React.PropTypes.number,
-    wick_y2:        React.PropTypes.number,
+    candleX: React.PropTypes.number,
+    candleY: React.PropTypes.number,
+    className: React.PropTypes.string,
+    candleFill: React.PropTypes.string,
+    candleHeight: React.PropTypes.number,
+    candleWidth: React.PropTypes.number,
+    wickX1: React.PropTypes.number,
+    wickX2: React.PropTypes.number,
+    wickY1: React.PropTypes.number,
+    wickY2: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      className: 'rd3-candlestick-container'
+      className: 'rd3-candlestick-container',
     };
   },
 
@@ -33,18 +32,32 @@ module.exports = React.createClass({
     // state for animation usage
     return {
       candleWidth: this.props.candleWidth,
-      candleFill: this.props.candleFill
+      candleFill: this.props.candleFill,
     };
   },
 
-  render() {
+  _animateCandle() {
+    this.setState({
+      candleWidth: this.props.candleWidth * 1.5,
+      candleFill: utils.shade(this.props.candleFill, -0.2),
+    });
+  },
 
-    var props = this.props;
-    var state = this.state;
+  _restoreCandle() {
+    this.setState({
+      candleWidth: this.props.candleWidth,
+      candleFill: this.props.candleFill,
+    });
+  },
+
+  render() {
+    const props = this.props;
+    const state = this.state;
 
     // animation controller
-    var handleMouseOver, handleMouseLeave;
-    if(props.hoverAnimation) {
+    let handleMouseOver;
+    let handleMouseLeave;
+    if (props.hoverAnimation) {
       handleMouseOver = this._animateCandle;
       handleMouseLeave = this._restoreCandle;
     } else {
@@ -54,16 +67,16 @@ module.exports = React.createClass({
     return (
       <g className={props.className}>
        <Wick
-         wick_x1={props.wick_x1}
-         wick_x2={props.wick_x2}
-         wick_y1={props.wick_y1}
-         wick_y2={props.wick_y2}
+         wickX1={props.wickX1}
+         wickX2={props.wickX2}
+         wickY1={props.wickY1}
+         wickY2={props.wickY2}
        />
        <Candle
          candleFill={state.candleFill}
          candleWidth={state.candleWidth}
-         candle_x={props.candle_x - ((state.candleWidth - props.candleWidth) / 2)}
-         candle_y={props.candle_y}
+         candleX={props.candleX - ((state.candleWidth - props.candleWidth) / 2)}
+         candleY={props.candleY}
          candleHeight={props.candleHeight}
          handleMouseOver={handleMouseOver}
          handleMouseLeave={handleMouseLeave}
@@ -71,19 +84,4 @@ module.exports = React.createClass({
       </g>
     );
   },
-
-  _animateCandle() {
-    this.setState({ 
-      candleWidth: this.props.candleWidth * 1.5,
-      candleFill: utils.shade(this.props.candleFill, -0.2)
-    });
-  },
-
-  _restoreCandle() {
-    this.setState({ 
-      candleWidth: this.props.candleWidth,
-      candleFill: this.props.candleFill
-    });
-  },
-
 });

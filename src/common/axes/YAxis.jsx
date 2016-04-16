@@ -1,62 +1,61 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var AxisTicks = require('./AxisTicks');
-var AxisLine = require('./AxisLine');
-var Label = require('./Label');
+const React = require('react');
+const d3 = require('d3');
+const AxisTicks = require('./AxisTicks');
+const AxisLine = require('./AxisLine');
+const Label = require('./Label');
 
 module.exports = React.createClass({
 
   displayName: 'YAxis',
 
   propTypes: {
-    fill:            React.PropTypes.string,
-    stroke:          React.PropTypes.string,
-    strokeWidth:     React.PropTypes.string,
-    tickStroke:      React.PropTypes.string,
-    width:           React.PropTypes.number.isRequired,
-    height:          React.PropTypes.number.isRequired,
+    fill: React.PropTypes.string,
+    stroke: React.PropTypes.string,
+    strokeWidth: React.PropTypes.string,
+    tickStroke: React.PropTypes.string,
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
     horizontalChart: React.PropTypes.bool,
-    yAxisClassName:  React.PropTypes.string,
-    yAxisLabel:      React.PropTypes.string,
-    yAxisOffset:     React.PropTypes.number,
+    yAxisClassName: React.PropTypes.string,
+    yAxisLabel: React.PropTypes.string,
+    yAxisOffset: React.PropTypes.number,
     yAxisTickValues: React.PropTypes.array,
-    xOrient:         React.PropTypes.oneOf(['top', 'bottom']),
-    yOrient:         React.PropTypes.oneOf(['left', 'right']),
-    yScale:          React.PropTypes.func.isRequired,
+    xOrient: React.PropTypes.oneOf(['top', 'bottom']),
+    yOrient: React.PropTypes.oneOf(['left', 'right']),
+    yScale: React.PropTypes.func.isRequired,
     gridVertical: React.PropTypes.bool,
     gridVerticalStroke: React.PropTypes.string,
     gridVerticalStrokeWidth: React.PropTypes.number,
-    gridVerticalStrokeDash: React.PropTypes.string
+    gridVerticalStrokeDash: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
-      fill:           'none',
-      stroke:         '#000',
-      strokeWidth:    '1',
-      tickStroke:     '#000',
+      fill: 'none',
+      stroke: '#000',
+      strokeWidth: '1',
+      tickStroke: '#000',
       yAxisClassName: 'rd3-y-axis',
-      yAxisLabel:     '',
-      yAxisOffset:    0,
-      xOrient:        'bottom',
-      yOrient:        'left'
+      yAxisLabel: '',
+      yAxisOffset: 0,
+      xOrient: 'bottom',
+      yOrient: 'left',
     };
   },
 
   render() {
+    const props = this.props;
 
-    var props = this.props;
-
-    var t;
+    let t;
     if (props.yOrient === 'right') {
-       t = `translate(${props.yAxisOffset + props.width}, 0)`;
+      t = `translate(${props.yAxisOffset + props.width}, 0)`;
     } else {
-       t = `translate(${props.yAxisOffset}, 0)`;
+      t = `translate(${props.yAxisOffset}, 0)`;
     }
 
-    var tickArguments;
+    let tickArguments;
     if (props.yAxisTickCount) {
       tickArguments = [props.yAxisTickCount];
     }
@@ -105,6 +104,5 @@ module.exports = React.createClass({
         />
       </g>
     );
-  }
-
+  },
 });

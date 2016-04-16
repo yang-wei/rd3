@@ -1,45 +1,42 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var CellContainer = require('./CellContainer');
-
+const React = require('react');
+const d3 = require('d3');
+const CellContainer = require('./CellContainer');
 
 module.exports = React.createClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    data:          React.PropTypes.array,
-    colors:        React.PropTypes.func,
+    data: React.PropTypes.array,
+    colors: React.PropTypes.func,
     colorAccessor: React.PropTypes.func,
-    width:         React.PropTypes.number,
-    height:        React.PropTypes.number
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
   },
 
   getDefaultProps() {
     return {
-      data:          [],
-      colors:        d3.scale.category20c(),
-      colorAccessor: (d, idx) => idx
+      data: [],
+      colors: d3.scale.category20c(),
+      colorAccessor: (d, idx) => idx,
     };
   },
 
   render() {
+    const props = this.props;
 
-    var props = this.props;
-
-    var treemap = d3.layout.treemap()
+    const treemap = d3.layout.treemap()
                     // make sure calculation loop through all objects inside array
-                    .children( (d) => d)
+                    .children(d => d)
                     .size([props.width, props.height])
                     .sticky(true)
-                    .value( (d) => { return d.value; });
+                    .value(d => d.value);
 
-    var tree = treemap(props.data);
+    const tree = treemap(props.data);
 
-    var cells = tree.map( (node, idx) => {
-      return (
+    const cells = tree.map((node, idx) => (
         <CellContainer
           key={idx}
           x={node.x}
@@ -52,14 +49,12 @@ module.exports = React.createClass({
           textColor={props.textColor}
           hoverAnimation={props.hoverAnimation}
         />
-      );
-    }, this);
+      ), this);
 
     return (
-      <g transform={props.transform} className='treemap'>
+      <g transform={props.transform} className="treemap">
         {cells}
       </g>
     );
-  }
-
+  },
 });

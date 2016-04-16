@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -9,12 +8,12 @@ module.exports = React.createClass({
 
   propTypes: {
     scale: React.PropTypes.func.isRequired,
-    orient: React.PropTypes.oneOf(['top','bottom','left','right']).isRequired,
-    orient2nd: React.PropTypes.oneOf(['top','bottom','left','right']),
+    orient: React.PropTypes.oneOf(['top', 'bottom', 'left', 'right']).isRequired,
+    orient2nd: React.PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
     height: React.PropTypes.number.isRequired,
     width: React.PropTypes.number.isRequired,
     horizontal: React.PropTypes.bool,
-    tickArguments : React.PropTypes.array,
+    tickArguments: React.PropTypes.array,
     tickValues: React.PropTypes.array,
     innerTickSize: React.PropTypes.number,
     outerTickSize: React.PropTypes.number,
@@ -28,7 +27,7 @@ module.exports = React.createClass({
     gridHorizontalStrokeWidth: React.PropTypes.number,
     gridVerticalStrokeWidth: React.PropTypes.number,
     gridHorizontalStrokeDash: React.PropTypes.string,
-    gridVerticalStrokeDash: React.PropTypes.string
+    gridVerticalStrokeDash: React.PropTypes.string,
   },
   getDefaultProps() {
     return {
@@ -45,35 +44,36 @@ module.exports = React.createClass({
       gridHorizontalStrokeWidth: 1,
       gridVerticalStrokeWidth: 1,
       gridHorizontalStrokeDash: '5, 5',
-      gridVerticalStrokeDash: '5, 5'
+      gridVerticalStrokeDash: '5, 5',
     };
   },
 
   render() {
-    var props = this.props;
+    const props = this.props;
 
-    var tr,
-        ticks,
-        scale,
-        adjustedScale,
-        orient,
-        textAnchor,
-        textTransform,
-        tickFormat,
-        y0, y1, y2, dy, x0, x1, x2, dx;
+    let tr;
+    let textAnchor;
+    let textTransform;
+    let tickFormat;
+    let y1;
+    let y2;
+    let dy;
+    let x1;
+    let x2;
 
-    var gridStrokeWidth,
-        gridStroke,
-        gridStrokeDashArray,
-        x2grid,
-        y2grid;
-    var gridOn = false;
+    let gridStrokeWidth;
+    let gridStroke;
+    let gridStrokeDashArray;
+    let x2grid;
+    let y2grid;
+    let gridOn = false;
 
-    var sign = props.orient === 'top' || props.orient === 'right' ? -1 : 1;
-    var tickSpacing = Math.max(props.innerTickSize, 0) + props.tickPadding;
+    const sign = props.orient === 'top' || props.orient === 'right' ? -1 : 1;
+    const tickSpacing = Math.max(props.innerTickSize, 0) + props.tickPadding;
 
-    scale = props.scale;
+    const scale = props.scale;
 
+    let ticks;
     if (props.tickValues) {
       ticks = props.tickValues;
     } else if (scale.ticks) {
@@ -83,14 +83,14 @@ module.exports = React.createClass({
     }
 
     if (props.tickFormatting) {
-        tickFormat = props.tickFormatting;
+      tickFormat = props.tickFormatting;
     } else if (scale.tickFormat) {
-        tickFormat = scale.tickFormat.apply(scale, props.tickArguments);
+      tickFormat = scale.tickFormat.apply(scale, props.tickArguments);
     } else {
-        tickFormat = (d)=> d;
+      tickFormat = (d) => d;
     }
 
-    adjustedScale = scale.rangeBand ? (d) => { return scale(d) + scale.rangeBand() / 2; } : scale;
+    const adjustedScale = scale.rangeBand ? d => scale(d) + scale.rangeBand() / 2 : scale;
 
 
     // Still working on this
@@ -99,62 +99,66 @@ module.exports = React.createClass({
     switch (props.orient) {
       case 'top':
         tr = (tick) => `translate(${adjustedScale(tick)},0)`;
-        textAnchor = "middle";
+        textAnchor = 'middle';
         y2 = props.innerTickSize * sign;
         y1 = tickSpacing * sign;
-        dy =  sign < 0 ? "0em" : ".71em";
+        dy = sign < 0 ? '0em' : '.71em';
         x2grid = 0;
         y2grid = -props.height;
         break;
       case 'bottom':
         tr = (tick) => `translate(${adjustedScale(tick)},0)`;
-        textAnchor = "middle";
+        textAnchor = 'middle';
         y2 = props.innerTickSize * sign;
         y1 = tickSpacing * sign;
-        dy =  sign < 0 ? "0em" : ".71em";
+        dy = sign < 0 ? '0em' : '.71em';
         x2grid = 0;
         y2grid = -props.height;
         break;
       case 'left':
         tr = (tick) => `translate(0,${adjustedScale(tick)})`;
-        textAnchor = "end";
+        textAnchor = 'end';
         x2 = props.innerTickSize * -sign;
         x1 = tickSpacing * -sign;
-        dy = ".32em";
+        dy = '.32em';
         x2grid = props.width;
         y2grid = 0;
         break;
       case 'right':
         tr = (tick) => `translate(0,${adjustedScale(tick)})`;
-        textAnchor = "start";
+        textAnchor = 'start';
         x2 = props.innerTickSize * -sign;
         x1 = tickSpacing * -sign;
-        dy = ".32em";
+        dy = '.32em';
         x2grid = -props.width;
         y2grid = 0;
+        break;
+      default:
         break;
     }
 
     if (props.horizontalChart) {
-      textTransform = "rotate(-90)";
+      textTransform = 'rotate(-90)';
       [y1, x1] = [x1, -y1 || 0];
 
       switch (props.orient) {
         case 'top':
-          textAnchor = "start";
-          dy = ".32em";
+          textAnchor = 'start';
+          dy = '.32em';
           break;
         case 'bottom':
-          textAnchor = "end";
-          dy = ".32em";
+          textAnchor = 'end';
+          dy = '.32em';
           break;
         case 'left':
           textAnchor = 'middle';
-          dy = sign < 0 ? ".71em" : "0em";
+          dy = sign < 0 ? '.71em' : '0em';
           break;
         case 'right':
           textAnchor = 'middle';
-          dy = sign < 0 ? ".71em" : "0em";
+          dy = sign < 0 ? '.71em' : '0em';
+          break;
+        default:
           break;
       }
     }
@@ -164,8 +168,7 @@ module.exports = React.createClass({
       gridStrokeWidth = props.gridHorizontalStrokeWidth;
       gridStroke = props.gridHorizontalStroke;
       gridStrokeDashArray = props.gridHorizontalStrokeDash;
-    }
-    else if (props.gridVertical) {
+    } else if (props.gridVertical) {
       gridOn = true;
       gridStrokeWidth = props.gridVerticalStrokeWidth;
       gridStroke = props.gridVerticalStroke;
@@ -173,50 +176,55 @@ module.exports = React.createClass({
     }
 
     // return grid line if grid is enabled and grid line is not on at same position as other axis.
-    var gridLine = function(pos) {
+    const gridLine = (pos) => {
       if (gridOn
-        && !(props.orient2nd == 'left' && pos == 0)
-        && !(props.orient2nd == 'right' && pos == props.width)
-        && !((props.orient == 'left' || props.orient == 'right') && pos == props.height)
+        && !(props.orient2nd === 'left' && pos === 0)
+        && !(props.orient2nd === 'right' && pos === props.width)
+        && !((props.orient === 'left' || props.orient === 'right') && pos === props.height)
       ) {
         return (
           <line style={{
             strokeWidth: gridStrokeWidth,
             shapeRendering: 'crispEdges',
             stroke: gridStroke,
-            strokeDasharray: gridStrokeDashArray
-            }} x2={x2grid} y2={y2grid}></line>
-        )
+            strokeDasharray: gridStrokeDashArray,
+          }} x2={x2grid} y2={y2grid}
+          />
+        );
       }
-    }
+    };
 
-    var optionalTextProps = textTransform ? {
-      transform: textTransform
+    const optionalTextProps = textTransform ? {
+      transform: textTransform,
     } : {};
 
     return (
     <g>
-      {ticks.map( (tick, idx) => {
-        return (
+      {ticks.map((tick, idx) => (
           <g key={idx} className="tick" transform={tr(tick)} >
             {gridLine(adjustedScale(tick))}
-            <line style={{shapeRendering:'crispEdges',opacity:'1',stroke:props.tickStroke}} x2={x2} y2={y2} >
-            </line>
+            <line
+              style={{
+                shapeRendering: 'crispEdges',
+                opacity: '1',
+                stroke: props.tickStroke,
+              }}
+              x2={x2}
+              y2={y2}
+            />
             <text
               strokeWidth="0.01"
               dy={dy} x={x1} y={y1}
-              style={{stroke:props.tickTextStroke, fill:props.tickTextStroke}}
+              style={{ stroke: props.tickTextStroke, fill: props.tickTextStroke }}
               textAnchor={textAnchor}
               {...optionalTextProps}
             >
               {tickFormat(tick)}
             </text>
           </g>
-        );
-        })
+        ))
       }
     </g>
     );
-  }
-
+  },
 });

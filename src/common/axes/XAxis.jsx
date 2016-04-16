@@ -1,57 +1,57 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var AxisTicks = require('./AxisTicks');
-var AxisLine = require('./AxisLine');
-var Label = require('./Label');
+const React = require('react');
+const d3 = require('d3');
+const AxisTicks = require('./AxisTicks');
+const AxisLine = require('./AxisLine');
+const Label = require('./Label');
 
 module.exports = React.createClass({
 
   displayName: 'XAxis',
 
   propTypes: {
-    fill:            React.PropTypes.string,
-    height:          React.PropTypes.number.isRequired,
-    width:           React.PropTypes.number.isRequired,
+    fill: React.PropTypes.string,
+    height: React.PropTypes.number.isRequired,
+    width: React.PropTypes.number.isRequired,
     horizontalChart: React.PropTypes.bool,
-    stroke:          React.PropTypes.string,
-    strokeWidth:     React.PropTypes.string,
-    tickStroke:      React.PropTypes.string,
-    xAxisClassName:  React.PropTypes.string,
-    xAxisLabel:      React.PropTypes.string,
+    stroke: React.PropTypes.string,
+    strokeWidth: React.PropTypes.string,
+    tickStroke: React.PropTypes.string,
+    xAxisClassName: React.PropTypes.string,
+    xAxisLabel: React.PropTypes.string,
     xAxisTickValues: React.PropTypes.array,
-    xAxisOffset:     React.PropTypes.number,
-    xScale:          React.PropTypes.func.isRequired,
-    xOrient:         React.PropTypes.oneOf(['top', 'bottom']),
-    yOrient:         React.PropTypes.oneOf(['left', 'right']),
-    gridVertical:  React.PropTypes.bool,
+    xAxisOffset: React.PropTypes.number,
+    xScale: React.PropTypes.func.isRequired,
+    xOrient: React.PropTypes.oneOf(['top', 'bottom']),
+    yOrient: React.PropTypes.oneOf(['left', 'right']),
+    gridVertical: React.PropTypes.bool,
     gridVerticalStroke: React.PropTypes.string,
     gridVerticalStrokeWidth: React.PropTypes.number,
-    gridVerticalStrokeDash: React.PropTypes.string
+    gridVerticalStrokeDash: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
-      fill:            'none',
-      stroke:          'none',
-      strokeWidth:     '1',
-      tickStroke:      '#000',
-      xAxisClassName:  'rd3-x-axis',
-      xAxisLabel:      '',
+      fill: 'none',
+      stroke: 'none',
+      strokeWidth: '1',
+      tickStroke: '#000',
+      xAxisClassName: 'rd3-x-axis',
+      xAxisLabel: '',
       xAxisLabelOffset: 10,
-      xAxisOffset:      0,
-      xOrient:         'bottom',
-      yOrient:         'left'
+      xAxisOffset: 0,
+      xOrient: 'bottom',
+      yOrient: 'left',
     };
   },
 
   render() {
-    var props = this.props;
+    const props = this.props;
 
-    var t = `translate(0 ,${props.xAxisOffset + props.height})`;
+    const t = `translate(0 ,${props.xAxisOffset + props.height})`;
 
-    var tickArguments;
+    let tickArguments;
     if (typeof props.xAxisTickCount !== 'undefined') {
       tickArguments = [props.xAxisTickCount];
     }
@@ -97,9 +97,8 @@ module.exports = React.createClass({
           orient={props.xOrient}
           margins={props.margins}
           width={props.width}
-          />
+        />
       </g>
     );
-  }
-
+  },
 });

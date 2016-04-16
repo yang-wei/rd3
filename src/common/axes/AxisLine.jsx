@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -14,7 +13,7 @@ module.exports = React.createClass({
     tickPadding: React.PropTypes.number,
     tickArguments: React.PropTypes.array,
     fill: React.PropTypes.string,
-    stroke: React.PropTypes.string
+    stroke: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -25,13 +24,14 @@ module.exports = React.createClass({
       fill: 'none',
       tickArguments: [10],
       tickValues: null,
-      tickFormat: null 
+      tickFormat: null,
     };
   },
 
 
   _d3_scaleExtent(domain) {
-    var start = domain[0], stop = domain[domain.length - 1];
+    const start = domain[0];
+    const stop = domain[domain.length - 1];
     return start < stop ? [start, stop] : [stop, start];
   },
 
@@ -40,31 +40,28 @@ module.exports = React.createClass({
   },
 
   render() {
+    const props = this.props;
+    const sign = props.orient === 'top' || props.orient === 'left' ? -1 : 1;
 
-    var props = this.props;
-    var sign = props.orient === "top" || props.orient === "left" ? -1 : 1;
+    const range = this._d3_scaleRange(props.scale);
 
-    var range = this._d3_scaleRange(props.scale);
-
-    var d;
-
-    if (props.orient === "bottom" || props.orient === "top") {
-      d = "M" + range[0] + "," + sign * props.outerTickSize + "V0H" + range[1] + "V" + sign * props.outerTickSize;
+    let d;
+    if (props.orient === 'bottom' || props.orient === 'top') {
+      d = `M${range[0]},${sign * props.outerTickSize}V0H${range[1]}V${sign * props.outerTickSize}`;
     } else {
-      d = "M" + sign * props.outerTickSize + "," + range[0] + "H0V" + range[1] + "H" + sign * props.outerTickSize;
+      d = `M${sign * props.outerTickSize},${range[0]}H0V${range[0]}H${sign * props.outerTickSize}`;
     }
-
 
     return (
       <path
         className="domain"
         d={d}
-        style={{'shapeRendering':'crispEdges'}}
+        style={{ shapeRendering: 'crispEdges' }}
         fill={props.fill}
         stroke={props.stroke}
         strokeWidth={props.strokeWidth}
       >
       </path>
     );
-  }
+  },
 });

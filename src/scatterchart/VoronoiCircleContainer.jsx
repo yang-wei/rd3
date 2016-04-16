@@ -1,46 +1,76 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var shade = require('../utils').shade;
-var VoronoiCircle = require('./VoronoiCircle');
+const React = require('react');
+const shade = require('../utils').shade;
+const VoronoiCircle = require('./VoronoiCircle');
 
 module.exports = React.createClass({
 
   displayName: 'VornoiCircleContainer',
 
   propTypes: {
-    circleFill:             React.PropTypes.string,
-    circleRadius:           React.PropTypes.number,
+    circleFill: React.PropTypes.string,
+    circleRadius: React.PropTypes.number,
     circleRadiusMultiplier: React.PropTypes.number,
-    className:              React.PropTypes.string,
-    hoverAnimation:         React.PropTypes.bool,
-    shadeMultiplier:        React.PropTypes.number,
-    vnode:                  React.PropTypes.array.isRequired
+    className: React.PropTypes.string,
+    hoverAnimation: React.PropTypes.bool,
+    shadeMultiplier: React.PropTypes.number,
+    vnode: React.PropTypes.array.isRequired,
+    onMouseOver: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
-      circleFill:             '#1f77b4',
-      circleRadius:           3,
+      circleFill: '#1f77b4',
+      circleRadius: 3,
       circleRadiusMultiplier: 1.25,
-      className:              'rd3-scatterchart-voronoi-circle-container',
-      hoverAnimation:         true,
-      shadeMultiplier:        0.2
+      className: 'rd3-scatterchart-voronoi-circle-container',
+      hoverAnimation: true,
+      shadeMultiplier: 0.2,
     };
   },
 
   getInitialState() {
     return {
-      circleFill:   this.props.circleFill,
-      circleRadius: this.props.circleRadius
+      circleFill: this.props.circleFill,
+      circleRadius: this.props.circleRadius,
     };
   },
 
-  render() {
+  _animateCircle() {
+    const props = this.props;
 
-    var props = this.props;
-    var state = this.state;
+    if (props.hoverAnimation) {
+      const rect = this.getDOMNode().getElementsByTagName('circle')[0].getBoundingClientRect();
+      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint);
+      this.setState({
+        circleFill: shade(props.circleFill, props.shadeMultiplier),
+        circleRadius: props.circleRadius * props.circleRadiusMultiplier,
+      });
+    }
+  },
+
+  _restoreCircle() {
+    const props = this.props;
+    if (props.hoverAnimation) {
+      this.setState({
+        circleFill: props.circleFill,
+        circleRadius: props.circleRadius,
+      });
+    }
+  },
+
+  _drawPath(d) {
+    if (typeof d === 'undefined') {
+      return 'M Z';
+    }
+
+    return `M${d.join(',')}Z`;
+  },
+
+  render() {
+    const props = this.props;
+    const state = this.state;
 
     return (
       <g
@@ -57,36 +87,5 @@ module.exports = React.createClass({
         />
       </g>
     );
-  },
-
-  _animateCircle() {
-    var props = this.props;
-
-    if(props.hoverAnimation) {
-      var rect = this.getDOMNode().getElementsByTagName("circle")[0].getBoundingClientRect();
-      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint )
-      this.setState({
-        circleFill:   shade(props.circleFill, props.shadeMultiplier),
-        circleRadius: props.circleRadius * props.circleRadiusMultiplier
-      });
-    }
-  },
-
-  _restoreCircle() {
-    var props = this.props;
-    if(props.hoverAnimation) {
-      this.setState({
-        circleFill:   props.circleFill,
-        circleRadius: props.circleRadius
-      });
-    }
-  },
-
-  _drawPath: function(d) {
-    if(typeof d === 'undefined') {
-      return 'M Z';
-    }
-
-    return 'M' + d.join(',') + 'Z';
   },
 });
