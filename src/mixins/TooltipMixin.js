@@ -28,7 +28,7 @@ module.exports = {
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     this.setState({
       changeState: false,
     });

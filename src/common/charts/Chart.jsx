@@ -23,7 +23,7 @@ module.exports = React.createClass({
       shouldUpdate: true,
     };
   },
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return nextProps.shouldUpdate;
   },
 
