@@ -24,7 +24,9 @@ module.exports = function(config) {
     browserify: {
       extensions: ['.jsx'],
       debug: true,
-      transform: [  ['reactify', {'es6': true}] ]
+      transform: [
+        ['babelify', {"presets": ["react", "es2015"]}]
+      ]
     },
 
     // test results reporter to use

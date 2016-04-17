@@ -1,13 +1,13 @@
 'use strict';
 
 var expect = require('chai').expect;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 
 describe('BarChart', function() {
   it('renders barchart', function() {
-    var React = require('react/addons');
     var BarChart = require('../src/barchart').BarChart;
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
     var length = 5;
 
     var data = [
@@ -39,10 +39,8 @@ describe('BarChart', function() {
   });
 
   it('renders barchart with negative values', function() {
-    var React = require('react/addons');
     var BarChart = require('../src/barchart').BarChart;
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
 
     var length = 5;
 

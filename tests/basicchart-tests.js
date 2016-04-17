@@ -1,13 +1,13 @@
 'use strict';
 
 var expect = require('chai').expect;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 
 describe('BasicChart', function() {
   it('renders and tests BasicChart component', function() {
-    var React = require('react/addons');
     var BasicChart = require('../src/common/charts/BasicChart');
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
 
     var chart = TestUtils.renderIntoDocument(
       <BasicChart /> 
