@@ -1,6 +1,8 @@
 'use strict';
 
 var expect = require('chai').expect;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 
 describe('Utils Test', () => {
 

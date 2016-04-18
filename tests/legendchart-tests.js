@@ -1,13 +1,13 @@
 'use strict';
 
 var expect = require('chai').expect;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 
 describe('LegendChart', function() {
   it('renders and tests LegendChart component', function() {
-    var React = require('react/addons');
     var LegendChart = require('../src/common/charts/LegendChart');
     var generate = require('./utils/datagen').generateArrayOfPoints;
-    var TestUtils = React.addons.TestUtils;
 
     var legend = TestUtils.renderIntoDocument(
       <LegendChart /> 

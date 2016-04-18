@@ -1,8 +1,11 @@
 'use strict';
 
+
 const React = require('react');
+const ReactDOM = require('react-dom');
 const shade = require('../utils').shade;
 const VoronoiCircle = require('./VoronoiCircle');
+
 
 module.exports = React.createClass({
 
@@ -87,5 +90,37 @@ module.exports = React.createClass({
         />
       </g>
     );
+  },
+
+
+  _animateCircle() {
+    var props = this.props;
+
+    if(props.hoverAnimation) {
+      var rect = React.findDOMNode(this).getElementsByTagName("circle")[0].getBoundingClientRect();
+      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint )
+      this.setState({
+        circleFill:   shade(props.circleFill, props.shadeMultiplier),
+        circleRadius: props.circleRadius * props.circleRadiusMultiplier
+      });
+    }
+  },
+
+  _restoreCircle() {
+    var props = this.props;
+    if(props.hoverAnimation) {
+      this.setState({
+        circleFill:   props.circleFill,
+        circleRadius: props.circleRadius
+      });
+    }
+  },
+
+  _drawPath: function(d) {
+    if(typeof d === 'undefined') {
+      return 'M Z';
+    }
+
+    return 'M' + d.join(',') + 'Z';
   },
 });

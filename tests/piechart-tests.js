@@ -1,10 +1,11 @@
 'use strict';
 
 var expect = require('chai').expect;  
-var React = require('react/addons');
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
+var ReactDOM = require('react-dom');
 var PieChart = require('../src/piechart').PieChart;
 var generatePartsOfWhole = require('./utils/datagen').generatePartsOfWhole;
-var TestUtils = React.addons.TestUtils;
 
 describe('PieChart', function() {
 
@@ -43,7 +44,7 @@ describe('PieChart', function() {
     
     var formattedValueTexts = TestUtils.scryRenderedDOMComponentsWithClass(piechart, 'rd3-piechart-value');
     expect(formattedValueTexts.length).to.equal(values.length);    
-    expect(formattedValueTexts[0].getDOMNode().textContent).to.contain('$');
+    expect(ReactDOM.findDOMNode(formattedValueTexts[0]).textContent).to.contain('$');
     
   });
 

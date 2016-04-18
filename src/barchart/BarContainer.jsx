@@ -1,8 +1,10 @@
 'use strict';
 
 const React = require('react');
+const ReactDOM = require('react-dom');
 const Bar = require('./Bar');
 const shade = require('../utils').shade;
+
 
 module.exports = React.createClass({
 
@@ -53,5 +55,20 @@ module.exports = React.createClass({
         handleMouseLeave={props.hoverAnimation ? this._restoreBar : null}
       />
     );
+  },
+
+  _animateBar() {
+    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
+    this.setState({ 
+      fill: shade(this.props.fill, 0.2)
+    });
+  },
+
+  _restoreBar() {
+    this.props.onMouseLeave.call(this);
+    this.setState({ 
+      fill: this.props.fill
+    });
   },
 });

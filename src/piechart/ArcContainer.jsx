@@ -1,8 +1,10 @@
 'use strict';
 
 const React = require('react');
+const ReactDOM = require('react-dom');
 const shade = require('../utils').shade;
 const Arc = require('./Arc');
+
 
 module.exports = React.createClass({
 
@@ -50,4 +52,19 @@ module.exports = React.createClass({
       />
     );
   },
+
+  _animateArc() {
+    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
+    this.setState({
+      fill: shade(this.props.fill, 0.2)
+    });
+  },
+
+  _restoreArc() {
+    this.props.onMouseLeave.call(this);
+    this.setState({
+      fill: this.props.fill
+    });
+  }
 });
