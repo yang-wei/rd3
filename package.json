@@ -80,7 +80,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rubybrowncoat/rd3.git"
+    "url": "https://github.com/yang-wei/rd3.git"
   },
   "files": [
     "build"
