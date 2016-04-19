@@ -55,12 +55,14 @@ module.exports = React.createClass({
         />
       );
     }
+
+    return null;
   },
 
   _renderTitle() {
     const props = this.props;
 
-    if (props.title != '' && props.title != null) {
+    if (props.title !== '' && props.title !== null) {
       return (
         <h4
           className={props.titleClassName}

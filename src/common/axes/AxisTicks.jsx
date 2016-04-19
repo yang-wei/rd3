@@ -192,6 +192,7 @@ module.exports = React.createClass({
           />
         );
       }
+      return null;
     };
 
     const optionalTextProps = textTransform ? {

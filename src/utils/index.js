@@ -1,16 +1,13 @@
 const d3 = require('d3');
 
-exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, yDomain) => {
-  xDomain = xDomain || [];
-  yDomain = yDomain || [];
-
+exports.calculateScales = (width, height, xValues, yValues, xDomain = [], yDomain = []) => {
   let xScale;
   if (xValues.length > 0 && Object.prototype.toString.call(xValues[0]) === '[object Date]') {
     xScale = d3.time.scale()
-      .range([0, chartWidth]);
+      .range([0, width]);
   } else {
     xScale = d3.scale.linear()
-      .range([0, chartWidth]);
+      .range([0, width]);
   }
   const xdomain = d3.extent(xValues);
   if (xDomain[0] !== undefined && xDomain[0] !== null) xdomain[0] = xDomain[0];
@@ -20,10 +17,10 @@ exports.calculateScales = (chartWidth, chartHeight, xValues, yValues, xDomain, y
   let yScale;
   if (yValues.length > 0 && Object.prototype.toString.call(yValues[0]) === '[object Date]') {
     yScale = d3.time.scale()
-      .range([chartHeight, 0]);
+      .range([height, 0]);
   } else {
     yScale = d3.scale.linear()
-      .range([chartHeight, 0]);
+      .range([height, 0]);
   }
 
   const ydomain = d3.extent(yValues);

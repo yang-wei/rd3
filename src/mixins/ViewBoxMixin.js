@@ -17,6 +17,7 @@ module.exports = {
     } else if (this.props.viewBox) {
       return this.props.viewBox;
     }
+    return null;
   },
 
   getDimensions() {

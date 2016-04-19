@@ -49,9 +49,8 @@ module.exports = React.createClass({
     );
   },
 
-  renderOuterLabel(props, arc) {
+  renderOuterLabel(props) {
     const rotate = `rotate(${(props.startAngle + props.endAngle) / 2 * (180 / Math.PI)})`;
-    const positions = arc.centroid();
     const radius = props.outerRadius;
     const dist = radius + 35;
     const angle = (props.startAngle + props.endAngle) / 2;
