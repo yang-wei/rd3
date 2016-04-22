@@ -46,7 +46,7 @@ module.exports = React.createClass({
   },
 
   _getStackedValuesMaxY(_data) {
-    // in stacked bar chart, the maximum height we need for 
+    // in stacked bar chart, the maximum height we need for
     // yScale domain is the sum of y0 + y
     var { valuesAccessor } = this.props;
     return d3.max(_data, function(d) {
@@ -88,18 +88,17 @@ module.exports = React.createClass({
 
     var props = this.props;
     var yOrient = this.getYOrient();
+    var domain = props.domain || {};
 
     var _data = this._stack()(props.data);
 
     var {innerHeight, innerWidth, trans, svgMargins} = this.getDimensions();
 
-    var xScale = d3.scale.ordinal()
-      .domain(this._getLabels(_data[0]))
-      .rangeRoundBands([0, innerWidth], props.rangeRoundBandsPadding);
+    var xDomain = domain.x || this._getLabels(_data[0]);
+    var xScale = d3.scale.ordinal().domain(xDomain).rangeRoundBands([0, innerWidth], props.rangeRoundBandsPadding);
 
-    var yScale = d3.scale.linear()
-      .range([innerHeight, 0])
-      .domain([Math.min(0, this._getStackedValuesMinY(_data)), this._getStackedValuesMaxY(_data)]);
+    var yDomain = domain.y || [Math.min(0, this._getStackedValuesMinY(_data)), this._getStackedValuesMaxY(_data)];
+    var yScale = d3.scale.linear().range([innerHeight, 0]).domain(yDomain);
 
     var series = props.data.map( (item) => item.name );
 
@@ -141,7 +140,7 @@ module.exports = React.createClass({
               xAxisClassName={props.xAxisClassName}
               xAxisTickValues={props.xAxisTickValues}
               xAxisLabel={props.xAxisLabel}
-              xAxisLabelOffset={props.xAxisLabelOffset} 
+              xAxisLabelOffset={props.xAxisLabelOffset}
               xScale={xScale}
               margins={svgMargins}
               tickFormatting={props.xAxisFormatter}
