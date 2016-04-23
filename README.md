@@ -5,6 +5,8 @@ Modular ReactJS charts made using d3 chart utilities. Work on project documentat
 
 ## Usage
 
+The latest version of rd3 requires **React 0.14 or later**. If you are using older React version, please refer to [here](https://github.com/yang-wei/rd3/releases/tag/v0.5.3)
+
 ### npmcdn
 Thanks to [npmcdn](https://npmcdn.com/) you can now try out rd3 quickly:
 
@@ -20,7 +22,7 @@ npm install rd3
 
 Then, import into your ReactJS project:
 
-```
+```js
 var rd3 = require('rd3');
 // es6
 import rd3 from 'rd3';
@@ -30,14 +32,14 @@ The charts are then available under the `rd3` namespace, which you can then use 
 
 ### Available Charts
 
-```
-var BarChart = rd3.BarChart;
-var LineChart = rd3.LineChart;
-var PieChart = rd3.PieChart;
-var AreaChart = rd3.AreaChart;
-var Treemap = rd3.Treemap;
-var ScatterChart = rd3.ScatterChart;
-var CandleStickChart = rd3.CandleStickChart;
+```js
+const BarChart = rd3.BarChart;
+const LineChart = rd3.LineChart;
+const PieChart = rd3.PieChart;
+const AreaChart = rd3.AreaChart;
+const Treemap = rd3.Treemap;
+const ScatterChart = rd3.ScatterChart;
+const CandleStickChart = rd3.CandleStickChart;
 ```
 
 For usage, please see [here](https://reactiva.github.io/react-d3-website/).  [API documentation](https://github.com/esbullington/react-d3/wiki/API) is also coming online over the coming days.

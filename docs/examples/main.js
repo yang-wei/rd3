@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var hljs = require("highlight.js");
 var rd3 = require('../../src');
@@ -474,7 +475,7 @@ var treemapData = [
 
 });
 
-React.render(
+ReactDOM.render(
   <Demos />,
-  document.body
+  document.getElementById('app')
 );

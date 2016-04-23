@@ -1,37 +1,48 @@
 'use strict';
 
-var React = require('react');
-var d3 = require('d3');
-var shade = require('../utils').shade;
-var Area = require('./Area');
+const React = require('react');
+const shade = require('../utils').shade;
+const Area = require('./Area');
 
 module.exports = React.createClass({
 
   displayName: 'AreaContainer',
 
   propTypes: {
-    fill: React.PropTypes.string, 
+    fill: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
-      fill: '#3182bd'
+      fill: '#3182bd',
     };
   },
 
   getInitialState() {
-    return { 
-      fill: this.props.fill
+    return {
+      fill: this.props.fill,
     };
   },
 
-  render() {
+  _animateArea() {
+    this.setState({
+      fill: shade(this.props.fill, 0.02),
+    });
+  },
 
-    var props = this.props;
+  _restoreArea() {
+    this.setState({
+      fill: this.props.fill,
+    });
+  },
+
+  render() {
+    const props = this.props;
 
     // animation controller
-    var handleMouseOver, handleMouseLeave;
-    if(props.hoverAnimation) {
+    let handleMouseOver;
+    let handleMouseLeave;
+    if (props.hoverAnimation) {
       handleMouseOver = this._animateArea;
       handleMouseLeave = this._restoreArea;
     } else {
@@ -40,24 +51,11 @@ module.exports = React.createClass({
 
     return (
       <Area
-          handleMouseOver={handleMouseOver}
-          handleMouseLeave={handleMouseLeave}
-          {...props}
-          fill={this.state.fill}
+        handleMouseOver={handleMouseOver}
+        handleMouseLeave={handleMouseLeave}
+        {...props}
+        fill={this.state.fill}
       />
     );
   },
-
-  _animateArea() {
-    this.setState({ 
-      fill: shade(this.props.fill, 0.02)
-    });
-  },
-
-  _restoreArea() {
-    this.setState({ 
-      fill: this.props.fill
-    });
-  },
-
 });

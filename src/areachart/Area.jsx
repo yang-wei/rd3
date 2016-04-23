@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -8,17 +8,18 @@ module.exports = React.createClass({
 
   propTypes: {
     path: React.PropTypes.string,
-    fill: React.PropTypes.string
+    fill: React.PropTypes.string,
+    handleMouseOver: React.PropTypes.func,
+    handleMouseLeave: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
-      fill: '#3182bd'
+      fill: '#3182bd',
     };
   },
 
   render() {
-
     return (
       <path
         className="rd3-areachart-area"
@@ -28,6 +29,5 @@ module.exports = React.createClass({
         onMouseLeave={this.props.handleMouseLeave}
       />
     );
-  }
-
+  },
 });

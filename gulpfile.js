@@ -54,6 +54,7 @@ function bundler(entry) {
   bundler
     .external(["react", "react-dom", "d3"]) // this informs browserify that when you see require("react") or require("d3") it will be available, trust me
     .transform("babelify", {"presets": ["react", "es2015"]}) // We want to convert JSX to normal javascript
+    .transform(globalShim)
     ;
 
   return config.production ? bundler : watchify(bundler);
@@ -213,34 +214,6 @@ gulp.task('tdd', function (cb) {
   }, cb);
 });
 
-gulp.task('lint', function () {
-  var jshint = require('gulp-jshint');
-  var react = require('gulp-react');
-  var stylish = require('jshint-stylish');
-
-  var jshintConfig = {
-    "browserify": true,
-    "expr": true,
-    "esnext": true,
-    "eqnull": true,
-    "globals": {
-      "describe": false,
-      "it": false,
-      "before": false,
-      "beforeEach": false,
-      "after": false,
-      "afterEach": false
-    }
-  }
-
-  return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
-        .pipe(babel({ presets: ['es2015', 'react'] }))
-        .pipe(jshint(jshintConfig))
-        .pipe(jshint.reporter(stylish))
-        ;
-});
-
-
 gulp.task("default", function() {
   console.log("gulp build       -> Build all");
   console.log("gulp docs        -> Build the docs folder");
@@ -251,5 +224,4 @@ gulp.task("default", function() {
   console.log("gulp serve       -> Launch a web browser on localhost:4000 and server from 'build/public'");
   console.log("gulp test        -> Execute the tests once with config file karma.conf.js");
   console.log("gulp tdd         -> Execute the tests continuosly with config file karma.conf.js");
-  console.log("gulp lint        -> Lint *.js and *.jsx code under src/");
 });

@@ -1,18 +1,18 @@
 'use strict';
 
-var React = require('react');
+const React = require('react');
 
-module.exports =  {
+module.exports = {
 
   propTypes: {
-    showTooltip:    React.PropTypes.bool,
-    tooltipFormat:  React.PropTypes.func
+    showTooltip: React.PropTypes.bool,
+    tooltipFormat: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
-      showTooltip:   true,
-      tooltipFormat: (d) => String(d.yValue)
+      showTooltip: true,
+      tooltipFormat: (d) => String(d.yValue),
     };
   },
 
@@ -22,43 +22,45 @@ module.exports =  {
         x: 0,
         y: 0,
         child: '',
-        show: false
+        show: false,
       },
-      changeState: false
+      changeState: false,
     };
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     this.setState({
-      changeState: false
-    })
+      changeState: false,
+    });
   },
 
   onMouseOver(x, y, dataPoint) {
-    if(!this.props.showTooltip)
+    if (!this.props.showTooltip) {
       return;
+    }
     this.setState({
       tooltip: {
-        x: x,
-        y: y,
+        x,
+        y,
         child: this.props.tooltipFormat.call(this, dataPoint),
-        show: true 
+        show: true,
       },
-      changeState: true
+      changeState: true,
     });
   },
 
   onMouseLeave() {
-    if(!this.props.showTooltip)
+    if (!this.props.showTooltip) {
       return;
+    }
     this.setState({
       tooltip: {
         x: 0,
         y: 0,
         child: '',
-        show: false
+        show: false,
       },
-      changeState: true 
+      changeState: true,
     });
-  }
-}
+  },
+};

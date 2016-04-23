@@ -1,6 +1,6 @@
 {
   "name": "rd3",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "ReactJS charts using d3",
   "author": "Lim Yang Wei",
   "homepage": "https://reactiva.github.io/react-d3-website/",
@@ -23,18 +23,19 @@
     "chai": "^3.0.0",
     "chalk": "^1.0.0",
     "del": "^1.2.0",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.3.0",
     "glob": "^5.0.10",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-filter": "^2.0.2",
-    "gulp-jshint": "^1.11.0",
     "gulp-load-plugins": "^1.0.0-rc",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "handlebars": "^3.0.3",
     "highlight.js": "^8.6.0",
-    "jshint-stylish": "^2.0.0",
     "karma": "^0.12.36",
     "karma-browserify": "^4.2.1",
     "karma-chai": "^0.1.0",
@@ -51,19 +52,26 @@
     "uglify-js": "^2.4.23",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.2"
-  },
-  "dependencies": {
+    "watchify": "^3.2.2",
     "d3": "^3.5.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1"
   },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.1",
+    "react-dom": "^0.14.0 || ^15.0.1",
+    "d3": "^3.5.0"
+  },
   "scripts": {
+    "pretest": "npm run lint",
     "test": "gulp test",
     "watch": "gulp watch",
+    "tdd": "gulp tdd",
     "release": "gulp release",
     "clean": "gulp clean:build",
-    "prepublish": "npm run clean && npm run release"
+    "prepublish": "npm run clean && npm run release",
+    "lint": "./node_modules/eslint/bin/eslint.js --ext .jsx --ext .js src",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix --ext .jsx --ext .js src"
   },
   "browserify": {
     "transform": [

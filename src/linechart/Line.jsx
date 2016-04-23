@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react');
-
+const React = require('react');
 
 module.exports = React.createClass({
 
@@ -20,12 +19,12 @@ module.exports = React.createClass({
       stroke: '#3182bd',
       fill: 'none',
       strokeWidth: 1,
-      className: 'rd3-linechart-path'
+      className: 'rd3-linechart-path',
     };
   },
 
   render() {
-    var props = this.props;
+    const props = this.props;
     return (
       <path
         d={props.path}
@@ -36,6 +35,5 @@ module.exports = React.createClass({
         className={props.className}
       />
     );
-  }
-
+  },
 });

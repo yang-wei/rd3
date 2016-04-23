@@ -1,32 +1,49 @@
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var shade = require('../utils').shade;
-var Arc = require('./Arc');
+const React = require('react');
+const shade = require('../utils').shade;
+const Arc = require('./Arc');
+
 
 module.exports = React.createClass({
 
   displayName: 'ArcContainer',
 
   propTypes: {
-    fill: React.PropTypes.string
+    fill: React.PropTypes.string,
+    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func,
+    dataPoint: React.PropTypes.any, // TODO prop type?
   },
 
   getInitialState() {
     return {
       // fill is named as fill instead of initialFill to avoid
       // confusion when passing down props from top parent
-      fill: this.props.fill
+      fill: this.props.fill,
     };
   },
 
-  render() {
+  _animateArc() {
+    const rect = this.getDOMNode().getBoundingClientRect();
+    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    this.setState({
+      fill: shade(this.props.fill, 0.2),
+    });
+  },
 
-    var props = this.props;
-    
+  _restoreArc() {
+    this.props.onMouseLeave.call(this);
+    this.setState({
+      fill: this.props.fill,
+    });
+  },
+
+  render() {
+    const props = this.props;
+
     return (
-      <Arc 
+      <Arc
         {...this.props}
         fill={this.state.fill}
         handleMouseOver={props.hoverAnimation ? this._animateArc : null}
@@ -34,19 +51,4 @@ module.exports = React.createClass({
       />
     );
   },
-
-  _animateArc() {
-    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint )
-    this.setState({
-      fill: shade(this.props.fill, 0.2)
-    });
-  },
-
-  _restoreArc() {
-    this.props.onMouseLeave.call(this);
-    this.setState({
-      fill: this.props.fill
-    });
-  }
 });
