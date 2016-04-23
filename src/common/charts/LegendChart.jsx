@@ -37,6 +37,7 @@ module.exports = React.createClass({
       sideOffset: 90,
       svgClassName: 'rd3-chart',
       titleClassName: 'rd3-chart-title',
+      title: ''
     };
   },
 
@@ -62,7 +63,7 @@ module.exports = React.createClass({
   _renderTitle() {
     const props = this.props;
 
-    if (props.title !== '' && props.title !== null) {
+    if (props.title !== '') {
       return (
         <h4
           className={props.titleClassName}

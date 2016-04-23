@@ -21,13 +21,14 @@ module.exports = React.createClass({
       className: 'rd3-basic-chart',
       svgClassName: 'rd3-chart',
       titleClassName: 'rd3-chart-title',
+      title: ''
     };
   },
 
   _renderTitle() {
     const props = this.props;
 
-    if (props.title !== '' && props.title !== null) {
+    if (props.title !== '') {
       return (
         <h4
           className={props.titleClassName}
