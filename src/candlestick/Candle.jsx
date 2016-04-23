@@ -29,8 +29,8 @@ module.exports = React.createClass({
       <rect
         className={props.className}
         fill={props.candleFill}
-        x={props.candle_x}
-        y={props.candle_y}
+        x={props.candleX}
+        y={props.candleY}
         stroke={props.stroke}
         strokeWidth={props.strokeWidth}
         style={{ shapeRendering: props.shapeRendering }}
