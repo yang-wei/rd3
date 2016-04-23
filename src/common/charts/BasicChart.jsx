@@ -21,7 +21,7 @@ module.exports = React.createClass({
       className: 'rd3-basic-chart',
       svgClassName: 'rd3-chart',
       titleClassName: 'rd3-chart-title',
-      title: ''
+      title: '',
     };
   },
 

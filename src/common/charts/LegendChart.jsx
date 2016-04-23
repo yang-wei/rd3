@@ -37,7 +37,7 @@ module.exports = React.createClass({
       sideOffset: 90,
       svgClassName: 'rd3-chart',
       titleClassName: 'rd3-chart-title',
-      title: ''
+      title: '',
     };
   },
 
