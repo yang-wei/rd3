@@ -54,6 +54,7 @@ function bundler(entry) {
   bundler
     .external(["react", "react-dom", "d3"]) // this informs browserify that when you see require("react") or require("d3") it will be available, trust me
     .transform("babelify", {"presets": ["react", "es2015"]}) // We want to convert JSX to normal javascript
+    .transform(globalShim)
     ;
 
   return config.production ? bundler : watchify(bundler);
