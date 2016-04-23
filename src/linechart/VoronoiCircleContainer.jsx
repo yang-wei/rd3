@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
 const VoronoiCircle = require('./VoronoiCircle');
 
@@ -31,7 +32,7 @@ module.exports = React.createClass({
   },
 
   _animateCircle() {
-    const rect = this.getDOMNode().getElementsByTagName('circle')[0].getBoundingClientRect();
+    const rect = findDOMNode(this).getElementsByTagName('circle')[0].getBoundingClientRect();
     this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
     this.setState({
       circleRadius: this.props.circleRadius * (5 / 4),

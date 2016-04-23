@@ -2,6 +2,7 @@
 
 
 const React = require('react');
+const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
 const VoronoiCircle = require('./VoronoiCircle');
 
@@ -43,7 +44,7 @@ module.exports = React.createClass({
     const props = this.props;
 
     if (props.hoverAnimation) {
-      const rect = this.getDOMNode().getBoundingClientRect();
+      const rect = findDOMNode(this).getElementsByTagName('circle')[0].getBoundingClientRect();
       this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint);
       this.setState({
         circleFill: shade(props.circleFill, props.shadeMultiplier),
