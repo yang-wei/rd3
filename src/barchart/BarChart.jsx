@@ -93,17 +93,21 @@ module.exports = React.createClass({
     const props = this.props;
     const yOrient = this.getYOrient();
 
+    const domain = props.domain || {};
+
     const _data = this._stack()(props.data);
 
     const { innerHeight, innerWidth, trans, svgMargins } = this.getDimensions();
 
+    const xDomain = domain.x || this._getLabels(_data[0]);
     const xScale = d3.scale.ordinal()
-      .domain(this._getLabels(_data[0]))
-      .rangeRoundBands([0, innerWidth], props.rangeRoundBandsPadding);
+                     .domain(xDomain)
+                     .rangeRoundBands([0, innerWidth], props.rangeRoundBandsPadding);
 
-    const yScale = d3.scale.linear()
-      .range([innerHeight, 0])
-      .domain([Math.min(0, this._getStackedValuesMinY(_data)), this._getStackedValuesMaxY(_data)]);
+    const minYDomain = Math.min(0, this._getStackedValuesMinY(_data));
+    const maxYDomain = this._getStackedValuesMaxY(_data);
+    const yDomain = domain.y || [minYDomain, maxYDomain];
+    const yScale = d3.scale.linear().range([innerHeight, 0]).domain(yDomain);
 
     const series = props.data.map((item) => item.name);
 
