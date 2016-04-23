@@ -60,6 +60,7 @@
     "react-dom": "^15.0.1"
   },
   "scripts": {
+    "pretest": "npm run lint",
     "test": "gulp test",
     "watch": "gulp watch",
     "release": "gulp release",
