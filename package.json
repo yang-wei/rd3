@@ -63,6 +63,7 @@
     "pretest": "npm run lint",
     "test": "gulp test",
     "watch": "gulp watch",
+    "tdd": "gulp tdd",
     "release": "gulp release",
     "clean": "gulp clean:build",
     "prepublish": "npm run clean && npm run release",
