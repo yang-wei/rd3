@@ -71,4 +71,29 @@ describe('PieChart', function() {
     var labels = TestUtils.scryRenderedDOMComponentsWithClass(piechart, 'rd3-piechart-label');
     expect(labels.length).to.equal(0);    
   });
+
+  it('animates pie correctly', function() {
+
+     var piechart = TestUtils.renderIntoDocument(
+      <PieChart data={data} width={400} height={200} />
+    );
+
+    var pies = TestUtils.scryRenderedDOMComponentsWithTag(
+      piechart, 'path');
+
+    var pie = pies[0];
+    var defaultFill = pie.getAttribute('fill');
+
+    // Animation starts with hover
+    TestUtils.Simulate.mouseOver(pie);
+    expect(pie.getAttribute('fill')).to.not.equal(defaultFill);
+
+    // TestUtils.Simulate.mouseOut(circle) is not working here
+    // https://github.com/facebook/react/issues/1297
+    // Animation ends with end of hover
+    TestUtils.SimulateNative.mouseOut(pie);
+    expect(pie.getAttribute('fill')).to.equal(defaultFill);
+
+
+  });
 });
