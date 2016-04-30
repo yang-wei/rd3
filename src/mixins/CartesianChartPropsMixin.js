@@ -10,12 +10,18 @@ module.exports = {
     colors: React.PropTypes.func,
     colorAccessor: React.PropTypes.func,
     data: React.PropTypes.array.isRequired,
-    height: React.PropTypes.number,
+    height: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
     horizontal: React.PropTypes.bool,
     legend: React.PropTypes.bool,
     legendOffset: React.PropTypes.number,
     title: React.PropTypes.string,
-    width: React.PropTypes.number,
+    width: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
     xAccessor: React.PropTypes.func,
     xAxisFormatter: React.PropTypes.func,
     xAxisLabel: React.PropTypes.string,

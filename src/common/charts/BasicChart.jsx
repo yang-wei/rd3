@@ -9,11 +9,17 @@ module.exports = React.createClass({
   propTypes: {
     children: React.PropTypes.node,
     className: React.PropTypes.string,
-    height: React.PropTypes.node,
+    height: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
     svgClassName: React.PropTypes.string,
     title: React.PropTypes.node,
     titleClassName: React.PropTypes.string,
-    width: React.PropTypes.node,
+    width: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
   },
 
   getDefaultProps() {
