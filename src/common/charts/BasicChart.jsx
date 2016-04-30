@@ -11,14 +11,14 @@ module.exports = React.createClass({
     className: React.PropTypes.string,
     height: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
     svgClassName: React.PropTypes.string,
     title: React.PropTypes.node,
     titleClassName: React.PropTypes.string,
     width: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
   },
 

@@ -12,7 +12,7 @@ module.exports = {
     data: React.PropTypes.array.isRequired,
     height: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
     horizontal: React.PropTypes.bool,
     legend: React.PropTypes.bool,
@@ -20,7 +20,7 @@ module.exports = {
     title: React.PropTypes.string,
     width: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number
+      React.PropTypes.number,
     ]),
     xAccessor: React.PropTypes.func,
     xAxisFormatter: React.PropTypes.func,
