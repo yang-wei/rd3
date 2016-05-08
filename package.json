@@ -71,7 +71,12 @@
     "clean": "gulp clean:build",
     "prepublish": "npm run clean && npm run release",
     "lint": "./node_modules/eslint/bin/eslint.js --ext .jsx --ext .js src",
-    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix --ext .jsx --ext .js src"
+    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix --ext .jsx --ext .js src",
+    "docs:clean": "rm -rf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "npm run docs:prepare && gitbook build",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:clean && npm run docs:build && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:yang-wei/rd3 gh-pages --force"
   },
   "browserify": {
     "transform": [
