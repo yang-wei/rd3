@@ -1,7 +1,7 @@
 {
   "gitbook": "2.6.7",
   "title": "rd3",
-  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable"],
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable", "ga"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/yang-wei/rd3/tree/master",
@@ -9,6 +9,9 @@
     },
     "github": {
       "url": "https://github.com/yang-wei/rd3.js/"
+    },
+    "ga": {
+      "token": "UA-48343637-5"
     }
   }
 }
