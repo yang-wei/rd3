@@ -19,3 +19,6 @@ build/
 
 # OSX
 .DS_Store
+
+# gitbook
+_book
