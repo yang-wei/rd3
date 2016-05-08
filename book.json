@@ -1,0 +1,14 @@
+{
+  "gitbook": "2.6.7",
+  "title": "react-d3.js",
+  "plugins": ["edit-link", "prism", "-highlight", "github", "anker-enable"],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/yang-wei/react-d3.js/tree/master",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/yang-wei/react-d3.js/"
+    }
+  }
+}
