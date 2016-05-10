@@ -70,8 +70,8 @@ module.exports = React.createClass({
           key={idx}
           seriesName={series.name}
           index={idx}
-          xScale={scales.xScale}
-          yScale={scales.yScale}
+          xScale={props.xScale || scales.xScale}
+          yScale={props.yScale || scales.yScale}
           data={series.values}
           fillUp={props.fillUp(props.fillUpAccessor(series, idx))}
           fillDown={props.fillDown(props.fillDownAccessor(series, idx))}
@@ -93,7 +93,7 @@ module.exports = React.createClass({
         <g transform={trans} className={props.className}>
           <XAxis
             xAxisClassName={props.xAxisClassName}
-            xScale={scales.xScale}
+            xScale={props.xScale || scales.xScale}
             xAxisTickValues={props.xAxisTickValues}
             xAxisTickInterval={props.xAxisTickInterval}
             xAxisOffset={props.xAxisOffset}
@@ -113,7 +113,7 @@ module.exports = React.createClass({
           />
           <YAxis
             yAxisClassName={props.yAxisClassName}
-            yScale={scales.yScale}
+            yScale={props.yScale || scales.yScale}
             yAxisTickValues={props.yAxisTickValues}
             yAxisOffset={props.yAxisOffset}
             yAxisTickCount={props.yAxisTickCount}
