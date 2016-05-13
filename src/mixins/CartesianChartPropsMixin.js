@@ -31,6 +31,7 @@ module.exports = {
     xAxisTickValues: React.PropTypes.array,
     xAxisOffset: React.PropTypes.number,
     xOrient: React.PropTypes.oneOf(['top', 'bottom']),
+    xScale: React.PropTypes.func,
     yAccessor: React.PropTypes.func,
     yAxisFormatter: React.PropTypes.func,
     yAxisLabel: React.PropTypes.string,
@@ -40,6 +41,7 @@ module.exports = {
     yAxisTickValues: React.PropTypes.array,
     yAxisOffset: React.PropTypes.number,
     yOrient: React.PropTypes.oneOf(['default', 'left', 'right']),
+    yScale: React.PropTypes.func,
   },
 
   getDefaultProps() {
@@ -61,6 +63,7 @@ module.exports = {
       // xAxisTickInterval: no predefined value right now
       // xAxisTickValues: no predefined value right now
       xOrient: 'bottom',
+      // xScale: no predefined value right now
       // yAxisFormatter: no predefined value right now
       yAxisLabel: '',
       yAxisLabelOffset: 35,
@@ -69,6 +72,7 @@ module.exports = {
       // yAxisTickInterval: no predefined value right now
       // yAxisTickValues: no predefined value right now
       yOrient: 'default',
+      // yScale: no predefined value right now
     };
   },
 
