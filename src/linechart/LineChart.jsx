@@ -89,7 +89,7 @@ module.exports = React.createClass({
               xAxisTickValues={props.xAxisTickValues}
               xAxisTickInterval={props.xAxisTickInterval}
               xAxisOffset={props.xAxisOffset}
-              xScale={props.xScale || scales.xScale}
+              xScale={scales.xScale}
               xAxisLabel={props.xAxisLabel}
               xAxisLabelOffset={props.xAxisLabelOffset}
               tickFormatting={props.xAxisFormatter}
@@ -109,7 +109,7 @@ module.exports = React.createClass({
             <YAxis
               yAxisClassName={props.yAxisClassName}
               strokeWidth={props.yAxisStrokeWidth}
-              yScale={props.yScale || scales.yScale}
+              yScale={scales.yScale}
               yAxisTickValues={props.yAxisTickValues}
               yAxisTickCount={props.yAxisTickCount}
               yAxisOffset={props.yAxisOffset}
@@ -129,8 +129,8 @@ module.exports = React.createClass({
               gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
             />
             <DataSeries
-              xScale={props.xScale || scales.xScale}
-              yScale={props.yScale || scales.yScale}
+              xScale={scales.xScale}
+              yScale={scales.yScale}
               xAccessor={props.xAccessor}
               yAccessor={props.yAccessor}
               hoverAnimation={props.hoverAnimation}

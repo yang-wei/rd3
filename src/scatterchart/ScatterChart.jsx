@@ -70,8 +70,8 @@ module.exports = React.createClass({
     const scales = this._calculateScales(
       innerWidth, innerHeight, xValues, yValues, domain.x, domain.y
     );
-    const xScale = props.xScale || scales.xScale;
-    const yScale = props.yScale || scales.yScale;
+    const xScale = scales.xScale;
+    const yScale = scales.yScale;
 
     return (
       <span onMouseLeave={this.onMouseLeave}>

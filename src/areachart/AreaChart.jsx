@@ -100,8 +100,8 @@ module.exports = React.createClass({
           seriesName={d.name}
           fill={props.colors(props.colorAccessor(d, idx))}
           index={idx}
-          xScale={props.xScale || xScale}
-          yScale={props.yScale || yScale}
+          xScale={xScale}
+          yScale={yScale}
           data={d.values}
           xAccessor={props.xAccessor}
           yAccessor={props.yAccessor}
@@ -126,7 +126,7 @@ module.exports = React.createClass({
         <g transform={trans} className={props.className}>
           <XAxis
             xAxisClassName="rd3-areachart-xaxis"
-            xScale={props.xScale || xScale}
+            xScale={xScale}
             xAxisTickValues={props.xAxisTickValues}
             xAxisTickInterval={props.xAxisTickInterval}
             xAxisTickCount={props.xAxisTickCount}
@@ -146,7 +146,7 @@ module.exports = React.createClass({
           />
           <YAxis
             yAxisClassName="rd3-areachart-yaxis"
-            yScale={props.yScale || yScale}
+            yScale={yScale}
             yAxisTickValues={props.yAxisTickValues}
             yAxisTickInterval={props.yAxisTickInterval}
             yAxisTickCount={props.yAxisTickCount}
