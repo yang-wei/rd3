@@ -14,3 +14,4 @@
 * Others
   * [Axis](/docs/new/axis.md)
   * [Date](/docs/new/date.md)
+  * [Responsive Charts](/docs/new/responsiveCharts.md)
