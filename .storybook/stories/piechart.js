@@ -1,10 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { randomGroups, centeredStory } from './_utils';
+import centered from 'react-storybook-centered';
+import { randomGroups } from './_utils';
 import { PieChart } from '../../src/piechart/';
 
 const stories = storiesOf('PieChart', module)
-  .addDecorator(centeredStory);
+  .addDecorator(centered);
 
 // ---
 

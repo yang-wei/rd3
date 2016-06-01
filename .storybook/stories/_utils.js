@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function randomGroups(count) {
   const groups = [];
   let total = 0;
@@ -37,27 +35,4 @@ export function randomTimeseries(count, positive) {
     values[i] = {x: new Date(start + i * 60000) , y: value};
   }
   return values;
-}
-
-export const CenteredStory = React.createClass({
-  render() {
-    const props = {
-      style: {
-        height: '100vh',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-    };
-    return <div {...props}>{this.props.children}</div>
-  }
-});
-
-export function centeredStory(storyFn) {
-  return <CenteredStory>{storyFn()}</CenteredStory>;
 }

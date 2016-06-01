@@ -1,10 +1,11 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { randomSeries, centeredStory } from './_utils';
+import centered from 'react-storybook-centered';
+import { randomSeries } from './_utils';
 import { BarChart } from '../../src/barchart/';
 
 const stories = storiesOf('BarChart', module)
-  .addDecorator(centeredStory);
+  .addDecorator(centered);
 
 // ---
 

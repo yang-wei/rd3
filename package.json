@@ -56,7 +56,8 @@
     "d3": "^3.5.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "@kadira/storybook": "^1.28.1"
+    "@kadira/storybook": "^1.28.1",
+    "react-storybook-centered": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.1",
