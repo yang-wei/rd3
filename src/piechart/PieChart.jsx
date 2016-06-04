@@ -27,8 +27,6 @@ module.exports = React.createClass({
     hoverAnimation: React.PropTypes.bool,
   },
 
-  mixins: [TooltipMixin],
-
   getDefaultProps() {
     return {
       data: [],
@@ -37,6 +35,8 @@ module.exports = React.createClass({
       colorAccessor: (d, idx) => idx,
       valueTextFormatter: (val) => `${val}%`,
       hoverAnimation: true,
+      onMouseOver: () => {},
+      onMouseLeave: () => {},
     };
   },
 
@@ -49,39 +49,35 @@ module.exports = React.createClass({
     const labels = props.data.map((item) => item.label);
 
     return (
-      <span>
-        <Chart
-          width={props.width}
-          height={props.height}
-          title={props.title}
-          shouldUpdate={!this.state.changeState}
-        >
-          <g className="rd3-piechart">
-            <DataSeries
-              labelTextFill={props.labelTextFill}
-              valueTextFill={props.valueTextFill}
-              valueTextFormatter={props.valueTextFormatter}
-              data={props.data}
-              values={values}
-              labels={labels}
-              colors={props.colors}
-              colorAccessor={props.colorAccessor}
-              transform={transform}
-              width={props.width}
-              height={props.height}
-              radius={props.radius}
-              innerRadius={props.innerRadius}
-              showInnerLabels={props.showInnerLabels}
-              showOuterLabels={props.showOuterLabels}
-              sectorBorderColor={props.sectorBorderColor}
-              hoverAnimation={props.hoverAnimation}
-              onMouseOver={this.onMouseOver}
-              onMouseLeave={this.onMouseLeave}
-            />
-          </g>
-        </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
-      </span>
+      <Chart
+        width={props.width}
+        height={props.height}
+        title={props.title}
+      >
+        <g className="rd3-piechart">
+          <DataSeries
+            labelTextFill={props.labelTextFill}
+            valueTextFill={props.valueTextFill}
+            valueTextFormatter={props.valueTextFormatter}
+            data={props.data}
+            values={values}
+            labels={labels}
+            colors={props.colors}
+            colorAccessor={props.colorAccessor}
+            transform={transform}
+            width={props.width}
+            height={props.height}
+            radius={props.radius}
+            innerRadius={props.innerRadius}
+            showInnerLabels={props.showInnerLabels}
+            showOuterLabels={props.showOuterLabels}
+            sectorBorderColor={props.sectorBorderColor}
+            hoverAnimation={props.hoverAnimation}
+            onMouseOver={props.onMouseOver}
+            onMouseLeave={props.onMouseLeave}
+          />
+        </g>
+      </Chart>
     );
   },
 });
