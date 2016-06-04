@@ -46,6 +46,8 @@ module.exports = React.createClass({
       xAxisClassName: 'rd3-barchart-xaxis',
       yAxisClassName: 'rd3-barchart-yaxis',
       yAxisTickCount: 4,
+      onMouseOver: () => {},
+      onMouseLeave: () => {},
     };
   },
 
