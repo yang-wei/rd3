@@ -6,3 +6,5 @@ exports.LegendChart = require('./charts').LegendChart;
 exports.Legend = require('./Legend');
 exports.Tooltip = require('./Tooltip');
 exports.Voronoi = require('./Voronoi');
+
+exports.ToolTipWrapper = require('./ToolTipWrapper');
