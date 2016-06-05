@@ -76,7 +76,7 @@ export function toolTipWrapper (Component, toolTip = _renderToolTip) {
 
     render() {
       return (
-        <span>
+        <div>
           <Component
             {...this.props}
             {...this.state}
@@ -84,7 +84,7 @@ export function toolTipWrapper (Component, toolTip = _renderToolTip) {
             onMouseLeave={this.onMouseLeave}
           />
           {toolTip(this.state.tooltip)}
-        </span>
+        </div>
       )
     },
 
