@@ -30,15 +30,19 @@ module.exports = React.createClass({
   },
 
   _animateBar() {
-    const rect = findDOMNode(this).getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    const handlers = this.props.onMouseOverHandlers;
+    const dataPoint = this.props.dataPoint;
+    const rect = this;
+    handlers.forEach(f => f(dataPoint, rect));
+
     this.setState({
       fill: shade(this.props.fill, 0.2),
     });
   },
 
   _restoreBar() {
-    this.props.onMouseLeave.call(this);
+    const handlers = this.props.onMouseLeaveHandlers;
+    handlers.forEach(f => f());
     this.setState({
       fill: this.props.fill,
     });

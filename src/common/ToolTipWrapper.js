@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+const { findDOMNode } = require('react-dom');
 
 const _renderToolTip = function(state) {
 
@@ -52,11 +53,13 @@ export function toolTipWrapper (Component, toolTip = _renderToolTip) {
       };
     },
 
-    onMouseOver(x, y, dataPoint) {
+    onMouseOver(dataPoint, dom) {
+      if(dom === undefined) return;
+      const rect = findDOMNode(dom).getBoundingClientRect();
       this.setState({
         tooltip: {
-          x,
-          y,
+          x: rect.right,
+          y: rect.top,
           dataPoint: dataPoint,
           show: true,
         }
@@ -75,13 +78,17 @@ export function toolTipWrapper (Component, toolTip = _renderToolTip) {
     },
 
     render() {
+      
+      let onMouseOverHandlers = this.props.onMouseOverHandlers || [];
+      let onMouseLeaveHandlers = this.props.onMouseLeaveHandlers || [];
+      
       return (
         <div>
           <Component
             {...this.props}
             {...this.state}
-            onMouseOver={this.onMouseOver}
-            onMouseLeave={this.onMouseLeave}
+            onMouseOverHandlers={onMouseOverHandlers.concat([this.onMouseOver])}
+            onMouseLeaveHandlers={onMouseOverHandlers.concat([this.onMouseLeave])}
           />
           {toolTip(this.state.tooltip)}
         </div>

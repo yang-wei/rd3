@@ -46,8 +46,8 @@ module.exports = React.createClass({
       xAxisClassName: 'rd3-barchart-xaxis',
       yAxisClassName: 'rd3-barchart-yaxis',
       yAxisTickCount: 4,
-      onMouseOver: () => {},
-      onMouseLeave: () => {},
+      onMouseOverHandlers: [],
+      onMouseLeaveHandlers: [],
     };
   },
 
@@ -174,8 +174,8 @@ module.exports = React.createClass({
             colorAccessor={props.colorAccessor}
             hoverAnimation={props.hoverAnimation}
             valuesAccessor={props.valuesAccessor}
-            onMouseOver={props.onMouseOver}
-            onMouseLeave={props.onMouseLeave}
+            onMouseOverHandlers={props.onMouseOverHandlers}
+            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>

@@ -35,14 +35,15 @@ module.exports = React.createClass({
     const y = yScale(segment.y0 + segment.y);
     return (
       <BarContainer
+        {...this.props}
         height={barHeight}
         width={xScale.rangeBand()}
         x={xScale(segment.x)}
         y={(segment.y >= 0) ? y : y - barHeight}
         fill={colors(colorAccessor(segment, seriesIdx))}
         hoverAnimation={hoverAnimation}
-        onMouseOver={this.props.onMouseOver}
-        onMouseLeave={this.props.onMouseLeave}
+        onMouseOverHandlers={this.props.onMouseOverHandlers}
+        onMouseLeaveHandlers={this.props.onMouseOverHandlers}
         dataPoint={{
           xValue: segment.x,
           yValue: segment.y,
