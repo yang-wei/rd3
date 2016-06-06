@@ -70,7 +70,8 @@ module.exports = React.createClass({
           cx={cx}
           cy={cy}
           vnode={vnode}
-          onMouseOver={props.onMouseOver}
+          onMouseOverHandlers={this.props.onMouseOverHandlers}
+          onMouseLeaveHandlers={this.props.onMouseOverHandlers}
           dataPoint={{ xValue: x, yValue: y, seriesName: point.series.name }}
         />
       );

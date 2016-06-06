@@ -59,8 +59,8 @@ module.exports = React.createClass({
           showOuterLabels={props.showOuterLabels}
           sectorBorderColor={props.sectorBorderColor}
           hoverAnimation={props.hoverAnimation}
-          onMouseOver={props.onMouseOver}
-          onMouseLeave={props.onMouseLeave}
+          onMouseOverHandlers={this.props.onMouseOverHandlers}
+          onMouseLeaveHandlers={this.props.onMouseOverHandlers}
           dataPoint={{ yValue: props.values[idx], seriesName: props.labels[idx] }}
         />
       )

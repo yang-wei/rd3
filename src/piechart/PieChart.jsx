@@ -35,8 +35,8 @@ module.exports = React.createClass({
       colorAccessor: (d, idx) => idx,
       valueTextFormatter: (val) => `${val}%`,
       hoverAnimation: true,
-      onMouseOver: () => {},
-      onMouseLeave: () => {},
+      onMouseOverHandlers: [],
+      onMouseLeaveHandlers: [],
     };
   },
 
@@ -73,8 +73,8 @@ module.exports = React.createClass({
             showOuterLabels={props.showOuterLabels}
             sectorBorderColor={props.sectorBorderColor}
             hoverAnimation={props.hoverAnimation}
-            onMouseOver={props.onMouseOver}
-            onMouseLeave={props.onMouseLeave}
+            onMouseOverHandlers={props.onMouseOverHandlers}
+            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>

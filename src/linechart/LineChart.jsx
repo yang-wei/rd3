@@ -32,8 +32,8 @@ module.exports = React.createClass({
       margins: { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName: 'rd3-linechart-xaxis',
       yAxisClassName: 'rd3-linechart-yaxis',
-      onMouseOver: () => {},
-      onMouseLeave: () => {},
+      onMouseOverHandlers: [],
+      onMouseLeaveHandlers: [],
     };
   },
 
@@ -142,8 +142,8 @@ module.exports = React.createClass({
             colorAccessor={props.colorAccessor}
             width={innerWidth}
             height={innerHeight}
-            onMouseLeave={props.onMouseLeave}
-            onMouseOver={props.onMouseOver}
+            onMouseOverHandlers={props.onMouseOverHandlers}
+            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>

@@ -32,8 +32,12 @@ module.exports = React.createClass({
   },
 
   _animateCircle() {
-    const rect = findDOMNode(this).getElementsByTagName('circle')[0].getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    const props = this.props;
+    const rect = this;
+    const dataPoint = props.dataPoint;
+    const handlers = props.onMouseOverHandlers;
+    handlers.forEach(f => f(dataPoint, rect));
+
     this.setState({
       circleRadius: this.props.circleRadius * (5 / 4),
       circleFill: shade(this.props.circleFill, 0.2),
@@ -41,6 +45,8 @@ module.exports = React.createClass({
   },
 
   _restoreCircle() {
+
+    this.props.onMouseLeaveHandlers.forEach(f => f());
     this.setState({
       circleRadius: this.props.circleRadius,
       circleFill: this.props.circleFill,

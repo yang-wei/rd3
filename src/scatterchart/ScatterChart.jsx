@@ -41,8 +41,8 @@ module.exports = React.createClass({
       xAxisStrokeWidth: 1,
       yAxisClassName: 'rd3-scatterchart-yaxis',
       yAxisStrokeWidth: 1,
-      onMouseOver: () => {},
-      onMouseLeave: () => {},
+      onMouseOverHandlers: [],
+      onMouseLeaveHandlers: [],
     };
   },
 
@@ -148,8 +148,8 @@ module.exports = React.createClass({
             xScale={xScale}
             yAccessor={props.yAccessor}
             yScale={yScale}
-            onMouseLeave={props.onMouseLeave}
-            onMouseOver={props.onMouseOver}
+            onMouseOverHandlers={props.onMouseOverHandlers}
+            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>

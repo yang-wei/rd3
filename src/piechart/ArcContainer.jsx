@@ -12,8 +12,6 @@ module.exports = React.createClass({
 
   propTypes: {
     fill: React.PropTypes.string,
-    onMouseOver: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
     dataPoint: React.PropTypes.any, // TODO prop type?
   },
 
@@ -26,15 +24,19 @@ module.exports = React.createClass({
   },
 
   _animateArc() {
-    const rect = findDOMNode(this).getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    
+    const rect = this;
+    const props = this.props;
+    const dataPoint = props.dataPoint;
+    props.onMouseOverHandlers.forEach(f => f(dataPoint, rect));
+
     this.setState({
       fill: shade(this.props.fill, 0.2),
     });
   },
 
   _restoreArc() {
-    this.props.onMouseLeave.call(this);
+    this.props.onMouseLeaveHandlers.forEach(f => f());
     this.setState({
       fill: this.props.fill,
     });

@@ -92,12 +92,13 @@ module.exports = React.createClass({
           hoverAnimation={props.hoverAnimation}
           cx={cx} cy={cy}
           circleRadius={props.circleRadius}
-          onMouseOver={props.onMouseOver}
           dataPoint={{
             xValue: xAccessor(point),
             yValue: yAccessor(point),
             seriesName: vnode.point.series.name,
           }}
+          onMouseOverHandlers={this.props.onMouseOverHandlers}
+          onMouseLeaveHandlers={this.props.onMouseOverHandlers}
         />
       );
     });

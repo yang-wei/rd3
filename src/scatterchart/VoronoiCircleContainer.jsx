@@ -19,7 +19,6 @@ module.exports = React.createClass({
     hoverAnimation: React.PropTypes.bool,
     shadeMultiplier: React.PropTypes.number,
     vnode: React.PropTypes.array.isRequired,
-    onMouseOver: React.PropTypes.func,
   },
 
   getDefaultProps() {
@@ -42,10 +41,12 @@ module.exports = React.createClass({
 
   _animateCircle() {
     const props = this.props;
+    const rect = this;
+    const handlers = props.onMouseOverHandlers;
+    const dataPoint = props.dataPoint;
+    handlers.forEach(f => f(dataPoint, rect));
 
     if (props.hoverAnimation) {
-      const rect = findDOMNode(this).getElementsByTagName('circle')[0].getBoundingClientRect();
-      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint);
       this.setState({
         circleFill: shade(props.circleFill, props.shadeMultiplier),
         circleRadius: props.circleRadius * props.circleRadiusMultiplier,
@@ -54,7 +55,10 @@ module.exports = React.createClass({
   },
 
   _restoreCircle() {
+
     const props = this.props;
+    props.onMouseLeaveHandlers.forEach(f => f());
+
     if (props.hoverAnimation) {
       this.setState({
         circleFill: props.circleFill,
