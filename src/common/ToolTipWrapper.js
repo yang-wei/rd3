@@ -1,14 +1,12 @@
 'use strict';
 
-var React = require('react');
-const { findDOMNode } = require('react-dom');
+import React from 'react';
+import { findDOMNode } from 'react-dom';
 
-const _renderToolTip = function(state) {
-
+const _renderToolTip = function (state) {
   if(!state.dataPoint) {
     return;
   }
-
   const containerStyles = {
     position: 'fixed',
     top: state.y,
@@ -28,7 +26,6 @@ const _renderToolTip = function(state) {
     marginRight: '10px',
     marginTop: '-15px',
   };
-
   return (
     <div style={containerStyles}>
       <div style={tooltipStyles}>
@@ -36,9 +33,9 @@ const _renderToolTip = function(state) {
       </div>
     </div>
   );
-}
+};
 
-export function toolTipWrapper (Component, toolTip = _renderToolTip) {
+export function toolTipWrapper(Component, toolTip = _renderToolTip) {
 
   return React.createClass({
 
@@ -78,23 +75,17 @@ export function toolTipWrapper (Component, toolTip = _renderToolTip) {
     },
 
     render() {
-      
-      let onMouseOverHandlers = this.props.onMouseOverHandlers || [];
-      let onMouseLeaveHandlers = this.props.onMouseLeaveHandlers || [];
-      
       return (
         <div>
           <Component
             {...this.props}
             {...this.state}
-            onMouseOverHandlers={onMouseOverHandlers.concat([this.onMouseOver])}
-            onMouseLeaveHandlers={onMouseOverHandlers.concat([this.onMouseLeave])}
+            onMouseOver={this.onMouseOver}
+            onMouseLeave={this.onMouseLeave}
           />
           {toolTip(this.state.tooltip)}
         </div>
       )
     },
-
   });
-
-}
+};
