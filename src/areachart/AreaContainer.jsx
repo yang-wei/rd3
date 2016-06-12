@@ -2,7 +2,7 @@
 
 const React = require('react');
 const shade = require('../utils').shade;
-const Area = require('./Area');
+import { Path as Area } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -51,10 +51,10 @@ module.exports = React.createClass({
 
     return (
       <Area
-        handleMouseOver={handleMouseOver}
-        handleMouseLeave={handleMouseLeave}
         {...props}
         fill={this.state.fill}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
       />
     );
   },

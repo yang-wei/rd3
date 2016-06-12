@@ -28,13 +28,11 @@ module.exports = React.createClass({
       .y1((d) => props.yScale(d.y0 + props.yAccessor(d)))
       .interpolate(props.interpolationType);
 
-    const path = area(props.data);
-
     return (
       <AreaContainer
         fill={props.fill}
         hoverAnimation={props.hoverAnimation}
-        path={path}
+        d={area(props.data)}
       />
     );
   },
