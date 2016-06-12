@@ -4,8 +4,7 @@
 const React = require('react');
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
-const VoronoiCircle = require('./VoronoiCircle');
-
+import { VoronoiCircle } from '../common/markers'
 
 module.exports = React.createClass({
 
@@ -80,19 +79,15 @@ module.exports = React.createClass({
     const state = this.state;
 
     return (
-      <g
-        className={props.className}
-      >
-        <VoronoiCircle
-          circleFill={state.circleFill}
-          circleRadius={state.circleRadius}
-          cx={props.cx}
-          cy={props.cy}
-          handleMouseLeave={this._restoreCircle}
-          handleMouseOver={this._animateCircle}
-          voronoiPath={this._drawPath(props.vnode)}
-        />
-      </g>
+      <VoronoiCircle
+        onMouseOver={this._restoreCircle}
+        onMouseLeave={this._animateCircle}
+        d={this._drawPath(props.vnode)}
+        cx={props.cx}
+        cy={props.cy}
+        r={this.state.circleRadius}
+        fill={this.state.circleFill}
+      />
     );
   },
 });
