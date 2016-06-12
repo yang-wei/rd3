@@ -1,7 +1,7 @@
 'use strict';
 
 const React = require('react');
-const BarContainer = require('./BarContainer');
+const BarContainer = require('../common/Container');
 
 module.exports = React.createClass({
 
@@ -17,7 +17,6 @@ module.exports = React.createClass({
     valuesAccessor: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.any, // TODO: prop types?
     xScale: React.PropTypes.any,
     yScale: React.PropTypes.any,
   },
@@ -30,7 +29,7 @@ module.exports = React.createClass({
   },
 
   _renderBarContainer(segment, seriesIdx) {
-    const { colors, colorAccessor, hoverAnimation, xScale, yScale } = this.props;
+    const { colors, colorAccessor, xScale, yScale } = this.props;
     const barHeight = Math.abs(yScale(0) - yScale(segment.y));
     const y = yScale(segment.y0 + segment.y);
     return (
@@ -41,9 +40,6 @@ module.exports = React.createClass({
         x={xScale(segment.x)}
         y={(segment.y >= 0) ? y : y - barHeight}
         fill={colors(colorAccessor(segment, seriesIdx))}
-        hoverAnimation={hoverAnimation}
-        onMouseOverHandlers={this.props.onMouseOverHandlers}
-        onMouseLeaveHandlers={this.props.onMouseOverHandlers}
         dataPoint={{
           xValue: segment.x,
           yValue: segment.y,

@@ -9,6 +9,7 @@ const {
   DefaultAccessorsMixin,
   ViewBoxMixin,
 } = require('../mixins');
+import { Rect } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -17,7 +18,6 @@ module.exports = React.createClass({
   propTypes: {
     chartClassName: React.PropTypes.string,
     data: React.PropTypes.array.isRequired,
-    hoverAnimation: React.PropTypes.bool,
     height: React.PropTypes.number,
     margins: React.PropTypes.object,
     rangeRoundBandsPadding: React.PropTypes.number,
@@ -38,7 +38,6 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {
       chartClassName: 'rd3-barchart',
-      hoverAnimation: true,
       margins: { top: 10, right: 20, bottom: 40, left: 45 },
       rangeRoundBandsPadding: 0.25,
       stackOffset: 'zero',
@@ -46,8 +45,9 @@ module.exports = React.createClass({
       xAxisClassName: 'rd3-barchart-xaxis',
       yAxisClassName: 'rd3-barchart-yaxis',
       yAxisTickCount: 4,
-      onMouseOverHandlers: [],
-      onMouseLeaveHandlers: [],
+      onMouseOver: () => {},
+      onMouseLeave: () => {},
+      svgComponent: Rect
     };
   },
 
@@ -163,6 +163,7 @@ module.exports = React.createClass({
             gridVerticalStrokeDash={props.gridVerticalStrokeDash}
           />
           <DataSeries
+            {...this.props}
             yScale={yScale}
             xScale={xScale}
             margins={svgMargins}
@@ -171,11 +172,6 @@ module.exports = React.createClass({
             width={innerWidth}
             height={innerHeight}
             colors={props.colors}
-            colorAccessor={props.colorAccessor}
-            hoverAnimation={props.hoverAnimation}
-            valuesAccessor={props.valuesAccessor}
-            onMouseOverHandlers={props.onMouseOverHandlers}
-            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>
