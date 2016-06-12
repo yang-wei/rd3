@@ -2,12 +2,12 @@
 
 const React = require('react');
 const d3 = require('d3');
-const VoronoiCircleContainer = require('./VoronoiCircleContainer');
-const Line = require('./Line');
+const VoronoiCircleContainer = require('../common/Container');
+import { Line } from '../common/markers';
 
 module.exports = React.createClass({
 
-  displayName: 'DataSeries',
+  displayName: 'LineChartDataSeries',
 
   propTypes: {
     color: React.PropTypes.func,
@@ -16,7 +16,6 @@ module.exports = React.createClass({
     interpolationType: React.PropTypes.string,
     xAccessor: React.PropTypes.func,
     yAccessor: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -25,7 +24,6 @@ module.exports = React.createClass({
       xAccessor: (d) => d.x,
       yAccessor: (d) => d.y,
       interpolationType: 'linear',
-      hoverAnimation: false,
     };
   },
 
@@ -52,11 +50,11 @@ module.exports = React.createClass({
 
     const lines = props.data.map((series, idx) => (
         <Line
-          path={interpolatePath(series.values)}
+          d={interpolatePath(series.values)}
           stroke={props.colors(props.colorAccessor(series, idx))}
           strokeWidth={series.strokeWidth}
           strokeDashArray={series.strokeDashArray}
-          seriesName={series.name}
+          fill={'none'}
           key={idx}
         />
       )
@@ -86,19 +84,17 @@ module.exports = React.createClass({
 
       return (
         <VoronoiCircleContainer
+          {...this.props}
           key={idx}
-          circleFill={circleFill}
-          vnode={vnode}
-          hoverAnimation={props.hoverAnimation}
-          cx={cx} cy={cy}
-          circleRadius={props.circleRadius}
+          fill={circleFill}
+          d={this._drawPath(vnode)}
+          cx={cx}
+          cy={cy}
           dataPoint={{
             xValue: xAccessor(point),
             yValue: yAccessor(point),
             seriesName: vnode.point.series.name,
           }}
-          onMouseOverHandlers={this.props.onMouseOverHandlers}
-          onMouseLeaveHandlers={this.props.onMouseOverHandlers}
         />
       );
     });
@@ -109,5 +105,12 @@ module.exports = React.createClass({
         <g>{lines}</g>
       </g>
     );
+  },
+
+  _drawPath(d) {
+    if (d === undefined) {
+      return 'M Z';
+    }
+    return `M${d.join(',')}Z`;
   },
 });

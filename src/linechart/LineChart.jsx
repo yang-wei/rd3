@@ -10,6 +10,7 @@ const {
   ViewBoxMixin,
   TooltipMixin,
 } = require('../mixins');
+import { VoronoiCircle } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -17,7 +18,6 @@ module.exports = React.createClass({
 
   propTypes: {
     circleRadius: React.PropTypes.number,
-    hoverAnimation: React.PropTypes.bool,
     margins: React.PropTypes.object,
     data: React.PropTypes.any, // TODO: prop types?
   },
@@ -28,12 +28,12 @@ module.exports = React.createClass({
     return {
       circleRadius: 3,
       className: 'rd3-linechart',
-      hoverAnimation: true,
       margins: { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName: 'rd3-linechart-xaxis',
       yAxisClassName: 'rd3-linechart-yaxis',
-      onMouseOverHandlers: [],
-      onMouseLeaveHandlers: [],
+      onMouseOver: () => {},
+      onMouseLeave: () => {},
+      svgComponent: VoronoiCircle,
     };
   },
 
@@ -129,21 +129,12 @@ module.exports = React.createClass({
             gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
           />
           <DataSeries
+            {...this.props}
             xScale={scales.xScale}
             yScale={scales.yScale}
-            xAccessor={props.xAccessor}
-            yAccessor={props.yAccessor}
-            hoverAnimation={props.hoverAnimation}
-            circleRadius={props.circleRadius}
-            data={props.data}
             value={allValues}
-            interpolationType={props.interpolationType}
-            colors={props.colors}
-            colorAccessor={props.colorAccessor}
             width={innerWidth}
             height={innerHeight}
-            onMouseOverHandlers={props.onMouseOverHandlers}
-            onMouseLeaveHandlers={props.onMouseOverHandlers}
           />
         </g>
       </Chart>
