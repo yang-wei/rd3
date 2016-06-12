@@ -3,8 +3,7 @@
 const React = require('react');
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
-const Arc = require('./Arc');
-
+import { Arc } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -49,8 +48,8 @@ module.exports = React.createClass({
       <Arc
         {...this.props}
         fill={this.state.fill}
-        handleMouseOver={props.hoverAnimation ? this._animateArc : null}
-        handleMouseLeave={props.hoverAnimation ? this._restoreArc : null}
+        onMouseOver={props.hoverAnimation ? this._animateArc : null}
+        onMouseLeave={props.hoverAnimation ? this._restoreArc : null}
       />
     );
   },
