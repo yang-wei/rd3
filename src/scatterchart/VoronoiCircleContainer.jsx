@@ -4,8 +4,7 @@
 const React = require('react');
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
-const VoronoiCircle = require('./VoronoiCircle');
-
+import { VoronoiCircle } from '../common/markers'
 
 module.exports = React.createClass({
 
@@ -19,7 +18,6 @@ module.exports = React.createClass({
     hoverAnimation: React.PropTypes.bool,
     shadeMultiplier: React.PropTypes.number,
     vnode: React.PropTypes.array.isRequired,
-    onMouseOver: React.PropTypes.func,
   },
 
   getDefaultProps() {
@@ -42,10 +40,12 @@ module.exports = React.createClass({
 
   _animateCircle() {
     const props = this.props;
+    const rect = this;
+    const handlers = props.onMouseOverHandlers;
+    const dataPoint = props.dataPoint;
+    handlers.forEach(f => f(dataPoint, rect));
 
     if (props.hoverAnimation) {
-      const rect = findDOMNode(this).getElementsByTagName('circle')[0].getBoundingClientRect();
-      this.props.onMouseOver.call(this, rect.right, rect.top, props.dataPoint);
       this.setState({
         circleFill: shade(props.circleFill, props.shadeMultiplier),
         circleRadius: props.circleRadius * props.circleRadiusMultiplier,
@@ -54,7 +54,10 @@ module.exports = React.createClass({
   },
 
   _restoreCircle() {
+
     const props = this.props;
+    props.onMouseLeaveHandlers.forEach(f => f());
+
     if (props.hoverAnimation) {
       this.setState({
         circleFill: props.circleFill,
@@ -76,19 +79,15 @@ module.exports = React.createClass({
     const state = this.state;
 
     return (
-      <g
-        className={props.className}
-      >
-        <VoronoiCircle
-          circleFill={state.circleFill}
-          circleRadius={state.circleRadius}
-          cx={props.cx}
-          cy={props.cy}
-          handleMouseLeave={this._restoreCircle}
-          handleMouseOver={this._animateCircle}
-          voronoiPath={this._drawPath(props.vnode)}
-        />
-      </g>
+      <VoronoiCircle
+        onMouseOver={this._restoreCircle}
+        onMouseLeave={this._animateCircle}
+        d={this._drawPath(props.vnode)}
+        cx={props.cx}
+        cy={props.cy}
+        r={this.state.circleRadius}
+        fill={this.state.circleFill}
+      />
     );
   },
 });

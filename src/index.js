@@ -6,3 +6,4 @@ exports.Treemap = require('./treemap').Treemap;
 exports.ScatterChart = require('./scatterchart').ScatterChart;
 exports.CandlestickChart = require('./candlestick').CandlestickChart;
 
+exports.ToolTipWrapper = require('./common').ToolTipWrapper;

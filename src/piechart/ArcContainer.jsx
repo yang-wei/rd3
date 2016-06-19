@@ -3,8 +3,7 @@
 const React = require('react');
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
-const Arc = require('./Arc');
-
+import { Arc } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -12,8 +11,6 @@ module.exports = React.createClass({
 
   propTypes: {
     fill: React.PropTypes.string,
-    onMouseOver: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
     dataPoint: React.PropTypes.any, // TODO prop type?
   },
 
@@ -26,15 +23,19 @@ module.exports = React.createClass({
   },
 
   _animateArc() {
-    const rect = findDOMNode(this).getBoundingClientRect();
-    this.props.onMouseOver.call(this, rect.right, rect.top, this.props.dataPoint);
+    
+    const rect = this;
+    const props = this.props;
+    const dataPoint = props.dataPoint;
+    props.onMouseOverHandlers.forEach(f => f(dataPoint, rect));
+
     this.setState({
       fill: shade(this.props.fill, 0.2),
     });
   },
 
   _restoreArc() {
-    this.props.onMouseLeave.call(this);
+    this.props.onMouseLeaveHandlers.forEach(f => f());
     this.setState({
       fill: this.props.fill,
     });
@@ -47,8 +48,8 @@ module.exports = React.createClass({
       <Arc
         {...this.props}
         fill={this.state.fill}
-        handleMouseOver={props.hoverAnimation ? this._animateArc : null}
-        handleMouseLeave={props.hoverAnimation ? this._restoreArc : null}
+        onMouseOver={props.hoverAnimation ? this._animateArc : null}
+        onMouseLeave={props.hoverAnimation ? this._restoreArc : null}
       />
     );
   },

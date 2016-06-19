@@ -2,8 +2,7 @@
 
 const React = require('react');
 const utils = require('../utils');
-const Candle = require('./Candle');
-const Wick = require('./Wick');
+import { Wick, Candle } from '../common/markers';
 
 module.exports = React.createClass({
 
@@ -63,7 +62,6 @@ module.exports = React.createClass({
     } else {
       handleMouseOver = handleMouseLeave = null;
     }
-
     return (
       <g className={props.className}>
        <Wick
@@ -78,8 +76,8 @@ module.exports = React.createClass({
          candleX={props.candleX - ((state.candleWidth - props.candleWidth) / 2)}
          candleY={props.candleY}
          candleHeight={props.candleHeight}
-         handleMouseOver={handleMouseOver}
-         handleMouseLeave={handleMouseLeave}
+         onMouseOver={handleMouseOver}
+         onMouseLeave={handleMouseLeave}
        />
       </g>
     );

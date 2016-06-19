@@ -8,7 +8,6 @@ const {
   CartesianChartPropsMixin,
   DefaultAccessorsMixin,
   ViewBoxMixin,
-  TooltipMixin,
 } = require('../mixins');
 
 module.exports = React.createClass({
@@ -30,7 +29,6 @@ module.exports = React.createClass({
     CartesianChartPropsMixin,
     DefaultAccessorsMixin,
     ViewBoxMixin,
-    TooltipMixin,
   ],
 
   getDefaultProps() {
@@ -43,6 +41,8 @@ module.exports = React.createClass({
       xAxisStrokeWidth: 1,
       yAxisClassName: 'rd3-scatterchart-yaxis',
       yAxisStrokeWidth: 1,
+      onMouseOverHandlers: [],
+      onMouseLeaveHandlers: [],
     };
   },
 
@@ -74,88 +74,85 @@ module.exports = React.createClass({
     const yScale = scales.yScale;
 
     return (
-      <span onMouseLeave={this.onMouseLeave}>
-        <Chart
-          colors={props.colors}
-          colorAccessor={props.colorAccessor}
-          data={data}
-          height={props.height}
-          legend={props.legend}
-          sideOffset={props.sideOffset}
-          margins={props.margins}
-          title={props.title}
-          viewBox={this.getViewBox()}
-          width={props.width}
-          shouldUpdate={!this.state.changeState}
+      <Chart
+        colors={props.colors}
+        colorAccessor={props.colorAccessor}
+        data={data}
+        height={props.height}
+        legend={props.legend}
+        sideOffset={props.sideOffset}
+        margins={props.margins}
+        title={props.title}
+        viewBox={this.getViewBox()}
+        width={props.width}
+      >
+        <g
+          className={props.className}
+          transform={trans}
         >
-          <g
-            className={props.className}
-            transform={trans}
-          >
-            <XAxis
-              data={data}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              margins={svgMargins}
-              stroke={props.axesColor}
-              strokeWidth={props.xAxisStrokeWidth.toString()}
-              tickFormatting={props.xAxisFormatter}
-              width={innerWidth}
-              xAxisClassName={props.xAxisClassName}
-              xAxisLabel={props.xAxisLabel}
-              xAxisLabelOffset={props.xAxisLabelOffset}
-              xAxisOffset={props.xAxisOffset}
-              xAxisTickInterval={props.xAxisTickInterval}
-              xAxisTickValues={props.xAxisTickValues}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              xScale={xScale}
-              gridVertical={props.gridVertical}
-              gridVerticalStroke={props.gridVerticalStroke}
-              gridVerticalStrokeWidth={props.gridVerticalStrokeWidth}
-              gridVerticalStrokeDash={props.gridVerticalStrokeDash}
-            />
-            <YAxis
-              data={data}
-              width={innerWidth}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              margins={svgMargins}
-              stroke={props.axesColor}
-              strokeWidth={props.yAxisStrokeWidth.toString()}
-              tickFormatting={props.yAxisFormatter}
-              yAxisClassName={props.yAxisClassName}
-              yAxisLabel={props.yAxisLabel}
-              yAxisLabelOffset={props.yAxisLabelOffset}
-              yAxisOffset={props.yAxisOffset}
-              yAxisTickValues={props.yAxisTickValues}
-              yAxisTickCount={props.yAxisTickCount}
-              yScale={yScale}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              gridHorizontal={props.gridHorizontal}
-              gridHorizontalStroke={props.gridHorizontalStroke}
-              gridHorizontalStrokeWidth={props.gridHorizontalStrokeWidth}
-              gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
-            />
-            <DataSeries
-              circleRadius={props.circleRadius}
-              colors={props.colors}
-              colorAccessor={props.colorAccessor}
-              data={allValues}
-              height={innerHeight}
-              hoverAnimation={props.hoverAnimation}
-              width={innerWidth}
-              xAccessor={props.xAccessor}
-              xScale={xScale}
-              yAccessor={props.yAccessor}
-              yScale={yScale}
-              onMouseOver={this.onMouseOver}
-            />
-          </g>
-        </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
-      </span>
+          <XAxis
+            data={data}
+            height={innerHeight}
+            horizontalChart={props.horizontal}
+            margins={svgMargins}
+            stroke={props.axesColor}
+            strokeWidth={props.xAxisStrokeWidth.toString()}
+            tickFormatting={props.xAxisFormatter}
+            width={innerWidth}
+            xAxisClassName={props.xAxisClassName}
+            xAxisLabel={props.xAxisLabel}
+            xAxisLabelOffset={props.xAxisLabelOffset}
+            xAxisOffset={props.xAxisOffset}
+            xAxisTickInterval={props.xAxisTickInterval}
+            xAxisTickValues={props.xAxisTickValues}
+            xOrient={props.xOrient}
+            yOrient={yOrient}
+            xScale={xScale}
+            gridVertical={props.gridVertical}
+            gridVerticalStroke={props.gridVerticalStroke}
+            gridVerticalStrokeWidth={props.gridVerticalStrokeWidth}
+            gridVerticalStrokeDash={props.gridVerticalStrokeDash}
+          />
+          <YAxis
+            data={data}
+            width={innerWidth}
+            height={innerHeight}
+            horizontalChart={props.horizontal}
+            margins={svgMargins}
+            stroke={props.axesColor}
+            strokeWidth={props.yAxisStrokeWidth.toString()}
+            tickFormatting={props.yAxisFormatter}
+            yAxisClassName={props.yAxisClassName}
+            yAxisLabel={props.yAxisLabel}
+            yAxisLabelOffset={props.yAxisLabelOffset}
+            yAxisOffset={props.yAxisOffset}
+            yAxisTickValues={props.yAxisTickValues}
+            yAxisTickCount={props.yAxisTickCount}
+            yScale={yScale}
+            xOrient={props.xOrient}
+            yOrient={yOrient}
+            gridHorizontal={props.gridHorizontal}
+            gridHorizontalStroke={props.gridHorizontalStroke}
+            gridHorizontalStrokeWidth={props.gridHorizontalStrokeWidth}
+            gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
+          />
+          <DataSeries
+            circleRadius={props.circleRadius}
+            colors={props.colors}
+            colorAccessor={props.colorAccessor}
+            data={allValues}
+            height={innerHeight}
+            hoverAnimation={props.hoverAnimation}
+            width={innerWidth}
+            xAccessor={props.xAccessor}
+            xScale={xScale}
+            yAccessor={props.yAccessor}
+            yScale={yScale}
+            onMouseOverHandlers={props.onMouseOverHandlers}
+            onMouseLeaveHandlers={props.onMouseOverHandlers}
+          />
+        </g>
+      </Chart>
     );
   },
 });
