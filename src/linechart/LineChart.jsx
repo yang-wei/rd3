@@ -87,6 +87,7 @@ module.exports = React.createClass({
               xAxisClassName={props.xAxisClassName}
               strokeWidth={props.xAxisStrokeWidth}
               xAxisTickValues={props.xAxisTickValues}
+              xAxisTickCount={props.xAxisTickCount}
               xAxisTickInterval={props.xAxisTickInterval}
               xAxisOffset={props.xAxisOffset}
               xScale={scales.xScale}
