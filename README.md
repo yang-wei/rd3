@@ -13,8 +13,23 @@ Thanks to [npmcdn](https://npmcdn.com/) you can now try out rd3 quickly:
  * https://npmcdn.com/rd3/build/public/js/react-d3.js
  * https://npmcdn.com/rd3/build/public/js/react-d3.min.js
 
+Note: rd3 depends on react and d3, you will need to include those scripts if you aren't yet.
+
+ * https://npmcdn.com/react/dist/react.min.js
+ * https://npmcdn.com/react-dom/dist/react-dom.min.js
+ * https://npmcdn.com/d3
+
+You can refer to [fiddle example](https://yang-wei.github.io/rd3/docs/new/charts/areaChart.html) too.
+
 ### NPM
 Or via `npm`:
+
+If you havn't installed `react` and `d3` then:
+
+```
+npm install react react-dom
+npm install d3
+```
 
 ```
 npm install rd3
