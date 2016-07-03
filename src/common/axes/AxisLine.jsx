@@ -49,7 +49,7 @@ module.exports = React.createClass({
     if (props.orient === 'bottom' || props.orient === 'top') {
       d = `M${range[0]},${sign * props.outerTickSize}V0H${range[1]}V${sign * props.outerTickSize}`;
     } else {
-      d = `M${sign * props.outerTickSize},${range[0]}H0V${range[0]}H${sign * props.outerTickSize}`;
+      d = `M${sign * props.outerTickSize},${range[0]}H0V${range[1]}H${sign * props.outerTickSize}`;
     }
 
     return (
