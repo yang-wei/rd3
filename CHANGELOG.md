@@ -1,3 +1,6 @@
+####0.5.6
+ - YAxis not rendered bug
+
 ####0.4.0:
 - Stacked bar chart 
 - Support grid (Thanks @nightlyop)
