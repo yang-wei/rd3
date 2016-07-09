@@ -28,7 +28,8 @@ If you havn't installed `react` and `d3` then:
 
 ```
 npm install react react-dom
-npm install d3
+// currently we do not support d3@v4.0
+npm install d3@v3.5.17
 ```
 
 ```
