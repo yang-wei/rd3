@@ -172,6 +172,7 @@ module.exports = React.createClass({
               series={series}
               width={innerWidth}
               height={innerHeight}
+              grouped={props.grouped}
               colors={props.colors}
               colorAccessor={props.colorAccessor}
               hoverAnimation={props.hoverAnimation}
