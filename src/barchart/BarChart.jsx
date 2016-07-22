@@ -24,6 +24,7 @@ module.exports = React.createClass({
     rangeRoundBandsPadding: React.PropTypes.number,
     // https://github.com/mbostock/d3/wiki/Stack-Layout#offset
     stackOffset: React.PropTypes.oneOf(['silhouette', 'expand', 'wigget', 'zero']),
+    grouped: React.PropTypes.bool,
     valuesAccessor: React.PropTypes.func,
     title: React.PropTypes.string,
     width: React.PropTypes.number,
