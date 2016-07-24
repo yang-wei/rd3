@@ -1,3 +1,6 @@
+### 0.7.0
+ - Add `grouped` prop to BarChart #68
+
 ####0.5.6
  - YAxis not rendered bug
 
