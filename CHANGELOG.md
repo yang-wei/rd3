@@ -1,6 +1,7 @@
 ### 0.7.0
  - Add `grouped` prop to BarChart #68
  - Fix error when `data` prop is empty array #60
+ - Make travis run on pull request
 
 ####0.5.6
  - YAxis not rendered bug
