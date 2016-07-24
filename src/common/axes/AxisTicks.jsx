@@ -20,6 +20,7 @@ module.exports = React.createClass({
     tickPadding: React.PropTypes.number,
     tickFormat: React.PropTypes.func,
     tickStroke: React.PropTypes.string,
+    tickTextStroke: React.PropTypes.string,
     gridHorizontal: React.PropTypes.bool,
     gridVertical: React.PropTypes.bool,
     gridHorizontalStroke: React.PropTypes.string,

@@ -15,6 +15,7 @@ module.exports = React.createClass({
     stroke: React.PropTypes.string,
     strokeWidth: React.PropTypes.string,
     tickStroke: React.PropTypes.string,
+    tickTextStroke: React.PropTypes.string,
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
     horizontalChart: React.PropTypes.bool,
