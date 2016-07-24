@@ -19,7 +19,6 @@ module.exports = React.createClass({
     chartClassName: React.PropTypes.string,
     data: React.PropTypes.array.isRequired,
     hoverAnimation: React.PropTypes.bool,
-    height: React.PropTypes.number,
     margins: React.PropTypes.object,
     rangeRoundBandsPadding: React.PropTypes.number,
     // https://github.com/mbostock/d3/wiki/Stack-Layout#offset
@@ -27,7 +26,6 @@ module.exports = React.createClass({
     grouped: React.PropTypes.bool,
     valuesAccessor: React.PropTypes.func,
     title: React.PropTypes.string,
-    width: React.PropTypes.number,
     xAxisClassName: React.PropTypes.string,
     yAxisClassName: React.PropTypes.string,
     yAxisTickCount: React.PropTypes.number,
