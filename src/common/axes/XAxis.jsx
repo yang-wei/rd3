@@ -18,6 +18,7 @@ module.exports = React.createClass({
     stroke: React.PropTypes.string,
     strokeWidth: React.PropTypes.string,
     tickStroke: React.PropTypes.string,
+    tickTextStroke: React.PropTypes.string,
     xAxisClassName: React.PropTypes.string,
     xAxisLabel: React.PropTypes.string,
     xAxisTickValues: React.PropTypes.array,
