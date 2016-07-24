@@ -29,3 +29,4 @@ yAxisClassName | string | `'rd3-barchart-yaxis'` |
 yAxisTickCount | number | `4` |
 xAccessor | any |  |
 yAccessor | any |  |
+grouped | bool | `false` | `grouped bar chart`

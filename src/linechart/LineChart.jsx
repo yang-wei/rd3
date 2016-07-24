@@ -19,7 +19,7 @@ module.exports = React.createClass({
     circleRadius: React.PropTypes.number,
     hoverAnimation: React.PropTypes.bool,
     margins: React.PropTypes.object,
-    data: React.PropTypes.any, // TODO: prop types?
+    data: React.PropTypes.array.isRequired,
   },
 
   mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
@@ -32,6 +32,7 @@ module.exports = React.createClass({
       margins: { top: 10, right: 20, bottom: 50, left: 45 },
       xAxisClassName: 'rd3-linechart-xaxis',
       yAxisClassName: 'rd3-linechart-yaxis',
+      data: [],
     };
   },
 
@@ -94,6 +95,8 @@ module.exports = React.createClass({
               xAxisLabel={props.xAxisLabel}
               xAxisLabelOffset={props.xAxisLabelOffset}
               tickFormatting={props.xAxisFormatter}
+              tickStroke={props.xAxisTickStroke}
+              tickTextStroke={props.xAxisTickTextStroke}
               xOrient={props.xOrient}
               yOrient={yOrient}
               data={props.data}
@@ -117,6 +120,8 @@ module.exports = React.createClass({
               yAxisLabel={props.yAxisLabel}
               yAxisLabelOffset={props.yAxisLabelOffset}
               tickFormatting={props.yAxisFormatter}
+              tickStroke={props.yAxisTickStroke}
+              tickTextStroke={props.yAxisTickTextStroke}
               xOrient={props.xOrient}
               yOrient={yOrient}
               margins={svgMargins}

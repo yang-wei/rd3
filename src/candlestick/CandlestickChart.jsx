@@ -58,6 +58,9 @@ module.exports = React.createClass({
     if (!Array.isArray(props.data)) {
       props.data = [props.data];
     }
+    if (this.props.data && this.props.data.length < 1) {
+      return null;
+    }
     const flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
     const xValues = flattenedData.xValues;
@@ -98,6 +101,8 @@ module.exports = React.createClass({
             xAxisTickInterval={props.xAxisTickInterval}
             xAxisOffset={props.xAxisOffset}
             tickFormatting={props.xAxisFormatter}
+            tickStroke={props.xAxisTickStroke}
+            tickTextStroke={props.xAxisTickTextStroke}
             xAxisLabel={props.xAxisLabel}
             xAxisLabelOffset={props.xAxisLabelOffset}
             xOrient={props.xOrient}
@@ -118,6 +123,8 @@ module.exports = React.createClass({
             yAxisOffset={props.yAxisOffset}
             yAxisTickCount={props.yAxisTickCount}
             tickFormatting={props.yAxisFormatter}
+            tickStroke={props.yAxisTickStroke}
+            tickTextStroke={props.yAxisTickTextStroke}
             yAxisLabel={props.yAxisLabel}
             yAxisLabelOffset={props.yAxisLabelOffset}
             xOrient={props.xOrient}

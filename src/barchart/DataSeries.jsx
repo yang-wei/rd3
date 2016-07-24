@@ -38,7 +38,10 @@ module.exports = React.createClass({
       <BarContainer
         height={barHeight}
         width={grouped ? xScale.rangeBand() / series.length : xScale.rangeBand() }
-        x={grouped ? xScale(segment.x) + xScale.rangeBand() / series.length * seriesIdx : xScale(segment.x)}
+        x={grouped ?
+          xScale(segment.x) + xScale.rangeBand() / series.length * seriesIdx :
+          xScale(segment.x)
+        }
         y={(segment.y >= 0) ? y : y - barHeight}
         fill={colors(colorAccessor(segment, seriesIdx))}
         hoverAnimation={hoverAnimation}

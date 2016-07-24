@@ -41,6 +41,9 @@ module.exports = React.createClass({
 
   render() {
     const props = this.props;
+    if (this.props.data && this.props.data.length < 1) {
+      return null;
+    }
 
     return (
       <Chart

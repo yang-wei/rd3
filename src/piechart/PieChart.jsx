@@ -43,6 +43,9 @@ module.exports = React.createClass({
   render() {
     const props = this.props;
 
+    if (props.data && props.data.length < 1) {
+      return null;
+    }
     const transform = `translate(${props.cx || props.width / 2},${props.cy || props.height / 2})`;
 
     const values = props.data.map((item) => item.value);

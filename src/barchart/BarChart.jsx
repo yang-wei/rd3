@@ -19,7 +19,6 @@ module.exports = React.createClass({
     chartClassName: React.PropTypes.string,
     data: React.PropTypes.array.isRequired,
     hoverAnimation: React.PropTypes.bool,
-    height: React.PropTypes.number,
     margins: React.PropTypes.object,
     rangeRoundBandsPadding: React.PropTypes.number,
     // https://github.com/mbostock/d3/wiki/Stack-Layout#offset
@@ -27,7 +26,6 @@ module.exports = React.createClass({
     grouped: React.PropTypes.bool,
     valuesAccessor: React.PropTypes.func,
     title: React.PropTypes.string,
-    width: React.PropTypes.number,
     xAxisClassName: React.PropTypes.string,
     yAxisClassName: React.PropTypes.string,
     yAxisTickCount: React.PropTypes.number,
@@ -44,6 +42,7 @@ module.exports = React.createClass({
       margins: { top: 10, right: 20, bottom: 40, left: 45 },
       rangeRoundBandsPadding: 0.25,
       stackOffset: 'zero',
+      grouped: false,
       valuesAccessor: d => d.values,
       xAxisClassName: 'rd3-barchart-xaxis',
       yAxisClassName: 'rd3-barchart-yaxis',
@@ -96,6 +95,9 @@ module.exports = React.createClass({
 
     const domain = props.domain || {};
 
+    if (props.data.length === 0) {
+      return null;
+    }
     const _data = this._stack()(props.data);
 
     const { innerHeight, innerWidth, trans, svgMargins } = this.getDimensions();
@@ -136,6 +138,8 @@ module.exports = React.createClass({
               margins={svgMargins}
               yAxisTickCount={props.yAxisTickCount}
               tickFormatting={props.yAxisFormatter}
+              tickStroke={props.xAxisTickStroke}
+              tickTextStroke={props.xAxisTickTextStroke}
               width={innerWidth}
               height={innerHeight}
               horizontalChart={props.horizontal}
@@ -154,6 +158,8 @@ module.exports = React.createClass({
               xScale={xScale}
               margins={svgMargins}
               tickFormatting={props.xAxisFormatter}
+              tickStroke={props.yAxisTickStroke}
+              tickTextStroke={props.yAxisTickTextStroke}
               width={innerWidth}
               height={innerHeight}
               horizontalChart={props.horizontal}
