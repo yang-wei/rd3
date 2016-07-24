@@ -10,6 +10,7 @@ module.exports = React.createClass({
   propTypes: {
     _data: React.PropTypes.array,
     series: React.PropTypes.array,
+    grouped: React.PropTypes.bool,
     colors: React.PropTypes.func,
     colorAccessor: React.PropTypes.func,
     height: React.PropTypes.number,
@@ -30,14 +31,14 @@ module.exports = React.createClass({
   },
 
   _renderBarContainer(segment, seriesIdx) {
-    const { colors, colorAccessor, hoverAnimation, xScale, yScale } = this.props;
+    const { colors, colorAccessor, grouped, hoverAnimation, series, xScale, yScale } = this.props;
     const barHeight = Math.abs(yScale(0) - yScale(segment.y));
-    const y = yScale(segment.y0 + segment.y);
+    const y = grouped ? yScale(segment.y) : yScale(segment.y0 + segment.y);
     return (
       <BarContainer
         height={barHeight}
-        width={xScale.rangeBand()}
-        x={xScale(segment.x)}
+        width={grouped ? xScale.rangeBand() / series.length : xScale.rangeBand() }
+        x={grouped ? xScale(segment.x) + xScale.rangeBand() / series.length * seriesIdx : xScale(segment.x)}
         y={(segment.y >= 0) ? y : y - barHeight}
         fill={colors(colorAccessor(segment, seriesIdx))}
         hoverAnimation={hoverAnimation}
