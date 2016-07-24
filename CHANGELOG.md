@@ -1,4 +1,4 @@
-### 0.7.0
+#####0.7.0
  - Axis tick color for all charts #38
  - Add `grouped` prop to BarChart #68
  - Fix error when `data` prop is empty array #60
