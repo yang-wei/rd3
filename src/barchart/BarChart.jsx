@@ -97,6 +97,9 @@ module.exports = React.createClass({
 
     const domain = props.domain || {};
 
+    if (props.data.length === 0) {
+      return null;
+    }
     const _data = this._stack()(props.data);
 
     const { innerHeight, innerWidth, trans, svgMargins } = this.getDimensions();

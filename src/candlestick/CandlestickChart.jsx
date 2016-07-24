@@ -58,6 +58,9 @@ module.exports = React.createClass({
     if (!Array.isArray(props.data)) {
       props.data = [props.data];
     }
+    if (this.props.data && this.props.data.length < 1) {
+      return null;
+    }
     const flattenedData = utils.flattenData(props.data, props.xAccessor, props.yAccessor);
 
     const xValues = flattenedData.xValues;
