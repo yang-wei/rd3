@@ -44,6 +44,7 @@ module.exports = React.createClass({
       margins: { top: 10, right: 20, bottom: 40, left: 45 },
       rangeRoundBandsPadding: 0.25,
       stackOffset: 'zero',
+      grouped: false,
       valuesAccessor: d => d.values,
       xAxisClassName: 'rd3-barchart-xaxis',
       yAxisClassName: 'rd3-barchart-yaxis',
