@@ -16,7 +16,7 @@ height | `number` | 200 | height of chart
 legend | `bool` | `false` | turn the legend on or off
 legendOffset | `number` | 120 |
 width | `number` | 400 | width of chart
-xAccessor | `func` | | to map values from data to x-axis
+xAccessor | `func` | `d => d.x` | to map values from data to x-axis
 xAxisFormatter | `func` | | a string formatter for x-axis
 xAxisLabel | `string` | `''` | x-axis label
 xAxisLabelOffset | `number` | 38 | distance between x-axis and it's label
@@ -26,7 +26,7 @@ xAxisTickValues | `array` | | values of x-axis
 xAxisOffset | `number` | `0` |
 xOrient | `oneOf(["top", "bottom"])` | `"bottom"` | x-axis location
 xScale | `func` | | to map values from data to x-axis range
-yAccessor | `func` | | to map values from data to y-axis
+yAccessor | `func` | `d => d.y` | to map values from data to y-axis
 yAxisFormatter | `func` | | a string formatter for the y-axis
 yAxisLabel | `string` |  | y-axis label
 yAxisLabelOffset | `number` | 35 | distance between y-axis and it's label

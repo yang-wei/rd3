@@ -27,6 +27,6 @@ width | number |  |
 xAxisClassName | string | `'rd3-barchart-xaxis'` |
 yAxisClassName | string | `'rd3-barchart-yaxis'` |
 yAxisTickCount | number | `4` |
-xAccessor | any |  |
-yAccessor | any |  |
+xAccessor | any | `d => d.x` |
+yAccessor | any | `d => d.y` |
 grouped | bool | `false` | `grouped bar chart`
