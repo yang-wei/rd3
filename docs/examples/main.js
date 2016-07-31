@@ -5,13 +5,14 @@ var ReactDOM = require('react-dom');
 var d3 = require('d3');
 var hljs = require("highlight.js");
 var rd3 = require('../../src');
-var BarChart = rd3.BarChart;
 var LineChart = rd3.LineChart;
 var CandlestickChart = rd3.CandlestickChart;
 var PieChart = rd3.PieChart;
 var AreaChart = rd3.AreaChart;
 var Treemap = rd3.Treemap;
 var ScatterChart= rd3.ScatterChart;
+
+import MyBarChart from '../../examples/BarChart';
 
 hljs.initHighlightingOnLoad();
 
@@ -347,39 +348,10 @@ var Demos = React.createClass({
 
         <div className="row">
           <div className="col-md-6">
-            <BarChart data={barData} width={500} height={300} title="Bar Chart" yAxisLabel="Label" xAxisLabel="Value"/>
+            <MyBarChart />
           </div>
           <div className="col-md-6">
-            <pre ref='block'>
-              <code className='js'>
-              {`var barData = [
-  { 
-    "name": "Series A",
-    "values": [
-      { "x": 1, "y":  91},
-      ...
-  },
-  { 
-    "name": "Series B",
-     "values": [ ... ]
-  }
-  ...
-];`}
-              </code>
-            </pre>
-            <pre ref='block'>
-              <code className='html'>
-                {`<BarChart
-  data={barData}
-  width={500}
-  height={200}
-  fill={'#3182bd'}
-  title='Bar Chart'
-  yAxisLabel='Label'
-  xAxisLabel='Value'
-/>`}
-              </code>
-            </pre>
+            <a>Source code</a>
           </div>
 
         <div className="row">
