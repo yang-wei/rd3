@@ -3,37 +3,27 @@
 const React = require('react');
 const d3 = require('d3');
 const DataSeries = require('./DataSeries');
-const { Chart, XAxis, YAxis, Tooltip } = require('../common');
-const {
-  CartesianChartPropsMixin,
-  DefaultAccessorsMixin,
-  ViewBoxMixin,
-  TooltipMixin,
-} = require('../mixins');
+const { Chart, XAxis, YAxis } = require('../common');
 
 module.exports = React.createClass({
 
   displayName: 'BarChart',
 
   propTypes: {
-    chartClassName: React.PropTypes.string,
+    colors: React.PropTypes.func,
+    colorAccessor: React.PropTypes.func,
     data: React.PropTypes.array.isRequired,
-    hoverAnimation: React.PropTypes.bool,
     margins: React.PropTypes.object,
     rangeRoundBandsPadding: React.PropTypes.number,
     // https://github.com/mbostock/d3/wiki/Stack-Layout#offset
     stackOffset: React.PropTypes.oneOf(['silhouette', 'expand', 'wigget', 'zero']),
     grouped: React.PropTypes.bool,
     valuesAccessor: React.PropTypes.func,
-    title: React.PropTypes.string,
-    xAxisClassName: React.PropTypes.string,
-    yAxisClassName: React.PropTypes.string,
-    yAxisTickCount: React.PropTypes.number,
-    xAccessor: React.PropTypes.any, // TODO: prop types?
-    yAccessor: React.PropTypes.any,
+    xAccessor: React.PropTypes.func,
+    xScale: React.PropTypes.func,
+    yAccessor: React.PropTypes.func,
+    yScale: React.PropTypes.func,
   },
-
-  mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],
 
   getDefaultProps() {
     return {
@@ -44,9 +34,10 @@ module.exports = React.createClass({
       stackOffset: 'zero',
       grouped: false,
       valuesAccessor: d => d.values,
-      xAxisClassName: 'rd3-barchart-xaxis',
-      yAxisClassName: 'rd3-barchart-yaxis',
-      yAxisTickCount: 4,
+      xAccessor: d => d.x,
+      yAccessor: d => d.y,
+      colors: d3.scale.category20c(),
+      colorAccessor: (d, idx) => idx,
     };
   },
 
@@ -91,33 +82,23 @@ module.exports = React.createClass({
 
   render() {
     const props = this.props;
-    const yOrient = this.getYOrient();
 
     const domain = props.domain || {};
 
-    if (props.data.length === 0) {
-      return null;
-    }
     const _data = this._stack()(props.data);
-
-    const { innerHeight, innerWidth, trans, svgMargins } = this.getDimensions();
 
     const xDomain = domain.x || this._getLabels(_data[0]);
     const xScale = d3.scale.ordinal()
                      .domain(xDomain)
-                     .rangeRoundBands([0, innerWidth], props.rangeRoundBandsPadding);
+                     .rangeRoundBands([0, props.width], props.rangeRoundBandsPadding);
 
     const minYDomain = Math.min(0, this._getStackedValuesMinY(_data));
     const maxYDomain = this._getStackedValuesMaxY(_data);
     const yDomain = domain.y || [minYDomain, maxYDomain];
-    const yScale = d3.scale.linear().range([innerHeight, 0]).domain(yDomain);
-
-    const series = props.data.map((item) => item.name);
+    const yScale = d3.scale.linear().range([props.height, 0]).domain(yDomain);
 
     return (
-      <span>
         <Chart
-          viewBox={this.getViewBox()}
           legend={props.legend}
           data={props.data}
           margins={props.margins}
@@ -126,70 +107,22 @@ module.exports = React.createClass({
           width={props.width}
           height={props.height}
           title={props.title}
-          shouldUpdate={!this.state.changeState}
         >
-          <g transform={trans} className={props.chartClassName}>
-            <YAxis
-              yAxisClassName={props.yAxisClassName}
-              yAxisTickValues={props.yAxisTickValues}
-              yAxisLabel={props.yAxisLabel}
-              yAxisLabelOffset={props.yAxisLabelOffset}
-              yScale={yScale}
-              margins={svgMargins}
-              yAxisTickCount={props.yAxisTickCount}
-              tickFormatting={props.yAxisFormatter}
-              tickStroke={props.xAxisTickStroke}
-              tickTextStroke={props.xAxisTickTextStroke}
-              width={innerWidth}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              gridHorizontal={props.gridHorizontal}
-              gridHorizontalStroke={props.gridHorizontalStroke}
-              gridHorizontalStrokeWidth={props.gridHorizontalStrokeWidth}
-              gridHorizontalStrokeDash={props.gridHorizontalStrokeDash}
-            />
-            <XAxis
-              xAxisClassName={props.xAxisClassName}
-              xAxisTickValues={props.xAxisTickValues}
-              xAxisLabel={props.xAxisLabel}
-              xAxisLabelOffset={props.xAxisLabelOffset}
-              xScale={xScale}
-              margins={svgMargins}
-              tickFormatting={props.xAxisFormatter}
-              tickStroke={props.yAxisTickStroke}
-              tickTextStroke={props.yAxisTickTextStroke}
-              width={innerWidth}
-              height={innerHeight}
-              horizontalChart={props.horizontal}
-              xOrient={props.xOrient}
-              yOrient={yOrient}
-              gridVertical={props.gridVertical}
-              gridVerticalStroke={props.gridVerticalStroke}
-              gridVerticalStrokeWidth={props.gridVerticalStrokeWidth}
-              gridVerticalStrokeDash={props.gridVerticalStrokeDash}
-            />
+          <g>
             <DataSeries
-              yScale={yScale}
               xScale={xScale}
-              margins={svgMargins}
+              yScale={yScale}
               _data={_data}
-              series={series}
-              width={innerWidth}
-              height={innerHeight}
+              width={props.width}
+              height={props.height}
               grouped={props.grouped}
               colors={props.colors}
               colorAccessor={props.colorAccessor}
               hoverAnimation={props.hoverAnimation}
               valuesAccessor={props.valuesAccessor}
-              onMouseOver={this.onMouseOver}
-              onMouseLeave={this.onMouseLeave}
             />
           </g>
         </Chart>
-        {(props.showTooltip ? <Tooltip {...this.state.tooltip} /> : null)}
-      </span>
     );
   },
 });
