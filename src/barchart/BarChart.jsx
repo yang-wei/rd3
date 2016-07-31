@@ -14,9 +14,7 @@ module.exports = React.createClass({
     data: React.PropTypes.array.isRequired,
     margins: React.PropTypes.object,
     valuesAccessor: React.PropTypes.func,
-    xAccessor: React.PropTypes.func,
     xScale: React.PropTypes.func,
-    yAccessor: React.PropTypes.func,
     yScale: React.PropTypes.func,
     svgComponent: React.PropTypes.any,
   },
@@ -26,11 +24,9 @@ module.exports = React.createClass({
       data: [],
       margins: { top: 10, right: 20, bottom: 40, left: 45 },
       valuesAccessor: d => d.values,
-      xAccessor: d => d.x,
-      yAccessor: d => d.y,
       colors: d3.scale.category20c(),
       colorAccessor: (d, idx) => idx,
-      svgComponent: props => <rect {...props} />
+      SvgComponent: (props) => <rect {...props} />
     };
   },
 
@@ -41,13 +37,13 @@ module.exports = React.createClass({
   },
 
   _renderBar(segment, seriesIdx) {
-    const { colors, colorAccessor, xScale, yScale, svgComponent } = this.props;
+    const { colors, colorAccessor, xScale, yScale, SvgComponent } = this.props;
     const height = Math.abs(yScale(0) - yScale(segment.y));
     const width = xScale.rangeBand()
     const x = xScale(segment.x)
     const y = (segment.y >= 0) ? yScale(segment.y0 + segment.y) : yScale(segment.y0 + segment.y) - height;
     return (
-      <rect
+      <SvgComponent
         height={height}
         width={width}
         x={x}
