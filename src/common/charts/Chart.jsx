@@ -2,7 +2,8 @@
 
 const React = require('react');
 const LegendChart = require('./LegendChart');
-const BasicChart = require('./BasicChart');
+
+import BasicChart from './BasicChart';
 
 module.exports = React.createClass({
 

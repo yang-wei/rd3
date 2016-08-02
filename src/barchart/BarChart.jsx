@@ -1,8 +1,8 @@
 'use strict';
 
-const React = require('react');
-const d3 = require('d3');
-const { Chart } = require('../common');
+import d3 from 'd3';
+import React from 'react';
+import BasicChart from '../common/charts/BasicChart';
 
 module.exports = React.createClass({
 
@@ -12,7 +12,6 @@ module.exports = React.createClass({
     colors: React.PropTypes.func,
     colorAccessor: React.PropTypes.func,
     data: React.PropTypes.array.isRequired,
-    margins: React.PropTypes.object,
     valuesAccessor: React.PropTypes.func,
     xScale: React.PropTypes.func,
     yScale: React.PropTypes.func,
@@ -22,10 +21,8 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {
       data: [],
-      margins: { top: 10, right: 20, bottom: 40, left: 45 },
       valuesAccessor: d => d.values,
       colors: d3.scale.category20c(),
-      colorAccessor: (d, idx) => idx,
       SvgComponent: (props) => <rect {...props} />
     };
   },
@@ -47,8 +44,8 @@ module.exports = React.createClass({
         height={height}
         width={width}
         x={x}
-        y={(segment.y >= 0) ? y : y - height}
-        fill={colors(colorAccessor(segment, seriesIdx))}
+        y={y}
+        fill={colors(seriesIdx)}
       />
     );
   },
@@ -56,16 +53,12 @@ module.exports = React.createClass({
   render() {
     const props = this.props;
     return (
-        <Chart
-          margins={props.margins}
-          colors={props.colors}
-          colorAccessor={props.colorAccessor}
+        <BasicChart
           width={props.width}
           height={props.height}
-          title={props.title}
         >
           <g>{this._renderSeries(props.data, props.valuesAccessor)}</g>
-        </Chart>
+        </BasicChart>
     );
   },
 });
