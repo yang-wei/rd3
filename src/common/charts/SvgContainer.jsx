@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-export default class BasicChart extends Component {
+export default class SvgContainer extends Component {
   render() {
     const props = this.props;
     return (
@@ -17,7 +17,7 @@ export default class BasicChart extends Component {
   }
 }
 
-BasicChart.propTypes = {
+SvgContainer.propTypes = {
     children: React.PropTypes.node,
     height: React.PropTypes.oneOfType([
       React.PropTypes.string,
@@ -29,7 +29,7 @@ BasicChart.propTypes = {
     ]),
 }
 
-BasicChart.defaultProps = {
+SvgContainer.defaultProps = {
   height: 400,
   width: 400,
 }

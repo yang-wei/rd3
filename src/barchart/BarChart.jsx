@@ -2,7 +2,7 @@
 
 import d3 from 'd3';
 import React from 'react';
-import BasicChart from '../common/charts/BasicChart';
+import SvgContainer from '../common/charts/SvgContainer';
 
 module.exports = React.createClass({
 
@@ -55,12 +55,12 @@ module.exports = React.createClass({
   render() {
     const props = this.props;
     return (
-        <BasicChart
+        <SvgContainer
           width={props.width}
           height={props.height}
         >
           <g>{this._renderSeries(props.data)}</g>
-        </BasicChart>
+        </SvgContainer>
     );
   },
 });
