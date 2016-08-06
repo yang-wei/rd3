@@ -10,42 +10,44 @@ module.exports = React.createClass({
 
   propTypes: {
     colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
     data: React.PropTypes.array.isRequired,
-    valuesAccessor: React.PropTypes.func,
-    xScale: React.PropTypes.func,
-    yScale: React.PropTypes.func,
+    xScale: React.PropTypes.func.isRequired,
+    xAccessor: React.PropTypes.func,
+    yScale: React.PropTypes.func.isRequired,
     svgComponent: React.PropTypes.any,
   },
 
   getDefaultProps() {
     return {
-      data: [],
-      valuesAccessor: d => d.values,
       colors: d3.scale.category20c(),
+      xAccessor: d => d.x,
       SvgComponent: (props) => <rect {...props} />
     };
   },
 
-  _renderSeries(stackedData, valuesAccessor) {
-    return stackedData.map((layer, seriesIdx) => (
-      valuesAccessor(layer).map(segment => this._renderBar(segment, seriesIdx))
-    ));
+  _renderSeries(stackedData) {
+    return stackedData.map(item => {
+      const { key, index } = item
+      const data = Array.from(item)
+      return data.map(d => { 
+        return this._renderItem(d, key, index)
+      })
+    });
   },
 
-  _renderBar(segment, seriesIdx) {
-    const { colors, colorAccessor, xScale, yScale, SvgComponent } = this.props;
-    const height = Math.abs(yScale(0) - yScale(segment.y));
+  _renderItem(item, key, index) {
+    const { colors, xScale, yScale, SvgComponent, xAccessor } = this.props;
+    const x = xScale(xAccessor(item['data']))
+    const y = yScale(item[1]);
+    const height = yScale(item[0]) - yScale(item[1]);
     const width = xScale.rangeBand()
-    const x = xScale(segment.x)
-    const y = (segment.y >= 0) ? yScale(segment.y0 + segment.y) : yScale(segment.y0 + segment.y) - height;
     return (
       <SvgComponent
-        height={height}
-        width={width}
         x={x}
         y={y}
-        fill={colors(seriesIdx)}
+        height={height}
+        width={width}
+        fill={colors(index)}
       />
     );
   },
@@ -57,7 +59,7 @@ module.exports = React.createClass({
           width={props.width}
           height={props.height}
         >
-          <g>{this._renderSeries(props.data, props.valuesAccessor)}</g>
+          <g>{this._renderSeries(props.data)}</g>
         </BasicChart>
     );
   },

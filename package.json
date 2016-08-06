@@ -97,5 +97,8 @@
   },
   "files": [
     "build"
-  ]
+  ],
+  "dependencies": {
+    "d3-shape": "^1.0.1"
+  }
 }
