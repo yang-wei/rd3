@@ -1,6 +1,6 @@
 'use strict';
 
-import d3 from 'd3';
+import { scaleOrdinal, schemeCategory20c } from 'd3-scale';
 import React from 'react';
 import SvgContainer from '../common/charts/SvgContainer';
 
@@ -19,7 +19,7 @@ module.exports = React.createClass({
 
   getDefaultProps() {
     return {
-      colors: d3.scale.category20c(),
+      colors: scaleOrdinal(schemeCategory20c),
       xAccessor: d => d.x,
       SvgComponent: (props) => <rect {...props} />
     };
