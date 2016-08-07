@@ -68,7 +68,7 @@ module.exports = React.createClass({
     return (
       <g
         className={props.yAxisClassName}
-        transform={t}
+        transform={props.transform || t}
       >
         <AxisTicks
           innerTickSize={props.tickSize}

@@ -2,7 +2,6 @@
 
 import { scaleOrdinal, schemeCategory20c } from 'd3-scale';
 import React from 'react';
-import SvgContainer from '../common/charts/SvgContainer';
 
 module.exports = React.createClass({
 
@@ -15,13 +14,15 @@ module.exports = React.createClass({
     xAccessor: React.PropTypes.func,
     yScale: React.PropTypes.func.isRequired,
     svgComponent: React.PropTypes.any,
+    transform: React.PropTypes.string,
   },
 
   getDefaultProps() {
     return {
       colors: scaleOrdinal(schemeCategory20c),
       xAccessor: d => d.x,
-      SvgComponent: (props) => <rect {...props} />
+      SvgComponent: (props) => <rect {...props} />,
+      transform: 'translate(0 ,0)',
     };
   },
 
@@ -55,12 +56,9 @@ module.exports = React.createClass({
   render() {
     const props = this.props;
     return (
-        <SvgContainer
-          width={props.width}
-          height={props.height}
-        >
-          <g>{this._renderSeries(props.data)}</g>
-        </SvgContainer>
+      <g transform={props.transform}>
+        {this._renderSeries(props.data)}
+      </g>
     );
   },
 });

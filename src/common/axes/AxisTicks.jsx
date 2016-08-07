@@ -88,9 +88,8 @@ module.exports = React.createClass({
     } else if (scale.tickFormat) {
       tickFormat = scale.tickFormat.apply(scale, props.tickArguments);
     } else {
-      tickFormat = (d) => d;
+      tickFormat = (d) => String(d);
     }
-
     const adjustedScale = scale.rangeBand ? d => scale(d) + scale.rangeBand() / 2 : scale;
 
 

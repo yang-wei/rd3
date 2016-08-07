@@ -64,7 +64,7 @@ module.exports = React.createClass({
     return (
       <g
         className={props.xAxisClassName}
-        transform={t}
+        transform={props.transform || t}
       >
         <AxisTicks
           tickValues={props.xAxisTickValues}

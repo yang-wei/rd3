@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { BarChart } from '../src/barchart'
 import { stack } from 'd3-shape'
+import SvgContainer from '../src/common/charts/SvgContainer';
+import { XAxis, YAxis } from '../src/common';
 
 var barData = [
   {month: new Date(2015, 0, 1), apples: 3840, bananas: 1920, cherries: 960, dates: 400},
@@ -39,14 +41,30 @@ const yScale = d3.scale.linear().range([height, 0]).domain(yDomain);
 export default class MyBarChart extends Component {
   render() {
     return (
-      <BarChart
-        data={stackedData}
-        width={width}
-        height={height}
-        xScale={xScale}
-        yScale={yScale}
-        xAccessor={xAccessor}
-      />
+      <SvgContainer width={width}>
+        <BarChart
+          data={stackedData}
+          width={width}
+          height={height}
+          xScale={xScale}
+          yScale={yScale}
+          xAccessor={xAccessor}
+          transform={'translate(50, 0)'}
+        />
+        <XAxis
+          width={width}
+          height={height}
+          xScale={xScale}
+          tickFormatting={d => d.getMonth() + 1 }
+          transform={'translate(50, 200)'}
+        />
+        <YAxis
+          width={width}
+          height={height}
+          yScale={yScale}
+          transform={'translate(50, 0)'}
+        />
+      </SvgContainer>
     )
   }
 }
