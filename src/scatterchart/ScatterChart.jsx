@@ -150,9 +150,9 @@ module.exports = React.createClass({
               height={innerHeight}
               hoverAnimation={props.hoverAnimation}
               width={innerWidth}
-              xAccessor={props.xAccessor}
+              xAccessor={(coord) => coord.x}
               xScale={xScale}
-              yAccessor={props.yAccessor}
+              yAccessor={(coord) => coord.y}
               yScale={yScale}
               onMouseOver={this.onMouseOver}
             />
