@@ -16,6 +16,9 @@ module.exports = React.createClass({
     height: React.PropTypes.number,
     width: React.PropTypes.number,
     valuesAccessor: React.PropTypes.func,
+    xAccessor: React.PropTypes.func,
+    yAccessor: React.PropTypes.func,
+    y0Accessor: React.PropTypes.func,
     onMouseOver: React.PropTypes.func,
     onMouseLeave: React.PropTypes.func,
     hoverAnimation: React.PropTypes.any, // TODO: prop types?
@@ -32,24 +35,25 @@ module.exports = React.createClass({
 
   _renderBarContainer(segment, seriesIdx) {
     const { colors, colorAccessor, grouped, hoverAnimation, series, xScale, yScale } = this.props;
-    const barHeight = Math.abs(yScale(0) - yScale(segment.y));
-    const y = grouped ? yScale(segment.y) : yScale(segment.y0 + segment.y);
+    const barHeight = Math.abs(yScale(0) - yScale(this.props.yAccessor(segment)));
+    const yWidth = yScale(this.props.y0Accessor(segment) + this.props.yAccessor(segment));
+    const y = grouped ? yScale(this.props.yAccessor(segment)) : yWidth;
     return (
       <BarContainer
         height={barHeight}
         width={grouped ? xScale.rangeBand() / series.length : xScale.rangeBand() }
         x={grouped ?
-          xScale(segment.x) + xScale.rangeBand() / series.length * seriesIdx :
-          xScale(segment.x)
+          xScale(this.props.xAccessor(segment)) + xScale.rangeBand() / series.length * seriesIdx :
+          xScale(this.props.xAccessor(segment))
         }
-        y={(segment.y >= 0) ? y : y - barHeight}
+        y={(this.props.yAccessor(segment) >= 0) ? y : y - barHeight}
         fill={colors(colorAccessor(segment, seriesIdx))}
         hoverAnimation={hoverAnimation}
         onMouseOver={this.props.onMouseOver}
         onMouseLeave={this.props.onMouseLeave}
         dataPoint={{
-          xValue: segment.x,
-          yValue: segment.y,
+          xValue: this.props.xAccessor(segment),
+          yValue: this.props.yAccessor(segment),
           seriesName: this.props.series[seriesIdx],
         }}
       />
