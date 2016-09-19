@@ -18,3 +18,5 @@ xAxisClassName | string | `'rd3-scatterchart-xaxis'` |
 xAxisStrokeWidth | number | `1` |
 yAxisClassName | string | `'rd3-scatterchart-yaxis'` |
 yAxisStrokeWidth | number | `1` |
+xAccessor | func | `d => d.x` |
+yAccessor | func | `d => d.y` |

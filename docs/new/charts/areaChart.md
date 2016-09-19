@@ -16,3 +16,5 @@ interpolationType | string | `null` |
 hoverAnimation | bool | `true` |
 yAxisTickCount |  | `4` |
 className |  | `'rd3-areachart'` |
+xAccessor | func | `d => d.x` |
+yAccessor | func | `d => d.y` |
