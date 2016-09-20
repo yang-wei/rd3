@@ -1,3 +1,6 @@
+### Looking for maintaners !!! 
+Currently I don't have time to manage this library anymore so if someone is willing to maintain I would like to transfer this repository. Please open an issue if you do so =)
+
 ## [rd3](https://github.com/yang-wei/rd3) (forked from [react-d3](https://github.com/esbullington/react-d3))
 Modular ReactJS charts made using d3 chart utilities.
 
