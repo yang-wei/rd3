@@ -1,3 +1,6 @@
+#####0.7.2
+ - y0 accessor for Bar Chart [#82](https://github.com/yang-wei/rd3/pull/8)
+
 #####0.7.0
  - Axis tick color for all charts #38
  - Add `grouped` prop to BarChart #68
