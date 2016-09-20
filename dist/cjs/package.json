@@ -1,0 +1,21 @@
+{
+  "name": "{{ pkg.name }}",
+  "version": "{{ pkg.version }}",
+  "description": "{{ pkg.description }}",
+  "author": "{{ pkg.author }}",
+  "homepage": "{{ pkg.homepage }}",
+  "keywords": "{{ pkg.keywords }}",
+  "license": "{{ pkg.license }}",
+  "main": "index.js",
+  "devDependencies": {
+    "browserify": "^8.0.0"
+  },
+  "dependencies": {
+    "d3": "^3.5.0",
+    "react": ">0.12.0"
+  },
+  "repository": {
+    "type": "{{ pkg.repository.type }}",
+    "url": "{{ pkg.repository.url }}"
+  }
+}

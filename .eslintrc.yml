@@ -1,0 +1,7 @@
+extends: airbnb
+plugins:
+  - react
+rules:
+  react/prefer-es6-class: off
+  react/prefer-stateless-function: off
+  strict: off

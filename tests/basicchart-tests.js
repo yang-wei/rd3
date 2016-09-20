@@ -1,0 +1,31 @@
+'use strict';
+
+var expect = require('chai').expect;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
+
+describe('BasicChart', function() {
+  it('renders and tests BasicChart component', function() {
+    var BasicChart = require('../src/common/charts/BasicChart');
+    var generate = require('./utils/datagen').generateArrayOfPoints;
+
+    var chart = TestUtils.renderIntoDocument(
+      <BasicChart /> 
+    );
+
+    var chartWithTitle = TestUtils.renderIntoDocument(
+      <BasicChart title="foo" /> 
+    );
+
+    // Verify there is no heading element
+    var noTitleHeadings = TestUtils.scryRenderedDOMComponentsWithTag(
+      chart, 'h4');
+    expect(noTitleHeadings).to.have.length(0);
+
+    // Verify there is a heading element
+    var titleHeadings = TestUtils.scryRenderedDOMComponentsWithTag(
+      chartWithTitle, 'h4');
+    expect(titleHeadings).to.have.length(1);
+  });
+});
+
