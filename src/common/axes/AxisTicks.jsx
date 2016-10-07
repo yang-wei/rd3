@@ -222,7 +222,7 @@ module.exports = React.createClass({
               {...optionalTextProps}
             >
               {tickFormat(tick).split('\n').map((tickLabel, index) => (
-                  <tspan x={x1} dy={dy}>
+                  <tspan x={(x1 ? x1 : 0)} dy={dy}>
                     {tickLabel}
                   </tspan>
               ))}
