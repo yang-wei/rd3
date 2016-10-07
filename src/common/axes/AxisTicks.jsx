@@ -221,8 +221,8 @@ module.exports = React.createClass({
               textAnchor={textAnchor}
               {...optionalTextProps}
             >
-              {tickFormat(tick).split('\n').map((tickLabel, index) => (
-                  <tspan x={(x1 ? x1 : 0)} dy={dy}>
+              {`${tickFormat(tick)}`.split('\n').map((tickLabel) => (
+                  <tspan x={x1 || 0} dy={dy}>
                     {tickLabel}
                   </tspan>
               ))}
