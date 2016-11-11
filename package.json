@@ -96,6 +96,7 @@
     "url": "https://github.com/yang-wei/rd3.git"
   },
   "files": [
-    "build"
+    "build",
+    "src"
   ]
 }
