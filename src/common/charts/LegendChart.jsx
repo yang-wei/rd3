@@ -100,7 +100,7 @@ module.exports = React.createClass({
       >
         {this._renderTitle()}
         <div style={{ display: 'table', width: '100%', height: '100%' }}>
-          <div style={{ display: 'table-cell' }}>
+          <div style={{ display: 'table-cell', width: '100%', height: '100%' }}>
             {this._renderChart()}
           </div>
           <div style={{ display: 'table-cell', width: props.sideOffset, verticalAlign: 'top' }}>
