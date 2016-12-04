@@ -1,6 +1,6 @@
 {
   "name": "rd3",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "ReactJS charts using d3",
   "author": "Lim Yang Wei",
   "homepage": "https://reactiva.github.io/react-d3-website/",
