@@ -18,3 +18,5 @@ domain | object | { x: [], y: [] }  | Specify min and max values for the X and Y
 className |  | `'rd3-linechart'` |
 xAxisClassName |  | `'rd3-linechart-xaxis'` |
 yAxisClassName |  | `'rd3-linechart-yaxis'` |
+xAccessor | func | `d => d.x` |
+yAccessor | func | `d => d.y` |

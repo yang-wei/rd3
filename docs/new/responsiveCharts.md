@@ -27,7 +27,7 @@ const createClass = (chartType) => {
       this.state = { size: { w: 0, h: 0 } };
     }
 
-    fitToParentSize() {
+    fitToParentSize = () => {
       const w = this.refs.wrapper.offsetWidth - 20;
       const h = this.refs.wrapper.offsetHeight - 20;
       const currentSize = this.state.size;
@@ -70,16 +70,16 @@ const createClass = (chartType) => {
     }
 
     componentDidMount() {
-      window.addEventListener('resize', ::this.fitToParentSize);
+      window.addEventListener('resize', this.fitToParentSize);
       this.fitToParentSize();
     }
 
     componentWillUnmount() {
-      window.removeEventListener('resize', ::this.fitToParentSize);
+      window.removeEventListener('resize', this.fitToParentSize);
     }
 
     render() {
-      const { duration, margin, ...others } = this.props;
+      const { margin, ...others } = this.props;
       let Component = this.getChartClass();
       let width = this.props.width;
       let height = this.props.height;
@@ -102,7 +102,6 @@ const createClass = (chartType) => {
     },
   };
   Chart.propTypes = {
-    duration: React.PropTypes.array.isRequired,
     width: React.PropTypes.number,
     height: React.PropTypes.number,
     margin: React.PropTypes.object,
