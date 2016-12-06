@@ -55,7 +55,9 @@
     "watchify": "^3.2.2",
     "d3": "^3.5.0",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "@kadira/storybook": "^1.28.1",
+    "react-storybook-centered": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.1",
@@ -76,7 +78,8 @@
     "docs:prepare": "gitbook install",
     "docs:build": "npm run docs:prepare && gitbook build",
     "docs:watch": "npm run docs:prepare && gitbook serve",
-    "docs:publish": "npm run docs:clean && npm run docs:build && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:yang-wei/rd3 gh-pages --force"
+    "docs:publish": "npm run docs:clean && npm run docs:build && build-storybook -o _book/storybook && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:yang-wei/rd3 gh-pages --force",
+    "storybook": "start-storybook -p 9001"
   },
   "browserify": {
     "transform": [
