@@ -1,24 +1,27 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'BasicChart',
 
   propTypes: {
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    height: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    height: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    svgClassName: React.PropTypes.string,
-    title: React.PropTypes.node,
-    titleClassName: React.PropTypes.string,
-    width: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    svgClassName: PropTypes.string,
+    title: PropTypes.node,
+    titleClassName: PropTypes.string,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
   },
 

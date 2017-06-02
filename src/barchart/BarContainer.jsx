@@ -1,18 +1,21 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const { findDOMNode } = require('react-dom');
 const Bar = require('./Bar');
 const shade = require('../utils').shade;
 
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   propTypes: {
-    fill: React.PropTypes.string,
-    onMouseOver: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    dataPoint: React.PropTypes.any, // TODO: prop types?
+    fill: PropTypes.string,
+    onMouseOver: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    dataPoint: PropTypes.any, // TODO: prop types?
   },
 
   getDefaultProps() {

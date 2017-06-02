@@ -1,25 +1,28 @@
 'use strict';
 
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
 const VoronoiCircle = require('./VoronoiCircle');
 
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'VornoiCircleContainer',
 
   propTypes: {
-    circleFill: React.PropTypes.string,
-    circleRadius: React.PropTypes.number,
-    circleRadiusMultiplier: React.PropTypes.number,
-    className: React.PropTypes.string,
-    hoverAnimation: React.PropTypes.bool,
-    shadeMultiplier: React.PropTypes.number,
-    vnode: React.PropTypes.array.isRequired,
-    onMouseOver: React.PropTypes.func,
+    circleFill: PropTypes.string,
+    circleRadius: PropTypes.number,
+    circleRadiusMultiplier: PropTypes.number,
+    className: PropTypes.string,
+    hoverAnimation: PropTypes.bool,
+    shadeMultiplier: PropTypes.number,
+    vnode: PropTypes.array.isRequired,
+    onMouseOver: PropTypes.func,
   },
 
   getDefaultProps() {

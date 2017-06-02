@@ -1,16 +1,19 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   propTypes: {
-    cx: React.PropTypes.number,
-    cy: React.PropTypes.number,
-    r: React.PropTypes.number,
-    fill: React.PropTypes.string,
-    className: React.PropTypes.string,
-    voronoiRef: React.PropTypes.any, // TODO: prop types?
+    cx: PropTypes.number,
+    cy: PropTypes.number,
+    r: PropTypes.number,
+    fill: PropTypes.string,
+    className: PropTypes.string,
+    voronoiRef: PropTypes.any, // TODO: prop types?
   },
 
   getDefaultProps() {

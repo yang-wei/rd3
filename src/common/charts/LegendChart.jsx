@@ -1,29 +1,32 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const Legend = require('../Legend');
 const d3 = require('d3');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'LegendChart',
 
   propTypes: {
-    children: React.PropTypes.node,
-    createClass: React.PropTypes.string,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    data: React.PropTypes.array,
-    height: React.PropTypes.node,
-    legend: React.PropTypes.bool,
-    legendPosition: React.PropTypes.string,
-    margins: React.PropTypes.object,
-    sideOffset: React.PropTypes.number,
-    svgClassName: React.PropTypes.string,
-    title: React.PropTypes.node,
-    titleClassName: React.PropTypes.string,
-    viewBox: React.PropTypes.string,
-    width: React.PropTypes.node,
+    children: PropTypes.node,
+    createClass: PropTypes.string,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    data: PropTypes.array,
+    height: PropTypes.node,
+    legend: PropTypes.bool,
+    legendPosition: PropTypes.string,
+    margins: PropTypes.object,
+    sideOffset: PropTypes.number,
+    svgClassName: PropTypes.string,
+    title: PropTypes.node,
+    titleClassName: PropTypes.string,
+    viewBox: PropTypes.string,
+    width: PropTypes.node,
   },
 
   getDefaultProps() {

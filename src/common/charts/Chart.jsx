@@ -1,18 +1,21 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const LegendChart = require('./LegendChart');
 const BasicChart = require('./BasicChart');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'Chart',
 
   propTypes: {
-    legend: React.PropTypes.bool,
-    svgClassName: React.PropTypes.string,
-    titleClassName: React.PropTypes.string,
-    shouldUpdate: React.PropTypes.bool,
+    legend: PropTypes.bool,
+    svgClassName: PropTypes.string,
+    titleClassName: PropTypes.string,
+    shouldUpdate: PropTypes.bool,
   },
 
   getDefaultProps() {

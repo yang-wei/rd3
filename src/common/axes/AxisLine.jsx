@@ -1,19 +1,22 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'AxisLine',
 
   propTypes: {
-    scale: React.PropTypes.func.isRequired,
-    innerTickSize: React.PropTypes.number,
-    outerTickSize: React.PropTypes.number,
-    tickPadding: React.PropTypes.number,
-    tickArguments: React.PropTypes.array,
-    fill: React.PropTypes.string,
-    stroke: React.PropTypes.string,
+    scale: PropTypes.func.isRequired,
+    innerTickSize: PropTypes.number,
+    outerTickSize: PropTypes.number,
+    tickPadding: PropTypes.number,
+    tickArguments: PropTypes.array,
+    fill: PropTypes.string,
+    stroke: PropTypes.string,
   },
 
   getDefaultProps() {

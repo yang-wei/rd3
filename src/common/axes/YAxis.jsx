@@ -1,35 +1,37 @@
 'use strict';
 
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 const React = require('react');
 const d3 = require('d3');
 const AxisTicks = require('./AxisTicks');
 const AxisLine = require('./AxisLine');
 const Label = require('./Label');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'YAxis',
 
   propTypes: {
-    fill: React.PropTypes.string,
-    stroke: React.PropTypes.string,
-    strokeWidth: React.PropTypes.string,
-    tickStroke: React.PropTypes.string,
-    tickTextStroke: React.PropTypes.string,
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-    horizontalChart: React.PropTypes.bool,
-    yAxisClassName: React.PropTypes.string,
-    yAxisLabel: React.PropTypes.string,
-    yAxisOffset: React.PropTypes.number,
-    yAxisTickValues: React.PropTypes.array,
-    xOrient: React.PropTypes.oneOf(['top', 'bottom']),
-    yOrient: React.PropTypes.oneOf(['left', 'right']),
-    yScale: React.PropTypes.func.isRequired,
-    gridVertical: React.PropTypes.bool,
-    gridVerticalStroke: React.PropTypes.string,
-    gridVerticalStrokeWidth: React.PropTypes.number,
-    gridVerticalStrokeDash: React.PropTypes.string,
+    fill: PropTypes.string,
+    stroke: PropTypes.string,
+    strokeWidth: PropTypes.string,
+    tickStroke: PropTypes.string,
+    tickTextStroke: PropTypes.string,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    horizontalChart: PropTypes.bool,
+    yAxisClassName: PropTypes.string,
+    yAxisLabel: PropTypes.string,
+    yAxisOffset: PropTypes.number,
+    yAxisTickValues: PropTypes.array,
+    xOrient: PropTypes.oneOf(['top', 'bottom']),
+    yOrient: PropTypes.oneOf(['left', 'right']),
+    yScale: PropTypes.func.isRequired,
+    gridVertical: PropTypes.bool,
+    gridVerticalStroke: PropTypes.string,
+    gridVerticalStrokeWidth: PropTypes.number,
+    gridVerticalStrokeDash: PropTypes.string,
   },
 
   getDefaultProps() {

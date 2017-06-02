@@ -1,29 +1,32 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const BarContainer = require('./BarContainer');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    _data: React.PropTypes.array,
-    series: React.PropTypes.array,
-    grouped: React.PropTypes.bool,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    height: React.PropTypes.number,
-    width: React.PropTypes.number,
-    valuesAccessor: React.PropTypes.func,
-    xAccessor: React.PropTypes.func,
-    yAccessor: React.PropTypes.func,
-    y0Accessor: React.PropTypes.func,
-    onMouseOver: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.any, // TODO: prop types?
-    xScale: React.PropTypes.any,
-    yScale: React.PropTypes.any,
+    _data: PropTypes.array,
+    series: PropTypes.array,
+    grouped: PropTypes.bool,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    height: PropTypes.number,
+    width: PropTypes.number,
+    valuesAccessor: PropTypes.func,
+    xAccessor: PropTypes.func,
+    yAccessor: PropTypes.func,
+    y0Accessor: PropTypes.func,
+    onMouseOver: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    hoverAnimation: PropTypes.any, // TODO: prop types?
+    xScale: PropTypes.any,
+    yScale: PropTypes.any,
   },
 
   _renderBarSeries() {

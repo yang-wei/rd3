@@ -1,18 +1,21 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   propTypes: {
-    x: React.PropTypes.number,
-    y: React.PropTypes.number,
-    child: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-      React.PropTypes.element,
+    x: PropTypes.number,
+    y: PropTypes.number,
+    child: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.element,
     ]),
-    show: React.PropTypes.bool,
+    show: PropTypes.bool,
   },
 
   render() {

@@ -1,25 +1,28 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const utils = require('../utils');
 const Candle = require('./Candle');
 const Wick = require('./Wick');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'CandleStickContainer',
 
   propTypes: {
-    candleX: React.PropTypes.number,
-    candleY: React.PropTypes.number,
-    className: React.PropTypes.string,
-    candleFill: React.PropTypes.string,
-    candleHeight: React.PropTypes.number,
-    candleWidth: React.PropTypes.number,
-    wickX1: React.PropTypes.number,
-    wickX2: React.PropTypes.number,
-    wickY1: React.PropTypes.number,
-    wickY2: React.PropTypes.number,
+    candleX: PropTypes.number,
+    candleY: PropTypes.number,
+    className: PropTypes.string,
+    candleFill: PropTypes.string,
+    candleHeight: PropTypes.number,
+    candleWidth: PropTypes.number,
+    wickX1: PropTypes.number,
+    wickX2: PropTypes.number,
+    wickY1: PropTypes.number,
+    wickY2: PropTypes.number,
   },
 
   getDefaultProps() {

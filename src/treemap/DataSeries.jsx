@@ -1,19 +1,22 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const CellContainer = require('./CellContainer');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    data: React.PropTypes.array,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
+    data: PropTypes.array,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    width: PropTypes.number,
+    height: PropTypes.number,
   },
 
   getDefaultProps() {

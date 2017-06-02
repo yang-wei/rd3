@@ -1,28 +1,31 @@
 'use strict';
 
 const d3 = require('d3');
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const Chart = require('../common').Chart;
 const DataSeries = require('./DataSeries');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'Treemap',
 
   propTypes: {
-    data: React.PropTypes.array,
-    margins: React.PropTypes.object,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    title: React.PropTypes.string,
-    textColor: React.PropTypes.string,
-    fontSize: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    data: PropTypes.array,
+    margins: PropTypes.object,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    title: PropTypes.string,
+    textColor: PropTypes.string,
+    fontSize: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.bool,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    hoverAnimation: PropTypes.bool,
   },
 
   getDefaultProps() {

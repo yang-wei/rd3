@@ -1,21 +1,24 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const DataSeries = require('./DataSeries');
 const { Chart, XAxis, YAxis } = require('../common');
 const { CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin } = require('../mixins');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'AreaChart',
 
   propTypes: {
-    margins: React.PropTypes.object,
-    interpolate: React.PropTypes.bool,
-    interpolationType: React.PropTypes.string,
-    hoverAnimation: React.PropTypes.bool,
-    data: React.PropTypes.array.isRequired,
+    margins: PropTypes.object,
+    interpolate: PropTypes.bool,
+    interpolationType: PropTypes.string,
+    hoverAnimation: PropTypes.bool,
+    data: PropTypes.array.isRequired,
   },
 
   mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin],
