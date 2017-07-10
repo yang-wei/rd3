@@ -1,30 +1,33 @@
 'use strict';
 
 const d3 = require('d3');
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const DataSeries = require('./DataSeries');
 const { Chart, Tooltip } = require('../common');
 const TooltipMixin = require('../mixins').TooltipMixin;
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'PieChart',
 
   propTypes: {
-    data: React.PropTypes.array,
-    radius: React.PropTypes.number,
-    cx: React.PropTypes.number,
-    cy: React.PropTypes.number,
-    labelTextFill: React.PropTypes.string,
-    valueTextFill: React.PropTypes.string,
-    valueTextFormatter: React.PropTypes.func,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    title: React.PropTypes.string,
-    showInnerLabels: React.PropTypes.bool,
-    showOuterLabels: React.PropTypes.bool,
-    sectorBorderColor: React.PropTypes.string,
-    hoverAnimation: React.PropTypes.bool,
+    data: PropTypes.array,
+    radius: PropTypes.number,
+    cx: PropTypes.number,
+    cy: PropTypes.number,
+    labelTextFill: PropTypes.string,
+    valueTextFill: PropTypes.string,
+    valueTextFormatter: PropTypes.func,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    title: PropTypes.string,
+    showInnerLabels: PropTypes.bool,
+    showOuterLabels: PropTypes.bool,
+    sectorBorderColor: PropTypes.string,
+    hoverAnimation: PropTypes.bool,
   },
 
   mixins: [TooltipMixin],

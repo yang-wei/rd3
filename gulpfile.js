@@ -33,6 +33,8 @@ function bundler(entry) {
   var globalShim = require('browserify-global-shim').configure({
     "react": "React",
     "react-dom": "ReactDOM",
+    "create-react-class": "createReactClass",
+    "prop-types": "PropTypes",
     "d3": "d3"
   });
   var opts = {

@@ -1,11 +1,11 @@
 'use strict';
 
-const React = require('react');
+const PropTypes = require('prop-types');
 
 module.exports = {
   propTypes: {
-    xAccessor: React.PropTypes.func,
-    yAccessor: React.PropTypes.func,
+    xAccessor: PropTypes.func,
+    yAccessor: PropTypes.func,
   },
 
   getDefaultProps() {

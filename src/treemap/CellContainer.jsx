@@ -1,16 +1,19 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const shade = require('../utils').shade;
 const Cell = require('./Cell');
 
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'CellContainer',
 
   propTypes: {
-    fill: React.PropTypes.string,
+    fill: PropTypes.string,
   },
 
   getInitialState() {

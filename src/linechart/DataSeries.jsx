@@ -1,22 +1,25 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const VoronoiCircleContainer = require('./VoronoiCircleContainer');
 const Line = require('./Line');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    color: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    data: React.PropTypes.array,
-    interpolationType: React.PropTypes.string,
-    xAccessor: React.PropTypes.func,
-    yAccessor: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.bool,
+    color: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    data: PropTypes.array,
+    interpolationType: PropTypes.string,
+    xAccessor: PropTypes.func,
+    yAccessor: PropTypes.func,
+    hoverAnimation: PropTypes.bool,
   },
 
   getDefaultProps() {

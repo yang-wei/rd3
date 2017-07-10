@@ -1,15 +1,18 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const shade = require('../utils').shade;
 const Area = require('./Area');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'AreaContainer',
 
   propTypes: {
-    fill: React.PropTypes.string,
+    fill: PropTypes.string,
   },
 
   getDefaultProps() {

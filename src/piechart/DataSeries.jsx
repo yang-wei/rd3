@@ -1,26 +1,29 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const ArcContainer = require('./ArcContainer');
 
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    data: React.PropTypes.array,
-    values: React.PropTypes.array,
-    labels: React.PropTypes.array,
-    transform: React.PropTypes.string,
-    innerRadius: React.PropTypes.number,
-    radius: React.PropTypes.number,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    showInnerLabels: React.PropTypes.bool,
-    showOuterLabels: React.PropTypes.bool,
-    sectorBorderColor: React.PropTypes.string,
+    data: PropTypes.array,
+    values: PropTypes.array,
+    labels: PropTypes.array,
+    transform: PropTypes.string,
+    innerRadius: PropTypes.number,
+    radius: PropTypes.number,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    showInnerLabels: PropTypes.bool,
+    showOuterLabels: PropTypes.bool,
+    sectorBorderColor: PropTypes.string,
   },
 
   getDefaultProps() {

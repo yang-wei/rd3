@@ -1,24 +1,27 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'Arc',
 
   propTypes: {
-    fill: React.PropTypes.string,
-    d: React.PropTypes.string,
-    startAngle: React.PropTypes.number,
-    endAngle: React.PropTypes.number,
-    innerRadius: React.PropTypes.number,
-    outerRadius: React.PropTypes.number,
-    labelTextFill: React.PropTypes.string,
-    valueTextFill: React.PropTypes.string,
-    sectorBorderColor: React.PropTypes.string,
-    showInnerLabels: React.PropTypes.bool,
-    showOuterLabels: React.PropTypes.bool,
+    fill: PropTypes.string,
+    d: PropTypes.string,
+    startAngle: PropTypes.number,
+    endAngle: PropTypes.number,
+    innerRadius: PropTypes.number,
+    outerRadius: PropTypes.number,
+    labelTextFill: PropTypes.string,
+    valueTextFill: PropTypes.string,
+    sectorBorderColor: PropTypes.string,
+    showInnerLabels: PropTypes.bool,
+    showOuterLabels: PropTypes.bool,
   },
 
   getDefaultProps() {

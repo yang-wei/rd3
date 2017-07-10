@@ -1,34 +1,37 @@
 'use strict';
 
 const React = require('react');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'AxisTick',
 
   propTypes: {
-    scale: React.PropTypes.func.isRequired,
-    orient: React.PropTypes.oneOf(['top', 'bottom', 'left', 'right']).isRequired,
-    orient2nd: React.PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-    height: React.PropTypes.number.isRequired,
-    width: React.PropTypes.number.isRequired,
-    horizontal: React.PropTypes.bool,
-    tickArguments: React.PropTypes.array,
-    tickValues: React.PropTypes.array,
-    innerTickSize: React.PropTypes.number,
-    outerTickSize: React.PropTypes.number,
-    tickPadding: React.PropTypes.number,
-    tickFormat: React.PropTypes.func,
-    tickStroke: React.PropTypes.string,
-    tickTextStroke: React.PropTypes.string,
-    gridHorizontal: React.PropTypes.bool,
-    gridVertical: React.PropTypes.bool,
-    gridHorizontalStroke: React.PropTypes.string,
-    gridVerticalStroke: React.PropTypes.string,
-    gridHorizontalStrokeWidth: React.PropTypes.number,
-    gridVerticalStrokeWidth: React.PropTypes.number,
-    gridHorizontalStrokeDash: React.PropTypes.string,
-    gridVerticalStrokeDash: React.PropTypes.string,
+    scale: PropTypes.func.isRequired,
+    orient: PropTypes.oneOf(['top', 'bottom', 'left', 'right']).isRequired,
+    orient2nd: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+    horizontal: PropTypes.bool,
+    tickArguments: PropTypes.array,
+    tickValues: PropTypes.array,
+    innerTickSize: PropTypes.number,
+    outerTickSize: PropTypes.number,
+    tickPadding: PropTypes.number,
+    tickFormat: PropTypes.func,
+    tickStroke: PropTypes.string,
+    tickTextStroke: PropTypes.string,
+    gridHorizontal: PropTypes.bool,
+    gridVertical: PropTypes.bool,
+    gridHorizontalStroke: PropTypes.string,
+    gridVerticalStroke: PropTypes.string,
+    gridHorizontalStrokeWidth: PropTypes.number,
+    gridVerticalStrokeWidth: PropTypes.number,
+    gridHorizontalStrokeDash: PropTypes.string,
+    gridVerticalStrokeDash: PropTypes.string,
   },
   getDefaultProps() {
     return {

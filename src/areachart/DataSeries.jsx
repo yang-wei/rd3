@@ -1,16 +1,19 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const AreaContainer = require('./AreaContainer');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    fill: React.PropTypes.string,
-    interpolationType: React.PropTypes.string,
+    fill: PropTypes.string,
+    interpolationType: PropTypes.string,
   },
 
   getDefaultProps() {

@@ -1,13 +1,13 @@
 
 'use strict';
 
-const React = require('react');
+const PropTypes = require('prop-types');
 
 module.exports = {
 
   propTypes: {
-    viewBox: React.PropTypes.string,
-    viewBoxObject: React.PropTypes.object,
+    viewBox: PropTypes.string,
+    viewBoxObject: PropTypes.object,
   },
 
   getViewBox() {

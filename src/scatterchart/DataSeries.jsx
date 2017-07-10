@@ -1,24 +1,27 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const VoronoiCircleContainer = require('./VoronoiCircleContainer');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'DataSeries',
 
   propTypes: {
-    circleRadius: React.PropTypes.number.isRequired,
-    className: React.PropTypes.string,
-    colors: React.PropTypes.func.isRequired,
-    colorAccessor: React.PropTypes.func.isRequired,
-    data: React.PropTypes.array.isRequired,
-    height: React.PropTypes.number.isRequired,
-    xAccessor: React.PropTypes.func.isRequired,
-    xScale: React.PropTypes.func.isRequired,
-    yAccessor: React.PropTypes.func.isRequired,
-    yScale: React.PropTypes.func.isRequired,
+    circleRadius: PropTypes.number.isRequired,
+    className: PropTypes.string,
+    colors: PropTypes.func.isRequired,
+    colorAccessor: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired,
+    height: PropTypes.number.isRequired,
+    xAccessor: PropTypes.func.isRequired,
+    xScale: PropTypes.func.isRequired,
+    yAccessor: PropTypes.func.isRequired,
+    yScale: PropTypes.func.isRequired,
   },
 
   getDefaultProps() {

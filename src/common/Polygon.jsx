@@ -1,14 +1,17 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   // TODO: PropTypes.any
   propTypes: {
-    structure: React.PropTypes.any,
-    id: React.PropTypes.any,
-    vnode: React.PropTypes.any,
+    structure: PropTypes.any,
+    id: PropTypes.any,
+    vnode: PropTypes.any,
   },
 
   _animateCircle() {

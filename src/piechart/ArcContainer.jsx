@@ -1,20 +1,23 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const { findDOMNode } = require('react-dom');
 const shade = require('../utils').shade;
 const Arc = require('./Arc');
 
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'ArcContainer',
 
   propTypes: {
-    fill: React.PropTypes.string,
-    onMouseOver: React.PropTypes.func,
-    onMouseLeave: React.PropTypes.func,
-    dataPoint: React.PropTypes.any, // TODO prop type?
+    fill: PropTypes.string,
+    onMouseOver: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    dataPoint: PropTypes.any, // TODO prop type?
   },
 
   getInitialState() {

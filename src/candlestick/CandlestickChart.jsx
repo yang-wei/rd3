@@ -1,32 +1,35 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const utils = require('../utils');
 const DataSeries = require('./DataSeries');
 const { Chart, XAxis, YAxis } = require('../common');
 const { ViewBoxMixin, CartesianChartPropsMixin } = require('../mixins');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'CandleStickChart',
 
   propTypes: {
-    data: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.object,
+    data: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
     ]),
-    fillUp: React.PropTypes.func,
-    fillUpAccessor: React.PropTypes.func,
-    fillDown: React.PropTypes.func,
-    fillDownAccessor: React.PropTypes.func,
-    hoverAnimation: React.PropTypes.bool,
-    xAxisFormatter: React.PropTypes.func,
-    xAxisTickInterval: React.PropTypes.object,
-    xAxisTickValues: React.PropTypes.array,
-    yAxisFormatter: React.PropTypes.func,
-    yAxisTickCount: React.PropTypes.number,
-    yAxisTickValues: React.PropTypes.array,
+    fillUp: PropTypes.func,
+    fillUpAccessor: PropTypes.func,
+    fillDown: PropTypes.func,
+    fillDownAccessor: PropTypes.func,
+    hoverAnimation: PropTypes.bool,
+    xAxisFormatter: PropTypes.func,
+    xAxisTickInterval: PropTypes.object,
+    xAxisTickValues: PropTypes.array,
+    yAxisFormatter: PropTypes.func,
+    yAxisTickCount: PropTypes.number,
+    yAxisTickValues: PropTypes.array,
   },
 
   mixins: [CartesianChartPropsMixin, ViewBoxMixin],

@@ -2,6 +2,26 @@ extends: airbnb
 plugins:
   - react
 rules:
+  arrow-parens: off
+  comma-dangle: off
+  import/no-extraneous-dependencies: off
+  import/no-unresolved: warn
+  no-bitwise: off
+  no-mixed-operators: off
+  no-multi-assign: off
+  no-prototype-builtins: warn
+  no-underscore-dangle: off
+  prefer-spread: off
+  react/forbid-prop-types: off
+  react/jsx-curly-spacing: off
+  react/jsx-first-prop-new-line: off
+  react/jsx-indent: off
+  react/jsx-max-props-per-line: off
+  react/no-array-index-key: off
+  react/no-find-dom-node: warn
+  react/no-unused-prop-types: off
   react/prefer-es6-class: off
   react/prefer-stateless-function: off
+  react/require-default-props: off
+  react/self-closing-comp: off
   strict: off

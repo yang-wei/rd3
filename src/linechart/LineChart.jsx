@@ -1,6 +1,9 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const { Chart, XAxis, YAxis, Tooltip } = require('../common');
 const DataSeries = require('./DataSeries');
 const utils = require('../utils');
@@ -11,15 +14,15 @@ const {
   TooltipMixin,
 } = require('../mixins');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'LineChart',
 
   propTypes: {
-    circleRadius: React.PropTypes.number,
-    hoverAnimation: React.PropTypes.bool,
-    margins: React.PropTypes.object,
-    data: React.PropTypes.array.isRequired,
+    circleRadius: PropTypes.number,
+    hoverAnimation: PropTypes.bool,
+    margins: PropTypes.object,
+    data: PropTypes.array.isRequired,
   },
 
   mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],

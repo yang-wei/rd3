@@ -1,6 +1,9 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 const DataSeries = require('./DataSeries');
 const { Chart, XAxis, YAxis, Tooltip } = require('../common');
@@ -11,27 +14,27 @@ const {
   TooltipMixin,
 } = require('../mixins');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'BarChart',
 
   propTypes: {
-    chartClassName: React.PropTypes.string,
-    data: React.PropTypes.array.isRequired,
-    hoverAnimation: React.PropTypes.bool,
-    margins: React.PropTypes.object,
-    rangeRoundBandsPadding: React.PropTypes.number,
+    chartClassName: PropTypes.string,
+    data: PropTypes.array.isRequired,
+    hoverAnimation: PropTypes.bool,
+    margins: PropTypes.object,
+    rangeRoundBandsPadding: PropTypes.number,
     // https://github.com/mbostock/d3/wiki/Stack-Layout#offset
-    stackOffset: React.PropTypes.oneOf(['silhouette', 'expand', 'wigget', 'zero']),
-    grouped: React.PropTypes.bool,
-    valuesAccessor: React.PropTypes.func,
-    xAccessor: React.PropTypes.func,
-    yAccessor: React.PropTypes.func,
-    y0Accessor: React.PropTypes.func,
-    title: React.PropTypes.string,
-    xAxisClassName: React.PropTypes.string,
-    yAxisClassName: React.PropTypes.string,
-    yAxisTickCount: React.PropTypes.number,
+    stackOffset: PropTypes.oneOf(['silhouette', 'expand', 'wigget', 'zero']),
+    grouped: PropTypes.bool,
+    valuesAccessor: PropTypes.func,
+    xAccessor: PropTypes.func,
+    yAccessor: PropTypes.func,
+    y0Accessor: PropTypes.func,
+    title: PropTypes.string,
+    xAxisClassName: PropTypes.string,
+    yAxisClassName: PropTypes.string,
+    yAxisTickCount: PropTypes.number,
   },
 
   mixins: [CartesianChartPropsMixin, DefaultAccessorsMixin, ViewBoxMixin, TooltipMixin],

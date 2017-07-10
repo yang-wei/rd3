@@ -1,20 +1,23 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'Label',
 
   propTypes: {
-    height: React.PropTypes.number,
-    horizontalChart: React.PropTypes.bool,
-    horizontalTransform: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired,
-    width: React.PropTypes.number,
-    strokeWidth: React.PropTypes.number,
-    textAnchor: React.PropTypes.string,
-    verticalTransform: React.PropTypes.string,
+    height: PropTypes.number,
+    horizontalChart: PropTypes.bool,
+    horizontalTransform: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    width: PropTypes.number,
+    strokeWidth: PropTypes.number,
+    textAnchor: PropTypes.string,
+    verticalTransform: PropTypes.string,
   },
 
   getDefaultProps() {

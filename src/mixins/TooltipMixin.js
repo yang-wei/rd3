@@ -1,12 +1,13 @@
 'use strict';
 
-const React = require('react');
+
+const PropTypes = require('prop-types');
 
 module.exports = {
 
   propTypes: {
-    showTooltip: React.PropTypes.bool,
-    tooltipFormat: React.PropTypes.func,
+    showTooltip: PropTypes.bool,
+    tooltipFormat: PropTypes.func,
   },
 
   getDefaultProps() {

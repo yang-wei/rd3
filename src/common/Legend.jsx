@@ -1,21 +1,24 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
+
 const d3 = require('d3');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
   displayName: 'Legend',
 
   propTypes: {
-    className: React.PropTypes.string,
-    colors: React.PropTypes.func,
-    colorAccessor: React.PropTypes.func,
-    data: React.PropTypes.array.isRequired,
-    itemClassName: React.PropTypes.string,
-    margins: React.PropTypes.object,
-    text: React.PropTypes.string,
-    width: React.PropTypes.number.isRequired,
+    className: PropTypes.string,
+    colors: PropTypes.func,
+    colorAccessor: PropTypes.func,
+    data: PropTypes.array.isRequired,
+    itemClassName: PropTypes.string,
+    margins: PropTypes.object,
+    text: PropTypes.string,
+    width: PropTypes.number.isRequired,
   },
 
   getDefaultProps() {

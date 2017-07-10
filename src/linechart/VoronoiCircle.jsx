@@ -1,20 +1,23 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'VoronoiCircle',
 
   // TODO: Check prop types
   propTypes: {
-    handleMouseOver: React.PropTypes.any,
-    handleMouseLeave: React.PropTypes.any,
-    voronoiPath: React.PropTypes.any,
-    cx: React.PropTypes.any,
-    cy: React.PropTypes.any,
-    circleRadius: React.PropTypes.any,
-    circleFill: React.PropTypes.any,
+    handleMouseOver: PropTypes.any,
+    handleMouseLeave: PropTypes.any,
+    voronoiPath: PropTypes.any,
+    cx: PropTypes.any,
+    cy: PropTypes.any,
+    circleRadius: PropTypes.any,
+    circleFill: PropTypes.any,
   },
 
   getDefaultProps() {

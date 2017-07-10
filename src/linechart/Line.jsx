@@ -1,17 +1,20 @@
 'use strict';
 
+const PropTypes = require('prop-types');
 const React = require('react');
+const createReactClass = require('create-react-class');
 
-module.exports = React.createClass({
+
+module.exports = createReactClass({
 
   displayName: 'Line',
 
   propTypes: {
-    fill: React.PropTypes.string,
-    path: React.PropTypes.string,
-    stroke: React.PropTypes.string,
-    strokeWidth: React.PropTypes.number,
-    strokeDashArray: React.PropTypes.string,
+    fill: PropTypes.string,
+    path: PropTypes.string,
+    stroke: PropTypes.string,
+    strokeWidth: PropTypes.number,
+    strokeDashArray: PropTypes.string,
   },
 
   getDefaultProps() {
