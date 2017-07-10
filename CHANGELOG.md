@@ -1,3 +1,6 @@
+#####0.8.0
+ - create-react-class, prop-types (A big thanks to @brantphoto)
+
 #####0.7.2
  - y0 accessor for Bar Chart [#82](https://github.com/yang-wei/rd3/pull/8)
 
