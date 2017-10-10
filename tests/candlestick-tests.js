@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var { CandlestickChart } = require('../src/candlestick');
 var { generateArrayOfTimeOHLCObjects: generate } = require('./utils/datagen');
 

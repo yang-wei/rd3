@@ -1,5 +1,5 @@
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -12,6 +12,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     // 'utils/phantomjs-shims.js',
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'tests/index.js'
     ],
 
@@ -25,7 +26,7 @@ module.exports = function(config) {
       extensions: ['.jsx'],
       debug: true,
       transform: [
-        ['babelify', {"presets": ["react", "es2015"]}]
+        ['babelify', { presets: ['react', 'es2015'] }]
       ]
     },
 
@@ -58,7 +59,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    //browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+    // browsers: ['Chrome', 'Firefox', 'PhantomJS'],
     browsers: ['PhantomJS'],
 
     browserNoActivityTimeout: 20000

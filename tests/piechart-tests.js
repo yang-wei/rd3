@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;  
 var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var ReactDOM = require('react-dom');
 var PieChart = require('../src/piechart').PieChart;
 var generatePartsOfWhole = require('./utils/datagen').generatePartsOfWhole;

@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 
 describe('LegendChart', function() {
   it('renders and tests LegendChart component', function() {

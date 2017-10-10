@@ -102,10 +102,10 @@ const createClass = (chartType) => {
     },
   };
   Chart.propTypes = {
-    duration: React.PropTypes.array.isRequired,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    margin: React.PropTypes.object,
+    duration: PropTypes.array.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    margin: PropTypes.object,
   };
   return Chart;
 };
