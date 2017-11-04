@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var LineChart = require('../src/linechart').LineChart;
 var generate = require('./utils/datagen').generateArrayOfPoints;
 var data, linechart;

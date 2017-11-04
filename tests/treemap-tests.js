@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 
 describe('Treemap', function() {
   it('renders treemap', function() {
